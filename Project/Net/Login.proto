@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+message UserLogin
+{
+	optional string userName = 1;
+	optional string passWorld = 2;
+}

@@ -71,7 +71,7 @@ function _M:OnPreloadFinish()
         _MOE.Logger.Log("[ClientApp] OnPreloadFinish")
         _MOE.UIManager = require("_Client.UIManager").New()
         _MOE.UIManager:AttachInputManager()
-        --- _MOE.SceneManager:SwitchScene(_MOE.SceneEnum.LoginScene) --- 切换到登录场景
+        _MOE.SceneManager:SwitchScene(_MOE.SceneEnum.LoginScene) --- 切换到登录场景
     end
 end
 

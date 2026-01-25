@@ -1,0 +1,14 @@
+local _M = _MOE.class("LoginScene", _MOE.BaseScene)
+
+function _M:OnEnter()
+    _MOE.Logger.Log("LoginScene Enter")
+
+    _MOE.UIManager:OpenWindow(_MOE.WindowName.Login)
+end
+
+function _M:OnExit()
+    _MOE.UIManager:CloseWindow(_MOE.WindowName.Login)
+    _MOE.EventManager:UnRegisterEvents(self)
+end
+
+return _M

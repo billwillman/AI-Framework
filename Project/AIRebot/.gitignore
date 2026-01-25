@@ -35,6 +35,11 @@
 .vs/
 .vsconfig
 outPath/
+Assets/AssetBundles.xml
+Assets/AssetBundles.xml.meta
+Assets/md5Find.txt
+Assets/md5Find.txt.meta
+Assets/StreamingAssets.meta
 
 # Gradle cache directory
 .gradle/

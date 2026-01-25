@@ -1,0 +1,11 @@
+_MOE.WindowName = {
+    Login = "Login",
+}
+
+_MOE.WindowConfig = {
+    Login = {
+        resPath = "@UI_Login/UI_Login",
+        LayerId = 1,
+        class = "Login.UI_Login",
+    },
+}

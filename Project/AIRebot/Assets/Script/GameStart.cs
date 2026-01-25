@@ -137,6 +137,10 @@ namespace SOC.GamePlay
         void InitLuaEnv() {
             // 1.初始化Lua环境
             m_LuaEnv = new LuaEnv();
+            m_LuaEnv.AddBuildin("rapidjson", XLua.LuaDLL.Lua.LoadRapidJson); // 注册rapidjson库
+            m_LuaEnv.AddBuildin("lpeg", XLua.LuaDLL.Lua.LoadLpeg);
+            m_LuaEnv.AddBuildin("pb", XLua.LuaDLL.Lua.LoadLuaProfobuf);
+            m_LuaEnv.AddBuildin("ffi", XLua.LuaDLL.Lua.LoadFFI);
             m_LuaEnv.AddLoader(m_LuaLoaderCallBack);
             // 2.调用Lua 入口函数
             Lua_DoMain();

@@ -1,0 +1,1 @@
+protoc -o ../AIRebot/Assets/Resources/@PB_Net/Login.pb.bytes Login.proto

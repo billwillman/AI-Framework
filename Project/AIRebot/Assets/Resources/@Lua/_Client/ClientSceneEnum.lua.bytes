@@ -1,0 +1,33 @@
+_MOE.SceneEnum = {
+    LoginScene = "LoginScene",
+    MultiScene = "MultiScene", -- 多人
+    LobbyScene = "LobbyScene",
+}
+
+local SceneConfig = require("_Scene.SceneConfig")
+
+local DSSceneConfig = {
+    ["LoginScene"] = {
+        resSceneName = "", -- 场景名
+        canLoadSame = false, -- 是否能反复加载
+        LuaScene = "_Client.Scene.LoginScene",
+    },
+    ["MultiScene"] = {
+        canLoadSame = true,
+        LuaScene = "_Client.Scene.PlaygroundScene",
+        --Pawn = "Resources/Character/DemoCharacter/Character.prefab",
+        GetResSceneName = function ()
+            if _MOE.TB then
+                local dsData = _MOE.TB["dsData"]
+                local ret = dsData ~= nil and dsData.scene or nil
+                return ret
+            end
+        end
+    },
+    ["LobbyScene"] = {
+        canLoadSame = false,
+        LuaScene = "_Client.Scene.ClientLobbyScene",
+    }
+}
+
+_MOE.TableUtils.CombineTable(SceneConfig, DSSceneConfig)

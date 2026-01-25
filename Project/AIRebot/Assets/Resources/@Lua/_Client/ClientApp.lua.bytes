@@ -91,6 +91,7 @@ local function InitGSNetRegisterFunc(self)
              end)
          end
      end
+     NetModel:RegisterPB("Login")
      --------------------------------------------------------------------
 end
 

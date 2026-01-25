@@ -158,6 +158,19 @@ function _M:PrintMsg(msg)
     _MOE.Logger.Log(str)
 end
 
+function _M:RegisterPB(PBName)
+    if not PBName or type(PBName) ~= "string" or string.len(PBName) <= 0 then
+        return false
+    end
+    local path = string.format("Assets/Resources/@PB_Net/%s.pb.bytes", PBName)
+    local buffer = _MOE.ResourceManager:LoadBytes(path)
+    if not buffer then
+        return false
+    end
+    _MOE.PB.load(buffer)
+    return true
+end
+
 ----------------------------------------------------------------- 虚方法 ---------------------------------------------------------
 
 function _M:NetModel_OnInit()

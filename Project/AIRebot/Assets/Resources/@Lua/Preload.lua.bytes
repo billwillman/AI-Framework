@@ -79,7 +79,13 @@ _MOE.NetCodeHelper = CS.Unity.Netcode.NetCodeHelper
 _MOE.TcpUtils = CS.NsTcpClient.NetUtils
 _MOE.class = require("_Common.BaseClass") -- class框架
 _G.BaseClass = _MOE.class
+
 _MOE.Json = require("_Common.json")
+_MOE.RapidJson = require("rapidjson")
+_MOE.LPEG = require("lpeg")
+_MOE.PB = require("pb")
+_MOE.Protoc = require("protoc")
+
 _MOE.BaseModel = require("_Common.BaseModel")
 _MOE.BaseScene = require("_Common.BaseScene")
 _MOE.TableUtils = require("_Common.TableUtils")

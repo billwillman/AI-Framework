@@ -1,0 +1,41 @@
+local _M = _MOE.class("UI_Login", _MOE.BaseViewClass)
+
+function _M:OnInit()
+    --self:AddEventListener(_MOE.ClientEvents.ON_LOGIN_RET, self._On_GS_SM_LOGIN_RET)
+
+    self:AddButtonClick(self.bp.BtnLogin, self._OnBtnLogin)
+end
+
+--[[
+function _M:_On_GS_SM_LOGIN_RET(msg)
+    if not self.bp then
+        return
+    end
+    _MOE.TableUtils.PrintTable2(msg)
+    if msg.result == 0 then
+        self.user = msg.user -- 服务器user信息
+
+        if not _MOE.GameApp:Switch_TB_MultiScene() then
+            _MOE.SceneManager:SwitchScene(_MOE.SceneEnum.LobbyScene)
+        end
+    end
+end
+
+
+function _M:ApplyServerIp()
+    if not self.bp or not self.bp.ListServer then
+        return
+    end
+    local text = self.bp.ListServer.captionText.text
+    _MOE.Logger.Log("[ApplyServerIp] " .. text)
+    _MOE.GsData.ip = text
+end
+]]
+
+function _M:_OnBtnLogin()
+    -- self:ApplyServerIp()
+    _MOE.Models.NetModel:ConnectServer()
+    -- _MOE.Models.RootAttr:SendLoginMsg(self.bp.EdtUserName.text)
+end
+
+return _M

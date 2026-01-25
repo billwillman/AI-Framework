@@ -46,6 +46,7 @@ local function CreateMyPlayerInput(self, onFinish)
     return ret
 end
 
+--[[
 local function CreateDsNetWorkObject(self, onFinish)
     local ret = _MOE.ResourceManager:CreateGameObjectAsync("Resources/@NetCode/DsNetworkManager.prefab",
     function(process, isDone, obj)
@@ -63,9 +64,10 @@ local function CreateDsNetWorkObject(self, onFinish)
     )
     return ret
 end
+]]
 
 function _M:OnPreloadFinish()
-    if self.UIRoot and self.PlayerInput and self.DsNetworkManager then
+    if self.UIRoot and self.PlayerInput --[[and self.DsNetworkManager]] then
         _MOE.Logger.Log("[ClientApp] OnPreloadFinish")
         _MOE.UIManager = require("_Client.UIManager").New()
         _MOE.UIManager:AttachInputManager()
@@ -141,8 +143,8 @@ end
 ------------------------------ 继承方法 -------------------------------
 function _M:OnInit()
     _MOE.IsClient = true
-    if CreateUIRoot(self, self.OnPreloadFinish) and CreateMyPlayerInput(self, self.OnPreloadFinish) and
-        CreateDsNetWorkObject(self, self.OnPreloadFinish) then
+    if CreateUIRoot(self, self.OnPreloadFinish) and CreateMyPlayerInput(self, self.OnPreloadFinish)
+        --[[and CreateDsNetWorkObject(self, self.OnPreloadFinish)]] then
         _MOE.BaseViewClass = require("_Client.BaseView")
         --- 这里给个默认值
         _MOE.GsData = {ip = "49.235.182.106", port = 5000}

@@ -33,6 +33,10 @@ function _M:SendMsg(msgId, data)
     self.GsNetwork:SendMsg(msgId, data)
 end
 
+function _M:SendPBMsg(msgId, data, pbTypeName)
+    self.GsNetwork:SendPBMsg(msgId, data, pbTypeName)
+end
+
 function _M:RegisterPB(PBName)
     if self.GsNetwork then
         return self.GsNetwork:RegisterPB(PBName)

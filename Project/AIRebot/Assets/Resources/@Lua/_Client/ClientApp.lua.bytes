@@ -91,6 +91,8 @@ local function InitGSNetRegisterFunc(self)
              end)
          end
      end
+
+     -- 注册网络pb文件
      NetModel:RegisterPB("Login")
      --------------------------------------------------------------------
 end

@@ -111,6 +111,15 @@ function _M:SendMsg(msgId, data)
     self.NetClient:SendMoonStr(msg)
 end
 
+function _M:SendPBMsg(msgId, data, PBTypeName)
+    if data then
+        local buf = _MOE.PB.encode(PBTypeName, data)
+        self.NetClient:Send(buf, msgId)
+    else
+        self.NetClient:Send(msgId)
+    end
+end
+
 function _M:_OnMsg_SM_Heart(msg)
 end
 

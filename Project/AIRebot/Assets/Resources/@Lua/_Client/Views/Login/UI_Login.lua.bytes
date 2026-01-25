@@ -36,6 +36,8 @@ function _M:_OnBtnLogin()
     -- self:ApplyServerIp()
     _MOE.Models.NetModel:ConnectServer()
     -- _MOE.Models.RootAttr:SendLoginMsg(self.bp.EdtUserName.text)
+    _MOE.Models.NetModel:SendPBMsg(_MOE.MsgIds.CM_Login, {userName = self.bp.EdtUserName.text, passWorld = ""},
+        "UserLogin")
 end
 
 return _M

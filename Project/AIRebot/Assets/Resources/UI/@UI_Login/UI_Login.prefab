@@ -1461,6 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindControls:
   - {fileID: 1708477914404376346}
+  - {fileID: 5084325201210516870}
 --- !u!1 &6309325375971139073
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ using NsLib.ResMgr;
         UISpriteMainTexture,
         UI2DSpriteMainTexture,
         UI2DSpriteShader,
+        UITextFont,
         AnimatorController,
         TextMeshFont,
 		NGUIUIFontFont,
@@ -261,7 +262,25 @@ using NsLib.ResMgr;
             return false;
         }
 
-        public bool LoadScriptObjectAsync(string fileName, ICustomLoaderEvent obj, string resName = "", string tag = "", int loadPriority = 0) {
+    public bool LoadFontAsync(string fileName, UnityEngine.UI.Text obj, int loadPriority = 0) {
+        if (obj == null)
+            return false;
+        var mgr = BaseResLoaderAsyncMgr.GetInstance();
+        if (mgr != null) {
+            ulong id;
+            int rk = ReMake(fileName, obj, BaseResLoaderAsyncType.UITextFont, false, out id);
+            if (rk < 0)
+                return false;
+            if (rk == 0)
+                return true;
+
+            return mgr.LoadFontAsync(fileName, this, id, loadPriority);
+        }
+
+        return false;
+    }
+
+    public bool LoadScriptObjectAsync(string fileName, ICustomLoaderEvent obj, string resName = "", string tag = "", int loadPriority = 0) {
         if (obj == null || obj.CustomLoaderBehaviour == null)
             return false;
         var mgr = BaseResLoaderAsyncMgr.GetInstance();
@@ -651,6 +670,10 @@ using NsLib.ResMgr;
                         TextMesh text = obj as TextMesh;
                         text.font = target;
                         break;
+                case BaseResLoaderAsyncType.UITextFont:
+                    UnityEngine.UI.Text text1 = obj as UnityEngine.UI.Text;
+                    text1.font = target;
+                    break;
                     default:
                         return false;
 

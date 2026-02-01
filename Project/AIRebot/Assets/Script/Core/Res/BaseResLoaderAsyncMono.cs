@@ -18,6 +18,7 @@ using NsLib.ResMgr;
         UI2DSpriteMainTexture,
         UI2DSpriteShader,
         UITextFont,
+        UIRawImageTexture,
         AnimatorController,
         TextMeshFont,
 		NGUIUIFontFont,
@@ -359,7 +360,25 @@ using NsLib.ResMgr;
             return false;
         }
 
-        public bool LoadMainTextureAsync(string fileName, MeshRenderer renderer, bool isMatInst = false, int loadPriority = 0) {
+    public bool LoadTextureAsync(string fileName, UnityEngine.UI.RawImage renderer, int loadPriority = 0) {
+        if (renderer == null)
+            return false;
+
+        var mgr = BaseResLoaderAsyncMgr.GetInstance();
+        if (mgr != null) {
+            ulong id;
+            int rk = ReMake(fileName, renderer, BaseResLoaderAsyncType.UIRawImageTexture, false, out id, _cMainTex);
+            if (rk < 0)
+                return false;
+            if (rk == 0)
+                return true;
+
+            return mgr.LoadTextureAsync(fileName, this, id, loadPriority);
+        }
+        return false;
+    }
+
+    public bool LoadMainTextureAsync(string fileName, MeshRenderer renderer, bool isMatInst = false, int loadPriority = 0) {
             if (renderer == null)
                 return false;
 
@@ -461,6 +480,10 @@ using NsLib.ResMgr;
                         m2.mainTexture = target;
 
                         break;
+                case BaseResLoaderAsyncType.UIRawImageTexture:
+                    UnityEngine.UI.RawImage r3 = obj as UnityEngine.UI.RawImage;
+                    r3.texture = target;
+                    break;
                     default:
                         return false;
                 }

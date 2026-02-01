@@ -44,7 +44,8 @@ public class BaseResLoader: CachedMonoBehaviour
         return ret;
     }
 
-    protected Material GetInstanceMaterialMap(int instanceId) {
+
+	protected Material GetInstanceMaterialMap(int instanceId) {
         if (m_InstanceMaterialMap != null && m_InstanceMaterialMap.Count > 0) {
             Material ret;
             if (m_InstanceMaterialMap.TryGetValue(instanceId, out ret))

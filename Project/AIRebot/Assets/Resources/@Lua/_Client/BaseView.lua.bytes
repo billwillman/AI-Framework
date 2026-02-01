@@ -44,7 +44,13 @@ function BaseView:TextSetFontAsync(bp, resPath)
     return self.Loader:LoadFontAsync(resPath, bp)
 end
 
----------
+--------- RawImage组件 ----------------
+function BaseView:RawImageSetImage(bp, resPath)
+    if not bp or not resPath then
+        return false
+    end
+    return self.Loader:LoadTextureAsync(resPath, bp)
+end
 
 -- 清理调所有delegete
 function BaseView:ClearUIEvents()

@@ -37,6 +37,15 @@ function BaseView:TextSetText(bp, str)
     return true
 end
 
+function BaseView:TextSetFontAsync(bp, resPath)
+    if not bp or not resPath then
+        return false
+    end
+    return self.Loader:LoadFontAsync(resPath, bp)
+end
+
+---------
+
 -- 清理调所有delegete
 function BaseView:ClearUIEvents()
     if self.__UIEvents then

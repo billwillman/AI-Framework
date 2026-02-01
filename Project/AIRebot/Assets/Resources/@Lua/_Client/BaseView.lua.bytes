@@ -27,6 +27,16 @@ function BaseView:GetLayerId()
     return self.LayerId
 end
 
+------------- TEXT组件 --------------------
+function BaseView:TextSetText(bp, str)
+    if not bp then
+        return false
+    end
+    str = str or ""
+    bp.text = str
+    return true
+end
+
 -- 清理调所有delegete
 function BaseView:ClearUIEvents()
     if self.__UIEvents then

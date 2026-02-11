@@ -13,6 +13,7 @@ function BaseView:Ctor(gameObj, loader)
     self.RootGameObject = gameObj
     self.RootTransform = gameObj.transform
     self.Loader = loader
+    -- self.LoopScrollViews = {} -- 无限滚动列表
 end
 
 function BaseView:Init()

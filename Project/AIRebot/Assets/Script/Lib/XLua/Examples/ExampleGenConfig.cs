@@ -75,6 +75,9 @@ public static class ExampleGenConfig
                 typeof(Action<string, int, int, int>),
                 typeof(Action<float, bool, GameObject>),
                 typeof(Action<ulong>),
+                // SuperScrollView
+                typeof(System.Func<SuperScrollView.LoopListView2, int, SuperScrollView.LoopListViewItem2>),
+                typeof(System.Func<int, (float, float)>),
                // typeof(Action<NetworkManager, ConnectionEventData>),
 
                // typeof(NetworkVariable<IntAttributeGroup>.OnValueChangedDelegate),
@@ -118,6 +121,9 @@ public static class ExampleGenConfig
                 typeof(Action<HttpClient, HttpListenerStatus>),
                 typeof(UnityEngine.Events.UnityAction<UnityEngine.InputSystem.InputAction.CallbackContext>),
                 typeof(Action<float, bool, GameObject>),
+                // SuperScrollView
+                typeof(System.Func<SuperScrollView.LoopListView2, int, SuperScrollView.LoopListViewItem2>),
+                typeof(System.Func<int, (float, float)>),
                // typeof(Action<NetworkManager.ConnectionApprovalRequest, NetworkManager.ConnectionApprovalResponse>),
 
                 /*

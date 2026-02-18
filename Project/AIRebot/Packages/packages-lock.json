@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.code-philosophy.luban": {
+      "version": "file:D:/AI-Framework/Project/Extra/CustomPackages/luban_unity",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.6",
       "depth": 0,

@@ -70,6 +70,9 @@ namespace SkillEditor.Data
 
         [InspectorName("位移效果")]
         DisplaceEffect = 22,
+
+        [InspectorName("Animancer动画")]
+        Animancer = 23,
     }
 
     /// <summary>

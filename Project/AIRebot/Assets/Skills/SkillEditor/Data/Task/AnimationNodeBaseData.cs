@@ -8,10 +8,21 @@ namespace SkillEditor.Data
     [Serializable]
     public class AnimationNodeBaseData : NodeData
     {
+        // ============ 动画配置 ============
+
+        /// <summary>
+        /// 动画名称
+        /// </summary>
+        public string animationName = "";
         /// <summary>
         /// 动画帧数（支持公式）
         /// </summary>
         public string animationDuration = "10";
+
+        /// <summary>
+        /// 是否循环播放动画
+        /// </summary>
+        public bool isAnimationLooping = false;
 
         // ============ 时间效果配置 ============
 

@@ -293,7 +293,7 @@ namespace SkillEditor.Runtime
 
             foreach (var node in connectedNodes)
             {
-                if (node is AnimationNodeData animNode)
+                if (node is AnimationNodeBaseData animNode)
                 {
                     _animationNodeGuid = animNode.guid;
 

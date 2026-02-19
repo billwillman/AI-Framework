@@ -37,7 +37,7 @@ namespace SkillEditor.Editor
         private PlaybackIndicator _playbackIndicator; // 绿色播放指示器
 
         // 数据引用
-        private AnimationNodeData _data;
+        private AnimationNodeBaseData _data;
         private Func<Port> _createPortFunc;
 
         // 事件
@@ -217,7 +217,7 @@ namespace SkillEditor.Editor
         /// <summary>
         /// 初始化Timeline视图
         /// </summary>
-        public void Initialize(AnimationNodeData data, Func<Port> createPortFunc)
+        public void Initialize(AnimationNodeBaseData data, Func<Port> createPortFunc)
         {
             _data = data;
             _createPortFunc = createPortFunc;

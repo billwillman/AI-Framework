@@ -15,6 +15,8 @@ namespace SkillEditor.Editor
         protected override float GetNodeWidth() => 1020;
 
         protected override void CreateContent() {
+
+            CreateTimelineSection();
         }
 
         private void CreateTimelineSection() {

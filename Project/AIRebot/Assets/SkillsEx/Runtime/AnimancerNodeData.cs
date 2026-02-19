@@ -10,5 +10,17 @@ namespace SkillEditor.Data
     public class AnimancerNodeData : NodeData
     {
         public Animancer.AnimancerTransitionAssetBase Data = null;
+
+        /// <summary>
+        /// 时间效果列表（只有触发时间，没有结束时间）
+        /// </summary>
+        public List<TimeEffectData> timeEffects = new List<TimeEffectData>();
+
+        // ============ 时间Cue配置 ============
+
+        /// <summary>
+        /// 时间Cue列表（有开始和结束时间，用于控制Cue生命周期）
+        /// </summary>
+        public List<TimeCueData> timeCues = new List<TimeCueData>();
     }
 }

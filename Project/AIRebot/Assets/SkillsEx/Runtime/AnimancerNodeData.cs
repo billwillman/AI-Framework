@@ -5,6 +5,7 @@ using Animancer;
 
 namespace SkillEditor.Data
 {
+    [Serializable]
     public class AnimancerNodeData : NodeData
     {
         public Animancer.AnimancerTransitionAssetBase Data = null;

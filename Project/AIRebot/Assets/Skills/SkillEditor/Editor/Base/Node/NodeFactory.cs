@@ -121,7 +121,8 @@ namespace SkillEditor.Editor
 
                 case NodeType.Animation:
                     return NodeCategory.Task;
-
+                case NodeType.Animancer:
+                    return NodeCategory.Task;
                 default:
                     return NodeCategory.Root;
             }

@@ -45,6 +45,7 @@ namespace SkillEditor.Editor
 
             // ============ 动画节点 ============
             { NodeType.Animation, pos => new AnimationNode(pos) },
+            { NodeType.Animancer, pos => new AnimancerNode(pos) },
         };
         
 

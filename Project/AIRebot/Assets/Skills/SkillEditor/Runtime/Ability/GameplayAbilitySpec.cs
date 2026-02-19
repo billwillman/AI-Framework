@@ -813,7 +813,7 @@ namespace SkillEditor.Runtime
             if (Owner?.Owner == null || string.IsNullOrEmpty(name))
                 return;
 
-            var animator = Owner.Owner.GetComponent<AnimationComponent>();
+            var animator = Owner.Owner.GetComponent<AnimationBaseComponent>();
             if (animator != null)
             {
                 animator.PlayAnimation(name,loop);

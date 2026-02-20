@@ -87,6 +87,21 @@ namespace SkillEditor.Editor
             });
             _animConfigRow.Add(_isAnimationLoopingToggle);
 
+            // 动画帧数
+            _animationDurationField = new TextField("帧数") { value = TypedData?.animationDuration ?? "10" };
+            _animationDurationField.style.width = 100;
+            _animationDurationField.style.marginRight = 8;
+            _animationDurationField.labelElement.style.minWidth = 30;
+            _animationDurationField.RegisterValueChangedCallback(evt =>
+            {
+                if (TypedData != null) {
+                    TypedData.animationDuration = evt.newValue;
+                    _timelineView?.UpdateDuration();
+                    NotifyDataChanged();
+                }
+            });
+            _animConfigRow.Add(_animationDurationField);
+
             mainContainer.Add(container);
         }
 
@@ -232,6 +247,9 @@ namespace SkillEditor.Editor
             // 同步循环
             if (_isAnimationLoopingToggle != null)
                 _isAnimationLoopingToggle.SetValueWithoutNotify(TypedData.isAnimationLooping);
+            // 同步动画帧数
+            if (_animationDurationField != null)
+                _animationDurationField.SetValueWithoutNotify(TypedData.animationDuration ?? "10");
 
             if (TypedData.Data != null) {
                 OnAnimancerTransitionAssetChanged();
@@ -246,7 +264,8 @@ namespace SkillEditor.Editor
         private bool _timelineSectionFolded = false;
 
         private ObjectField _AnimancerAssetField = null;
-        private Toggle _isAnimationLoopingToggle;
+        private Toggle _isAnimationLoopingToggle = null;
+        private TextField _animationDurationField = null;
 
         public AnimancerNode(Vector2 position) : base(NodeType.Animancer, position) { }
     }

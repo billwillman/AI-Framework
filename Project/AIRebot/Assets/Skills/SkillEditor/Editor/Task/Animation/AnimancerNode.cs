@@ -42,14 +42,14 @@ namespace SkillEditor.Editor
                 style = { flexDirection = FlexDirection.Row, alignItems = Align.Center, marginBottom = 4 }
             };
 
-            var objField = new ObjectField("Animancer资源") {
+            _AnimancerAssetField = new ObjectField("Animancer资源") {
                 objectType = typeof(Animancer.AnimancerTransitionAssetBase),
                 value = TypedData?.Data
             };
-            objField.style.flexGrow = 0;
-            objField.style.width = 300;
-            objField.labelElement.style.minWidth = 60;
-            objField.RegisterValueChangedCallback(
+            _AnimancerAssetField.style.flexGrow = 0;
+            _AnimancerAssetField.style.width = 300;
+            _AnimancerAssetField.labelElement.style.minWidth = 60;
+            _AnimancerAssetField.RegisterValueChangedCallback(
                 evt =>
                 {
                     if (TypedData != null) {
@@ -60,7 +60,7 @@ namespace SkillEditor.Editor
                 }
              );
 
-            row1.Add(objField);
+            row1.Add(_AnimancerAssetField);
 
             container.Add(row1);
 
@@ -68,7 +68,8 @@ namespace SkillEditor.Editor
             mainContainer.Add(container);
         }
 
-        private void OnAnimancerTransitionAssetChanged() { }
+        private void OnAnimancerTransitionAssetChanged() {
+        }
 
         private void CreateTimelineSection() {
             // 时间轴整个区域
@@ -195,10 +196,30 @@ namespace SkillEditor.Editor
             return base.FindOutputPortByIdentifier(portIdentifier);
         }
 
+        public override void LoadData(NodeData data) {
+            base.LoadData(data);
+            SyncUIFromData();
+        }
+
+        public override void SyncUIFromData() {
+            base.SyncUIFromData();
+            if (TypedData == null) return;
+
+            if (_AnimancerAssetField != null)
+                _AnimancerAssetField.SetValueWithoutNotify(TypedData.Data);
+
+            if (TypedData.Data != null) {
+                OnAnimancerTransitionAssetChanged();
+            }
+
+            RefreshTimeline();
+        }
+
         // Timeline视图
         private TimelineView _timelineView;
         private VisualElement _timelineContainer;
         private bool _timelineSectionFolded = false;
+        private ObjectField _AnimancerAssetField = null;
 
         public AnimancerNode(Vector2 position) : base(NodeType.Animancer, position) { }
     }

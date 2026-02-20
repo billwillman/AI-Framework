@@ -62,6 +62,24 @@ namespace SkillEditor.Editor
 
             row1.Add(_AnimancerAssetField);
 
+            // 循环播放
+            _isAnimationLoopingToggle = new Toggle("循环") { value = TypedData?.isAnimationLooping ?? false };
+            _isAnimationLoopingToggle.style.marginRight = 8;
+            _isAnimationLoopingToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (TypedData != null) {
+                    TypedData.isAnimationLooping = evt.newValue;
+                    /*
+                    // 更新预览的循环状态
+                    if (_spineRenderer != null && _spineRenderer.IsInitialized && !string.IsNullOrEmpty(TypedData.animationName)) {
+                        _spineRenderer.SetAnimation(TypedData.animationName, evt.newValue);
+                    }
+                    */
+                    NotifyDataChanged();
+                }
+            });
+            row1.Add(_isAnimationLoopingToggle);
+
             container.Add(row1);
 
 
@@ -207,6 +225,9 @@ namespace SkillEditor.Editor
 
             if (_AnimancerAssetField != null)
                 _AnimancerAssetField.SetValueWithoutNotify(TypedData.Data);
+            // 同步循环
+            if (_isAnimationLoopingToggle != null)
+                _isAnimationLoopingToggle.SetValueWithoutNotify(TypedData.isAnimationLooping);
 
             if (TypedData.Data != null) {
                 OnAnimancerTransitionAssetChanged();
@@ -219,7 +240,9 @@ namespace SkillEditor.Editor
         private TimelineView _timelineView;
         private VisualElement _timelineContainer;
         private bool _timelineSectionFolded = false;
+
         private ObjectField _AnimancerAssetField = null;
+        private Toggle _isAnimationLoopingToggle;
 
         public AnimancerNode(Vector2 position) : base(NodeType.Animancer, position) { }
     }

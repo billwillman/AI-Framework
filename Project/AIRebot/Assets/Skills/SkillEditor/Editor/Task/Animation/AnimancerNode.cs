@@ -49,6 +49,16 @@ namespace SkillEditor.Editor
             objField.style.flexGrow = 0;
             objField.style.width = 300;
             objField.labelElement.style.minWidth = 60;
+            objField.RegisterValueChangedCallback(
+                evt =>
+                {
+                    if (TypedData != null) {
+                        TypedData.Data = evt.newValue as Animancer.AnimancerTransitionAssetBase;
+                        OnAnimancerTransitionAssetChanged();
+                        NotifyDataChanged();
+                    }
+                }
+             );
 
             row1.Add(objField);
 
@@ -57,6 +67,8 @@ namespace SkillEditor.Editor
 
             mainContainer.Add(container);
         }
+
+        private void OnAnimancerTransitionAssetChanged() { }
 
         private void CreateTimelineSection() {
             // 时间轴整个区域

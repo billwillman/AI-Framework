@@ -61,6 +61,13 @@ namespace SkillEditor.Editor
              );
 
             row1.Add(_AnimancerAssetField);
+            container.Add(row1);
+
+            // === 第二行：动画选择 + 帧数 + 循环 ===
+            var _animConfigRow = new VisualElement {
+                style = { flexDirection = FlexDirection.Row, alignItems = Align.Center, marginBottom = 4 }
+            };
+            container.Add(_animConfigRow);
 
             // 循环播放
             _isAnimationLoopingToggle = new Toggle("循环") { value = TypedData?.isAnimationLooping ?? false };
@@ -78,10 +85,7 @@ namespace SkillEditor.Editor
                     NotifyDataChanged();
                 }
             });
-            row1.Add(_isAnimationLoopingToggle);
-
-            container.Add(row1);
-
+            _animConfigRow.Add(_isAnimationLoopingToggle);
 
             mainContainer.Add(container);
         }

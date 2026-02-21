@@ -4,7 +4,7 @@ set CONF_ROOT=.
 
 dotnet %LUBAN_DLL% ^
     -t all ^
-    -d json ^
+    -d protobuf2-bin ^
     --conf %CONF_ROOT%\luban.conf ^
     -x outputDataDir=output
 

@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package cfg;
+
+
+message Sever {
+    required int32 id = 1 ;
+    required string name = 2 ;
+    required string ip = 3 ;
+    required int32 port = 4 ;
+}
+
+message TbSever {
+    repeated Sever data_list = 1 [packed = false];
+}
+
+

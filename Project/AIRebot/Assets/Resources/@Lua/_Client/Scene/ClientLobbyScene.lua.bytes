@@ -1,0 +1,6 @@
+local _M = _MOE.class("ClientLobbyScene", _MOE.BaseScene)
+
+function _M:OnEnter()
+end
+
+return _M

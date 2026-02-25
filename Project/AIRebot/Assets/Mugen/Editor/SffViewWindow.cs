@@ -529,7 +529,7 @@ public class SffViewWindow : EditorWindow
                     if (audioImporter != null) {
                         audioImporter.forceToMono = true;
                         audioImporter.loadInBackground = false;
-                        audioImporter.preloadAudioData = false;
+                       // audioImporter.preloadAudioData = false;
 
                         AudioImporterSampleSettings audioSettings = new AudioImporterSampleSettings();
                         audioSettings.loadType = AudioClipLoadType.DecompressOnLoad;
@@ -804,8 +804,10 @@ public class SffViewWindow : EditorWindow
                     playerName = playerName.Trim();
                     if (!string.IsNullOrEmpty(playerName)) {
                         GameObject obj = Common.CreatePlayer(playerName);
+                        /*
                         var bOwner = obj.AddComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
                         bOwner.repeat = true;
+                        */
                     }
                 }
             }

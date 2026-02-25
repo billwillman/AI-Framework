@@ -115,6 +115,7 @@ public class PlayerAnimShow : EditorWindow {
         Selection.activeGameObject = gameObj;
         //Selection.activeTransform = gameObj.transform;
 
+        /*
         NodeCanvas.BehaviourTrees.BehaviourTreeOwner bbOwer = gameObj.GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
         NodeCanvas.Framework.Blackboard bOwner = gameObj.GetComponent<NodeCanvas.Framework.Blackboard>();
 
@@ -174,7 +175,7 @@ public class PlayerAnimShow : EditorWindow {
             } else
                 m_States = null;
         }
-        
+        */
     }
 
     /*
@@ -466,10 +467,12 @@ public class PlayerAnimShow : EditorWindow {
             Repaint();
         }
        
+        /*
         NodeCanvas.BehaviourTrees.BehaviourTreeOwner bOwner = m_Target.GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
         if (bOwner  != null && GUILayout.Button("显示行为树")) {
             NodeCanvas.Editor.GraphEditor.OpenWindow(bOwner);
         }
+        */
 
         const int cColNum = 5;
 

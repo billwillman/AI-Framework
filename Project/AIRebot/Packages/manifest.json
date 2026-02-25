@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.code-philosophy.luban": "file:D:/AI-Framework/Project/Extra/CustomPackages/luban_unity",
+    "com.unity.2d.sprite": "1.0.0",
+    "com.unity.2d.spriteshape": "9.1.1",
     "com.unity.ai.navigation": "1.1.6",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.ide.rider": "3.0.36",

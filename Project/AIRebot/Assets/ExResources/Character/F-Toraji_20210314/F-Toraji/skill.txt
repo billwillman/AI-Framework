@@ -1,0 +1,68 @@
+
+------------------------------------------------------------------------------------------------------
+
+ÅyBasic ActionÅz
+
+Light Punch				X
+Hard Punch				Y
+Light Kick				A
+Hard Kick				B
+
+Run					66
+Back Step				44
+
+Super Jump 				2,8 or 8 while running
+Short Jump				8 (tap)
+Air Jump				8 (in air)
+
+Safe Fall Recovery			Z or XA when nearing ground while falling
+
+Ad lib Cansel				Z when attack moving on the ground 
+					(Requires 60% Tension Meter / 40% Tension Meter during OuRai)
+Element Burst				C+ZÅiRequires 60% Tension Meter / 80% Tension Meter during guard or hittedÅj
+
+Taunt					S
+
+------------------------------------------------------------------------------------------------------
+
+ÅyThrowÅz
+DoRaiDan -Steaming Torpedo-		6or4+Y (close)
+GaiRyuShi -Dragon Shaver-		6or4+B (close)
+
+
+ÅyCommand MovesÅz
+BuRaiDo -Thunder God's Rage-		6+X (hold)
+RiFuu -Returned Wind-			4+X / X,4+X
+
+OuRai -Lightning Responce-		C
+OuRai (cansel)				C during the specific attack moving (Requires 20% Tension Meter)
+
+
+ÅyMighty ArtsÅz
+Shu-Raikou -Thunder Strike-		236+XorY
+Ñ∞Tsurane -Thunder Strike-Double-	XorY (only during OuRai)
+ÑØAwase -Thunder Strike-Cross-		AorB (only during OuRai)
+RaiKu -Flash Sprint-			4(hold),6+AorB
+ÑØRinRaiKu  -Bravery Flash Sprint-	AorB (only during OuRai)
+TenRaiDan  -Electro Cutter- (Light)	421+X
+ÑØAmagake  -Thunder Strike-Fry-		XorY (only during OuRai)
+TenRaiDan  -Electro Cutter- (Hard)	421+Y
+ÑØHaze  -Thunder Strike-Barst-		XorY (only during OuRai)
+MouRaiShou -Thunderbolt Fist-		624+XorY
+ÑØGouRaiTsui  -Voltaic Hammer-		XorY (only during OuRai)
+
+ÅyRaging Arts (Requires 1 Power Bar)Åz
+Shu-Raikou Todoroki
+ -Thunder Strike-Roar-			236236+XorY (can change the flying distance by 4or6)
+
+ÅyFurious Arts (Requires 2 Power Bar)Åz
+Rappa RaiSan  -Sparkle Shatterer-	2426+AorB
+ÑØJinrai Happa  -Thunderstorm Blaster-	26262626+XorY (only during OuRai & Requires 1 Power Bar)
+
+
+ÅyMaximum Fury (Requires 3 Power Bar)Åz
+KoGa RaiOuZan -Lightning Tiger Smash-	236236+Y+B
+Kyoku KoGa RaiOuZan
+ -Lightning Tiger Smash-Ultimate-	236236+Y+B (only during OuRai)
+
+------------------------------------------------------------------------------------------------------

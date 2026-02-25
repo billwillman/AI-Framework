@@ -1,0 +1,40 @@
+;=======================================;
+;        Character Def File for:        ;
+;Sachiel by Rikard & Orochi Dark Cloud;
+;     for MUGEN v. (version number)     ;
+;       Maker's Website HTTP here       ;
+;                                       ;
+;   Made with MUGEN Editing Ensemble    ;
+;     (http://ragnaroknemo.cjb.net)     ;
+;=======================================;
+
+[Info]
+name = "Sachiel"
+displayname = "Sachiel"
+versiondate = 
+mugenversion = 
+author = "Rikard"
+pal.defaults = 1,2
+
+[Files]
+cns = Sachiel.cns
+cmd = Sachiel.cmd
+stcommon = common1.cns
+sprite = Sachiel.sff
+anim = Sachiel.air
+st = Sachiel.st
+;st1 = 
+sound = Sachiel.snd
+pal1 = Sachiel.act
+pal2 = Sachiel2.act
+pal3 = Sachiel3.act
+pal4 = Sachiel4.act
+pal5 = Sachiel5.act
+pal6 = Sachiel6.act
+pal7 = Sachiel7.act
+pal8 = Sachiel8.act
+pal9 = Sachiel9.act
+pal10 = Sachiel10.act
+pal11 = Sachiel11.act
+pal12 = Sachiel12.act
+ai = sachiel.ai

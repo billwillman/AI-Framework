@@ -1,0 +1,609 @@
+
+;-----------------------------------------------------------------------------
+[Statedef -2];常時監視ステート(相手に行動を制御されても関係無く常に実行される)
+;-----------------------------------------------------------------------------
+
+
+
+[State -2, 1];ダッシュの音止め
+type = stopSnd
+trigger1 = stateno != 100
+channel = 1
+
+
+
+[State -2, 強化]
+Type = VarSet
+trigger1 = RoundState != 2
+V = 10
+Value = 0
+
+[State 3060]
+type = Explod
+triggerall = numexplod(194) = 0
+trigger1 = var(10) = 1
+anim = 194
+ID = 194
+pos = 0,0
+postype = P1
+facing = 1
+bindtime = -1
+removetime = -1
+sprpriority = 20
+
+[state a]
+type = RemoveExplod
+trigger1 = var(10) = 0
+trigger2 = StateNo = 180
+id = 194
+
+[state a];強化状態継続
+type = VarSet
+triggerall = PalNo = 6
+trigger1 = StateNo = 0
+var(10) = 1
+
+
+[State 250, 武雷怒効果音消す]
+type = StopSnd
+trigger1 = Anim != 250
+channel = 3
+
+
+[State -2, AC回数リセット]
+Type = VarSet
+trigger1 = P2movetype != H
+V = 17
+Value = 0
+
+
+
+[State -2, 二人目のイントロ]
+type = ChangeState
+value = 190
+triggerall = RoundsExisted = 0 
+triggerall = TeamMode = Turns 
+trigger1 = stateno = 5900
+
+[State -2, 勝利バグ解消]
+type = CtrlSet 
+trigger1 = RoundState = 4 
+trigger1 = Win && Ctrl = 1
+value = 0 
+
+
+
+[state a];
+type = AttackMulSet
+trigger1 = var(25) > 0
+value = 1.10
+
+[state a];
+type = AttackMulSet
+trigger1 = PalNo = 6
+value = 1.15
+
+[state a];
+type = DefenceMulSet
+trigger1 = var(25) > 0
+value = .90
+
+[state a];
+type = DefenceMulSet
+trigger1 = PalNo = 12
+value = .85
+
+;----------------------------------------------------------------------------
+
+;テンション
+
+
+[state a];
+type = varset
+triggerall = PalNo != 12
+trigger1 = RoundState != 2
+v = 30
+value = 3000 ;開始時50%
+
+[state a];特殊カラー時
+type = varset
+triggerall = PalNo = 12
+trigger1 = RoundState != 2
+v = 30
+value = 6000 
+
+[state a];
+type = varset
+trigger1 = RoundState != 2
+v = 31
+value = 0 ;開始時
+
+[state a];
+type = varset
+trigger1 = var(23) = 1
+v = 30
+value = -1 
+
+
+[state a]
+type = varadd
+triggerall = RoundState = 2
+triggerall = MoveType != A ;攻撃中は低下が止まる
+triggerall = StateNo != 100;走行中　〃
+triggerall = var(23) != 1
+trigger1 = 1
+v = 30
+value = -1
+
+[state a];
+type = varset
+trigger1 = var(30) > 6600
+trigger1 = var(25) > 1
+trigger1 = var(23) != 1
+v = 30
+value = 6599 ;上限109%
+
+[state a];
+type = varset
+trigger1 = var(30) < 1 
+trigger1 = var(23) != 1
+v = 30
+value = 1 ;下限1%
+
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(25) >= 0
+trigger1 = var(30) > 0
+v = 31
+value = 0 ;0%
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 0 && var(30) < 1200 
+v = 31
+value = 1 ;1～19%
+
+[state a];s
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 1199 && var(30) < 2400 
+v = 31
+value = 2 ;20～39%
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 2399 && var(30) < 3600 
+v = 31
+value = 3 ;40～59%
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 3599 && var(30) < 4800 
+v = 31
+value = 4 ;60～79%
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 4799 && var(30) < 6000 
+v = 31
+value = 5 ;80～99%
+
+[state a];
+type = varset
+trigger1 = var(23) != 1
+trigger1 = var(30) > 5999 
+v = 31
+value = 6 ;100～109%
+
+[state a];
+type = varset
+trigger1 = var(23) = 1
+v = 31
+value = 9 ;0%（封印）
+
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 1 
+trigger1 = numexplod(6000) = 0
+anim = 6000
+id = 6000
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 1 
+trigger1 = numexplod(6000) = 0
+anim = 6000
+id = 6000
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 1
+trigger2 = RoundState != 2
+ID = 6000
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 2
+trigger1 = numexplod(6001) = 0
+anim = 6001
+id = 6001
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 2
+trigger1 = numexplod(6001) = 0
+anim = 6001
+id = 6001
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 2
+trigger2 = RoundState != 2
+ID = 6001
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 3
+trigger1 = numexplod(6002) = 0
+anim = 6002
+id = 6002
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 3
+trigger1 = numexplod(6002) = 0
+anim = 6002
+id = 6002
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 3
+trigger2 = RoundState != 2
+ID = 6002
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 4
+trigger1 = numexplod(6003) = 0
+anim = 6003
+id = 6003
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 4
+trigger1 = numexplod(6003) = 0
+anim = 6003
+id = 6003
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 4
+trigger2 = RoundState != 2
+ID = 6003
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 5
+trigger1 = numexplod(6004) = 0
+anim = 6004
+id = 6004
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 5
+trigger1 = numexplod(6004) = 0
+anim = 6004
+id = 6004
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 5
+trigger2 = RoundState != 2
+ID = 6004
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 6
+trigger1 = numexplod(6005) = 0
+anim = 6005
+id = 6005
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 6
+trigger1 = numexplod(6005) = 0
+anim = 6005
+id = 6005
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 6
+trigger2 = RoundState != 2
+ID = 6005
+
+
+
+[state -2,];1P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 1
+triggerall = var(31) = 9
+triggerall = var(23) = 1
+trigger1 = numexplod(6009) = 0
+anim = 6009
+id = 6009
+ignorehitpause = 1
+postype = left
+bindtime = -1
+pos = 25,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[state -2,];2P側
+type = Explod
+triggerall = RoundState = 2
+triggerall = teamside = 2
+triggerall = var(31) = 9
+triggerall = var(23) = 1
+trigger1 = numexplod(6009) = 0
+anim = 6009
+id = 6009
+ignorehitpause = 1
+postype = right
+bindtime = -1
+pos = -35,210
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+pausemovetime=-1
+
+[State -2, removeexplod]
+Type = RemoveExplod
+Trigger1 = var(31) != 9
+trigger2 = RoundState != 2
+ID = 6009
+
+;----------------------------------------------------------------------------
+
+;エレメントバースト
+
+
+[state a];テンション上限へ
+type = varset
+trigger1 = var(30) > 0
+trigger1 = var(24) = 1
+trigger1 = var(25) > 1
+v = 30
+value = 6600
+
+[state a]
+type = varadd
+trigger1 = var(25) >= 1
+trigger1 = 1
+v = 25
+value = -9
+
+[State -2, a];残像
+Type = AfterImage
+Trigger1 = animelemtime(1) = 0
+trigger1 = var(25) >= 1
+time = -1
+trans = add1
+timegap = 1
+framegap = 3
+length = 10
+palbright = 55,12,64    ;カラー
+palcontrast = 135,64,174  ;0に近いほど黒くなる
+palpostbright = 0,0,0
+paladd = 0,0,0
+palmul = 1,1,1
+trans = Add1
+
+[state a];
+type = afterimagetime
+TriggerAll = StateNo != [3201,3202] 
+Trigger1 = time = 1
+trigger1 = var(25) = 0
+trigger2 = var(23) = 1
+trigger3 = MoveType = A
+Trigger3 = StateNo = [3000,3200] 
+trigger3 = var(25) >= 0
+time = 0
+ignorehitpause = 1
+
+[state a];使用不能判定
+type = varset
+trigger1 = var(24) = 1
+trigger1 = var(25) <= 0
+v = 23
+value = 1
+
+[state a];テンション下限へ
+type = varset
+trigger1 = var(23) = 1
+trigger2 = var(25) > 0
+Trigger2 = StateNo = [3000,3500] 
+v = 30
+value = -1
+
+
+
+
+;----------------------------------------------------------------------------
+
+
+;特殊メッセージ
+
+;[state a]
+;type = varset
+;trigger1 = p2name = "xx"
+;v = 35
+;value = 5
+
+
+;----------------------------------------------------------------------------
+
+

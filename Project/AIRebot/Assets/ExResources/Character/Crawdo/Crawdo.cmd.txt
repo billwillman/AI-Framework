@@ -1,0 +1,972 @@
+; The CMD file.
+;
+; Two parts: 1. Command definition and  2. State entry
+; (state entry is after the commands def section)
+;
+; 1. Command definition
+; ---------------------
+; Note: The commands are CASE-SENSITIVE, and so are the command names.
+; The eight directions are:
+;   B, DB, D, DF, F, UF, U, UB     (all CAPS)
+;   corresponding to back, down-back, down, downforward, etc.
+; The six buttons are:
+;   a, b, c, x, y, z               (all lower case)
+;   In default key config, abc are are the bottom, and xyz are on the
+;   top row. For 2 button characters, we recommend you use a and b.
+;   For 6 button characters, use abc for kicks and xyz for punches.
+;
+; Each [Command] section defines a command that you can use for
+; state entry, as well as in the CNS file.
+; The command section should look like:
+;
+;   [Command]
+;   name = some_name
+;   command = the_command
+;   time = time (optional -- defaults to 15 if omitted)
+;
+; - some_name
+;   A name to give that command. You'll use this name to refer to
+;   that command in the state entry, as well as the CNS. It is case-
+;   sensitive (QCB_a is NOT the same as Qcb_a or QCB_A).
+;
+; - command
+;   list of buttons or directions, separated by commas.
+;   Directions and buttons can be preceded by special characters:
+;   slash (/) - means the key must be held down
+;          egs. command = /D       ;hold the down direction
+;               command = /DB, a   ;hold down-back while you press a
+;   tilde (~) - to detect key releases
+;          egs. command = ~a       ;release the a button
+;               command = ~D, F, a ;release down, press fwd, then a
+;          If you want to detect "charge moves", you can specify
+;          the time the key must be held down for (in game-ticks)
+;          egs. command = ~30a     ;hold a for at least 30 ticks, then release
+;   dollar ($) - Direction-only: detect as 4-way
+;          egs. command = $D       ;will detect if D, DB or DF is held
+;               command = $B       ;will detect if B, DB or UB is held
+;   plus (+) - Buttons only: simultaneous press
+;          egs. command = a+b      ;press a and b at the same time
+;               command = x+y+z    ;press x, y and z at the same time
+;   You can combine them:
+;     eg. command = ~30$D, a+b     ;hold D, DB or DF for 30 ticks, release,
+;                                  ;then press a and b together
+;   It's recommended that for most "motion" commads, eg. quarter-circle-fwd,
+;   you start off with a "release direction". This matches the way most
+;   popular fighting games implement their command detection.
+;
+; - time (optional)
+;   Time allowed to do the command, given in game-ticks. Defaults to 15
+;   if omitted
+;
+; If you have two or more commands with the same name, all of them will
+; work. You can use it to allow multiple motions for the same move.
+;
+; Some common commands examples are given below.
+;
+; [Command] ;Quarter circle forward + x
+; name = "QCF_x"
+; command = ~D, DF, F, x
+;
+; [Command] ;Half circle back + a
+; name = "HCB_a"
+; command = ~F, DF, D, DB, B, a
+;
+; [Command] ;Two quarter circles forward + y
+; name = "2QCF_y"
+; command = ~D, DF, F, D, DF, F, y
+;
+; [Command] ;Tap b rapidly
+; name = "5b"
+; command = b, b, b, b, b
+; time = 30
+;
+; [Command] ;Charge back, then forward + z
+; name = "charge_B_F_z"
+; command = ~60$B, F, z
+; time = 10
+;
+; [Command] ;Charge down, then up + c
+; name = "charge_D_U_c"
+; command = ~60$D, U, c
+; time = 10
+
+;-| HSDMS |-----------------------------------------------------------
+
+[Command]
+name = "Kaisawueiv"     
+command = ~D,B,D,B,x+y
+time = 30
+
+;-| SDMS |-----------------------------------------------------------
+[Command]
+name = "SuperScippata"     
+command = ~D,F,D,F,x+y
+time = 30
+
+;-| DMS |-----------------------------------------------------------
+
+[Command]
+name = "PigliaEMena"     
+command = ~D,F,D,B,y
+time = 30
+
+[Command]
+name = "PigliaEMena"     
+command = ~D,F,D,B,x
+time = 30
+
+[Command]
+name = "Scippata"     
+command = ~D,F,D,F,x
+time = 30
+;
+
+[Command]
+name = "Scippata"     
+command = ~D,F,D,F,y
+time = 30 
+;-| Specials |-----------------------------------------------------------
+
+[Command]
+name = "Chain1x"     
+command = ~D,DB,B, x
+time = 15
+
+[Command]
+name = "Chain1y"    
+command = ~D,DB,B, y
+time = 15
+
+[Command]
+name = "Chain1b"    
+command = /D, y
+time = 15
+
+[Command]
+name = "Chain1b"    
+command = /D, x
+time = 15
+
+[Command]
+name = "Chain2a"    
+command = /F,a
+time = 15
+
+[Command]
+name = "Chain2a"    
+command = /F,b
+time = 15
+
+[Command]
+name = "Chain2b"    
+command = ~D,DF,F,a
+time = 15
+
+
+[Command]
+name = "Chain2b"    
+command = ~D,DF,F,b
+time = 15
+
+
+[Command]
+name = "Chain3"    
+command = /U,a
+time = 15
+
+[Command]
+name = "Chain3"    
+command = /U,b
+time = 15
+
+[Command]
+name = "Chain3b"    
+command = ~F,D,DF,a
+time = 15
+
+[Command]
+name = "Chain3b"    
+command = ~F,D,DF,b
+time = 15
+
+[Command]
+name = "Chain4"    
+command = /B,a
+time = 15
+
+[Command]
+name = "Chain4"    
+command = /B,b
+time = 15
+
+[Command]
+name = "Chain5"    
+command = /D,x
+time = 15
+
+[Command]
+name = "Chain5"    
+command = /D,y
+time = 15
+
+
+[Command]
+name = "Chain6"    
+command = ~D,DF,F,x
+time = 15
+
+[Command]
+name = "Chain6b"    
+command = /F,x
+time = 15
+
+[Command]
+name = "Chain7b"    
+command = /B,y
+time = 15
+
+[Command]
+name = "Chain7"    
+command = ~D,DF,F,y
+time = 15
+
+
+[Command]
+name = "Chain8"    
+command = /D,a
+time = 15
+
+[Command]
+name = "Chain8"    
+command = /D,b
+time = 15
+
+;-| Double Tap |-----------------------------------------------------------
+[Command]
+name = "FF"     ;Required (do not remove)
+command = F, F
+time = 10
+
+[Command]
+name = "BB"     ;Required (do not remove)
+command = B, B
+time = 10
+
+;-| 2/3 Button Combination |-----------------------------------------------
+[Command]
+name = "recovery";Required (do not remove)
+command = x+y
+time = 1
+
+[Command]
+name = "powerup"
+command = a+b
+time = 1
+
+[Command]
+name = "holdpowerup"
+command = /$a+b
+time = 1
+
+[Command]
+name = "holda"
+command = /$a
+time = 1
+
+[Command]
+name = "holdb"
+command = /$b
+time = 1
+
+
+[Command]
+name = "holdc"
+command = /$c
+time = 1
+
+[Command]
+name = "holdx"
+command = /$x
+time = 1
+
+[Command]
+name = "holdy"
+command = /$y
+time = 1
+
+
+[Command]
+name = "holdz"
+command = /$z
+time = 1
+
+[Command]
+name = "holdstart"
+command = /$s
+time = 1
+
+;-| Dir + Button |---------------------------------------------------------
+[Command]
+name = "down_a"
+command = /$D,a
+time = 1
+
+[Command]
+name = "down_b"
+command = /$D,b
+time = 1
+
+;-| Single Button |---------------------------------------------------------
+[Command]
+name = "a"
+command = a
+time = 1
+
+[Command]
+name = "b"
+command = b
+time = 1
+
+[Command]
+name = "c"
+command = c
+time = 1
+
+[Command]
+name = "c"
+command = b+y
+time = 1
+
+[Command]
+name = "x"
+command = x
+time = 1
+
+[Command]
+name = "y"
+command = y
+time = 1
+
+[Command]
+name = "z"
+command = z
+time = 1
+
+[Command]
+name = "z"
+command = a+x
+time = 1
+
+[Command]
+name = "start"
+command = s
+time = 1
+
+;-| Hold Dir |--------------------------------------------------------------
+[Command]
+name = "holdfwd";Required (do not remove)
+command = /$F
+time = 1
+
+[Command]
+name = "holdback";Required (do not remove)
+command = /$B
+time = 1
+
+[Command]
+name = "holdup" ;Required (do not remove)
+command = /$U
+time = 1
+
+[Command]
+name = "holddown";Required (do not remove)
+command = /$D
+time = 1
+
+
+;-| CPU |--------------------------------------------------------------
+; Note that if you make any changes to the basic one-button or recovery
+; commands, you'll need to make the same changes to their matching commands here
+; and/or in the XOR VarSet controller.  That includes things like, for example:
+;  * changing the recovery command to use a different combination of buttons.
+;  * renaming the b button command as "d", or the start button command as "s".
+;  * switching the button names around, e.g. so button y triggers "a" and button a triggers "y".
+;  * having more than one way to trigger the same command name.
+; If you understand how the XOR method works, the proper changes should be obvious.
+; If you don't understand it, then simply disable the lines in the XOR VarSet
+; controller that correspond to the commands you've altered.
+
+[Command]
+name = "a2"
+command = a
+time = 1
+
+[Command]
+name = "b2"
+command = b
+time = 1
+
+[Command]
+name = "c2"
+command = c
+time = 1
+
+[Command]
+name = "c2"
+command = b+y
+time = 1
+
+[Command]
+name = "x2"
+command = x
+time = 1
+
+[Command]
+name = "y2"
+command = y
+time = 1
+
+[Command]
+name = "z2"
+command = z
+time = 1
+
+[Command]
+name = "z2"
+command = a+x
+time = 1
+
+
+[Command]
+name = "start2"
+command = s
+time = 1
+
+[Command]
+name = "holdfwd2"
+command = /$F
+time = 1
+
+[Command]
+name = "holdback2"
+command = /$B
+time = 1
+
+[Command]
+name = "holdup2"
+command = /$U
+time = 1
+
+[Command]
+name = "holddown2"
+command = /$D
+time = 1
+
+[Command]
+name = "holda2"
+command = /a
+time = 1
+
+[Command]
+name = "holdb2"
+command = /b
+time = 1
+
+[Command]
+name = "holdc2"
+command = /c
+time = 1
+
+[Command]
+name = "holdx2"
+command = /x
+time = 1
+
+[Command]
+name = "holdy2"
+command = /y
+time = 1
+
+[Command]
+name = "holdz2"
+command = /z
+time = 1
+
+[Command]
+name = "holdstart2"
+command = /s
+time = 1
+
+[Command]
+name = "recovery2"
+command = x+y
+time = 1
+
+[Command]
+name = "Kaisawueiv2"     
+command = ~D,B,D,B,x+y
+time = 30
+
+[Command]
+name = "SuperScippata2"     
+command = ~D,F,D,F,x+y
+time = 30
+
+[Command]
+name = "PigliaEMena2"     
+command = ~D,F,D,B,y
+time = 30
+
+[Command]
+name = "PigliaEMena2"     
+command = ~D,F,D,B,x
+time = 30
+
+[Command]
+name = "Scippata2"     
+command = ~D,F,D,F,x
+time = 30
+
+[Command]
+name = "Scippata2"     
+command = ~D,F,D,F,y
+time = 30
+;
+
+;
+
+
+;---------------------------------------------------------------------------
+; 2. State entry
+; --------------
+; This is where you define what commands bring you to what states.
+;
+; Each state entry block looks like:
+;   [State -1, Label]           ;Change Label to any name you want to use to
+;                               ;identify the state with.
+;   type = ChangeState          ;Don't change this
+;   value = new_state_number
+;   trigger1 = command = command_name
+;   . . .  (any additional triggers)
+;
+; - new_state_number is the number of the state to change to
+; - command_name is the name of the command (from the section above)
+; - Useful triggers to know:
+;   - statetype
+;       S, C or A : current state-type of player (stand, crouch, air)
+;   - ctrl
+;       0 or 1 : 1 if player has control. Unless "interrupting" another
+;                move, you'll want ctrl = 1
+;   - stateno
+;       number of state player is in - useful for "move interrupts"
+;   - movecontact
+;       0 or 1 : 1 if player's last attack touched the opponent
+;                useful for "move interrupts"
+;
+; Note: The order of state entry is important.
+;   State entry with a certain command must come before another state
+;   entry with a command that is the subset of the first.
+;   For example, command "fwd_a" must be listed before "a", and
+;   "fwd_ab" should come before both of the others.
+;
+; For reference on triggers, see CNS documentation.
+;
+; Just for your information (skip if you're not interested):
+; This part is an extension of the CNS. "State -1" is a special state
+; that is executed once every game-tick, regardless of what other state
+; you are in.
+
+
+; Don't remove the following line. It's required by the CMD standard.
+
+[Statedef -1]
+[State -1, AI Helper Check]
+type = ChangeState
+trigger1 = IsHelper(9741)
+value = 9741
+
+[State -1, AI Helper Check 2]
+type = ChangeState
+trigger1 = IsHelper(9742)
+value = 9742
+
+
+
+
+;Kaisawueiv
+[State -1, Kaisawueiv]
+type = ChangeState
+value = 3500
+triggerall = command = "Kaisawueiv" && (power >= 2000) && (life < (const(data.life)/3))
+trigger1 = statetype = S && ctrl = 1
+trigger2 = hitdefattr = SC,NA && movecontact
+
+;La Super Scippata
+[State -1, La Super Scippata]
+type = ChangeState
+value = 3010
+triggerall = command = "SuperScippata" && (power >= 2000)
+trigger1 = statetype = S && ctrl = 1
+trigger2 = hitdefattr = SC,NA && movecontact
+
+;===========================================================================
+;Piglia & Mena
+[State -1, Piglia & Mena]
+type = ChangeState
+value = 3100
+triggerall = command = "PigliaEMena" && (power >= 1000)
+trigger1 = stateno = 1050 && movecontact
+trigger2 = stateno = 1080 && movecontact
+
+;La Scippata
+[State -1, La Scippata]
+type = ChangeState
+value = 3000
+triggerall = command = "Scippata" && (power >= 1000)
+trigger1 = statetype = S && ctrl = 1
+trigger2 = hitdefattr = SC,NA && movecontact
+
+;---------------------------------------------------------------------------
+;Chain H
+[State -1, AE-BD]
+type = ChangeState
+value = 1060
+trigger1 = command = "Chain8" && (stateno = 1050) && (time >= 14)
+trigger2 = command = "Chain8" && (stateno = 1080) && (time >= 11)
+
+;Chain G
+[State -1, AE-BD]
+type = ChangeState
+value = 1080
+trigger1 = command = "Chain6"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = command = "Chain6"
+trigger2 = hitdefattr = SC, NA && movecontact
+trigger2 = stateno != 250
+trigger2 = stateno != 440
+trigger3 = command = "Chain6b" && (stateno = 1050) && (time >= 14)
+
+;Chain F
+[State -1, AE-BD]
+type = ChangeState
+value = 1050
+trigger1 = command = "Chain7"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = command = "Chain7"
+trigger2 = hitdefattr = SC, NA && movecontact
+trigger2 = stateno != 250
+trigger2 = stateno != 440
+trigger3 = command = "Chain7b" && (stateno = 1080) && (time >= 11)
+
+;Chain E
+[State -1, AE-BD]
+type = ChangeState
+value = 1030
+trigger1 = command = "Chain5" && (stateno = 1020) && (time = [13,22])
+
+;Chain D
+[State -1, AD-BC]
+type = ChangeState
+value = 1020
+trigger1 = command = "Chain4" && (stateno = 1010) && (time = [9,18])
+trigger2 = command = "Chain4" && (stateno = [1100,1111]) && (movecontact)
+
+;Chain C
+[State -1, AC-BB]
+type = ChangeState
+value = 1010
+trigger1 = command = "Chain3" && (stateno = 1001)
+trigger2 = command = "Chain3b"
+trigger2 = statetype = S
+trigger2 = ctrl
+trigger3 = command = "Chain3b"
+trigger3 = hitdefattr = SC, NA && movecontact
+trigger3 = stateno != 250
+trigger3 = stateno != 440
+trigger4 = command = "Chain3" && (stateno = 1050) && (time >= 14)
+trigger5 = command = "Chain3" && (stateno = 1080) && (time >= 11)
+;---------------------------------------------------------------------------
+;Chain B
+[State -1, AB-BA]
+type = ChangeState
+value = 1000
+trigger1 = command = "Chain2a" && (stateno = [1100,1111]) && (movecontact)
+trigger2 = command = "Chain2b"
+trigger2 = statetype = A
+trigger2 = ctrl
+trigger3 = command = "Chain2a" && (stateno = 1020) && (time = [13,20])
+
+;---------------------------------------------------------------------------
+;Chain A
+[State -1, AA]
+type = ChangeState
+value = 1100
+trigger1 = command = "Chain1x" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = command = "Chain1x"
+trigger2 = hitdefattr = SC, NA && movecontact
+trigger2 = stateno != 250
+trigger2 = stateno != 440
+trigger3 = command = "Chain1b" && (stateno = 1050) && (time >= 14)
+trigger4 = command = "Chain1b" && (stateno = 1080) && (time >= 11)
+
+;Chain A
+[State -1, AA]
+type = ChangeState
+value = 1110
+trigger1 = command = "Chain1y" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = command = "Chain1y"
+trigger2 = hitdefattr = SC, NA && movecontact
+trigger2 = stateno != 250
+trigger2 = stateno != 440
+
+
+;---------------------------------------------------------------------------
+;Power Build
+[State -1, Power Up]
+type = ChangeState
+value = 750
+triggerall = command = "powerup"
+triggerall = power < 3000
+triggerall = var(10) != 1
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger1 = stateno !=751
+
+
+;---------------------------------------------------------------------------
+;Throws
+[State -1, Throw]
+type = ChangeState
+value = 800
+triggerall = P2bodydist X <= 5
+triggerall = p2movetype != H
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = statetype = S
+triggerall = p2stateno != [5000,5120]
+triggerall = ctrl
+trigger1 = stateno != 100
+trigger1 = (command = "b") && (command = "holdfwd")
+
+[State -1, Throw]
+type = ChangeState
+value = 810
+triggerall = P2bodydist X <= 5
+triggerall = p2movetype != H
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = statetype = S
+triggerall = p2stateno != [5000,5120]
+triggerall = ctrl
+trigger1 = stateno != 100
+trigger1 = (command = "y") && (command = "holdfwd")
+;---------------------------------------------------------------------------
+;Rolls
+[State -1, Roll ]
+type = ChangeState
+value = 700+1*(command = "holdback")
+trigger1 = command = "z"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = command = "z"
+trigger2 = stateno = 150 || stateno = 152
+trigger2 = power >= 1000
+
+;Get up roll
+[State -1, Roll Forward]
+type = ChangeState
+value = 730
+triggerall = alive
+trigger1 = command = "holdfwd"
+trigger1 = stateno = 5120 && time < 5
+
+;Get up roll
+[State -1, Roll Backwards]
+type = ChangeState
+value = 731
+triggerall = alive
+trigger1 = command = "holdback"
+trigger1 = stateno = 5120 && time < 5
+
+;Standing Knockdown
+[State -1, S-K]
+type = ChangeState
+value = 250
+triggerall = command = "c" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = stateno = 150 || stateno = 152
+trigger2 = power >= 1000
+
+;Air Knockdown
+[State -1, A-K]
+type = ChangeState
+value = 650
+triggerall = command = "c"
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;Standing C-A
+[State -1, S-C-A]
+type = ChangeState
+value = 220
+triggerall = stateno != 220
+triggerall = command = "a" && (command = "holdfwd" || command = "holdback")
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = hitdefattr = SC,NA
+trigger2 = movecontact
+
+
+
+;Standing X
+[State -1, S-X]
+type = ChangeState
+value = 200+5*(p2bodydist X < 10)
+triggerall = command = "x" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = (stateno = 200) && (time = [10,15])
+trigger3 = (stateno = 205) && (time = [8,12])
+trigger4 = (stateno = 400) && (time = [7,11])
+
+;Standing Y
+[State -1, S-Y]
+type = ChangeState
+value = 210+5*(p2bodydist X < 15)
+triggerall = command = "y" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;Standing A
+[State -1, S-A]
+type = ChangeState
+value = 230+5*(p2bodydist X < 20)
+triggerall = command = "a" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = (stateno = 205) && (time = [8,12])
+trigger3 = (stateno = 235) && (time = [8,11])
+trigger4 = (stateno = 430) && (time = [8,11])
+
+;Standing B
+[State -1, S-B]
+type = ChangeState
+value = 240+5*(p2bodydist X < 40)
+triggerall = command = "b" && command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+
+;Crouching X
+[State -1, C-X]
+type = ChangeState
+value = 400
+triggerall = command = "x" && command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+trigger2 = (stateno = 400) && (time = [7,11])
+trigger3 = (stateno = 200) && (time = [10,15])
+trigger4 = (stateno = 205) && (time = [8,12])
+trigger5 = (stateno = 430) && (time = [8,11])
+
+;Crouching Y
+[State -1, C-Y]
+type = ChangeState
+value = 410
+triggerall = command = "y" && command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+;Crouching A
+[State -1, C-A]
+type = ChangeState
+value = 430
+triggerall = command = "a" && command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+trigger2 = (stateno = 205) && (time = [8,12])
+trigger3 = (stateno = 430) && (time = [8,11])
+
+;Crouching B
+[State -1, C-B]
+type = ChangeState
+value = 440
+triggerall = command = "b" && command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+;Jumping X
+[State -1, J-X]
+type = ChangeState
+value = 600
+triggerall = command = "x"
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;Jumping Y
+[State -1, J-Y]
+type = ChangeState
+value = 610
+triggerall = command = "y"
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;Jumping A
+[State -1, J-A]
+type = ChangeState
+value = 630
+triggerall = command = "a"
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;Jumping B
+[State -1, J-B]
+type = ChangeState
+value = 640
+triggerall = command = "b"
+trigger1 = statetype = A
+trigger1 = ctrl
+
+
+;Taunt
+[State -1, T]
+type = ChangeState
+value = 195
+triggerall = command = "start"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+
+
+;---------------------------------------------------------------------------
+;Run Fwd
+;ダッシュ
+[State -1, Run Fwd]
+type = ChangeState
+value = 100
+trigger1 = command = "FF"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;---------------------------------------------------------------------------
+;Run Back
+;後退ダッシュ
+[State -1, Run Back]
+type = ChangeState
+value = 105
+trigger1 = command = "BB"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;-------------------
+;MEE Template Files
+;   provided by
+;  Kitsune Sniper
+;       ***
+; Thanks, Kitsune!
+;-------------------

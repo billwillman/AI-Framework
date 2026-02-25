@@ -1,0 +1,45 @@
+
+;-----基本情報------------------------------------------------------
+
+[Info]
+Name         = "F-Toraji"
+DisplayName  = "TORAJI"
+VersionDate  = 03,14,2021
+MugenVersion = 06,14,2003
+Author       = "AMZAK"
+Pal.Defaults = 1,2,7,3
+
+;-----必要なファイルの設定------------------------------------------
+
+[Files]
+Cmd      = toraji.cmd
+Cns      = toraji.cns
+St       = toraji.cns
+St1      = toraji-N.cns
+St2      = toraji-S.cns
+St3      = toraji-H.cns
+St4      = toraji-A.cns
+St7      = toraji--2.cns
+St8      = toraji--3.cns
+StCommon = toraji-common1.cns
+Sprite   = toraji.sff
+Anim     = toraji.air
+Sound    = toraji.snd        
+
+;---カラーパレットファイルの設定（最大１２個まで可能）---
+
+Pal1 = act/toraji01.act
+Pal2 = act/toraji02.act
+Pal3 = act/toraji03.act
+Pal4 = act/toraji04.act
+Pal5 = act/toraji05.act
+Pal6 = act/toraji06.act
+
+Pal7 = act/toraji07.act
+Pal8 = act/toraji08.act
+Pal9 = act/toraji09.act
+Pal10= act/toraji10.act
+Pal11= act/toraji11.act
+Pal12= act/toraji12.act
+
+

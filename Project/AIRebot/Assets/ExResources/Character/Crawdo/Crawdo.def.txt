@@ -1,0 +1,40 @@
+;=======================================;
+;        Character Def File for:        ;
+;            Crawdo by Rikard & CRAWDO  ;
+;     for MUGEN v. (version number)     ;
+;       Maker's Website HTTP here       ;
+;                                       ;
+;   Made with MUGEN Editing Ensemble    ;
+;     (http://ragnaroknemo.cjb.net)     ;
+;=======================================;
+
+[Info]
+name = "Crawdo"
+displayname = "Cloud"
+versiondate = 
+mugenversion = 
+author = "Rikard" ;Rikard & CRAWDO actually.
+pal.defaults = 11,12
+
+[Files]
+cns = Crawdo.cns
+cmd = Crawdo.cmd
+stcommon = common1.cns
+sprite = Crawdo.sff
+anim = Crawdo.air
+ai = crawdo.ai
+st = Crawdo.st
+;st1 = 
+sound = Crawdo.snd
+pal1 = crawdo.act
+pal2 = crawdo2.act
+pal3 = crawdo3.act
+pal4 = crawdo4.act
+pal5 = crawdo5.act
+pal6 = Crawdo6.act
+pal7 = crawdo7.act
+pal8 = Crawdo8.act
+pal9 = crawdo9.act
+pal10 = crawdo10.act
+pal11 = crawdo11.act
+pal12 = crawdo12.act

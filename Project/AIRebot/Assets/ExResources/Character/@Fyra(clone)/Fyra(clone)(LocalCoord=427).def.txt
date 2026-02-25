@@ -1,0 +1,50 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Fyra(clone)"
+displayname = "Fyra(clone)"
+versiondate = 12,27,2007
+mugenversion = 1.0;04,14,2002
+author = "xiayu"
+;ai.author  "duagi"
+pal.defaults = 6,3,4,2
+LocalCoord=427
+
+[Files]
+sprite = fyra.sff
+anim = fyra.air
+sound = fyra.snd
+cmd = fyracmd.cns
+cns = fyra.cns
+stcommon = common1.cns
+st = fyra.cns
+st2 = fyra-N.cns
+st3 = fyra-S.cns
+st4 = fyra-H.cns
+st5 = fyra-2.cns
+st6 = fyra-3.cns
+st7 = fyra-helper.cns
+st8 = fyra-max2.cns
+st9      = lovelove.cns
+pal1 = fyra1p.act
+pal2 = fyra2p.act
+pal3 = fyra3p.act
+pal4 = fyra4p.act
+pal5 = fyra5p.act
+pal6 = fyra6p.act
+pal6 = fyra6p.act
+pal7 = fyra1p.act
+pal8 = fyra2p.act
+pal9 = fyra3p.act
+pal10= fyra4p.act
+pal11= fyra5p.act
+pal12= fyra6p.act
+
+
+
+[Arcade]
+intro.storyboard = ined/intro.def
+ending.storyboard = ined/ending.def

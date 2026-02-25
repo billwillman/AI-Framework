@@ -1,0 +1,871 @@
+;------------------------------------------------------------------------------
+;==============================================================================
+; 入力キーの設定パート
+;==============================================================================
+;==============================================================================
+
+;-| ボタン配置 |-----------------------------------------------------
+;各ボタンの配置を簡単に変更できます。
+;このキャラクターのボタン配置を変えたいときなどに使います。
+;x = x を x = a に変えれば、xがaに変わります。
+
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
+
+;-| 標準化 |-------------------------------------------------------
+[Defaults]
+; timeを記述しなかった場合、以下の値が参照されます。最小値は1です。
+command.time = 18
+
+; buffer.timeの値です。1～30まで設定できます。
+; 普通は1です。
+command.buffer.time = 1
+
+
+;------------------------------------------------------------------------------
+;-| 超必殺技 |-----------------------------------------------------------------
+
+[Command]
+name = "raiouzan";虎牙雷皇斬
+command = ~D, DF, F, D, DF, F,y+b
+time = 30
+
+[Command]
+name = "raiouzan";虎牙雷皇斬
+command = ~D, F, D, F,y+b
+time = 30
+
+[Command]
+name = "jinrai"
+command = ~D, F, D, F, D, F, D, F, x
+time = 80
+
+[Command]
+name = "jinrai"
+command = ~D, F, D, F, D, F, D, F, y
+time = 80
+
+[Command]
+name = "raisan";乱破雷散
+command = ~D, B, D, F, a
+time = 30
+
+[Command]
+name = "raisan";乱破雷散
+command = ~D, B, D, F, b
+time = 30
+
+[Command]
+name = "todoroki";襲雷光・轟
+command = ~D, DF, F, D, DF, F, x
+time = 30
+
+[Command] 
+name = "todoroki";襲雷光・轟
+command = ~D, DF, F, D, DF, F, y
+time = 30
+
+[Command]
+name = "todoroki";襲雷光・轟
+command = ~D, F, D, F, x
+time = 30
+
+[Command] 
+name = "todoroki";襲雷光・轟
+command = ~D, F, D, F, y
+time = 30
+
+
+;------------------------------------------------------------------------------
+;-| 必殺技 |-------------------------------------------------------------------\
+
+[Command]
+name = "624_x";猛雷掌・弱
+command = ~F, D, B, x
+time = 25
+
+[Command]
+name = "624_y";猛雷掌・強
+command = ~F, D, B, y
+time = 25
+
+[Command]
+name = "421_x";天雷断・弱
+command = ~B, D, DB, x
+
+[Command]
+name = "421_y";天雷断・強
+command = ~B, D, DB, y
+
+[Command]
+name = "236_x";襲雷光・弱
+command = ~D, DF, F, x
+
+[Command]
+name = "236_y";襲雷光・強
+command = ~D, DF, F, y
+
+[Command]
+Name = "46_a";雷駆・弱
+Command = ~28$B, $F, a
+
+[Command]
+Name = "46_b";雷駆・強
+Command = ~28$B, $F, b
+
+
+[Command]
+name = "eb"
+command = z+c
+time = 1
+
+[Command]
+name = "jump"    
+command = ~$D,$U
+time = 8
+
+;------------------------------------------------------------------------------
+;-| キー２回連続入力 |---------------------------------------------------------
+[Command]
+name = "FF"     ;要求済み (キーの変更は可能ですが名前を変えたり無効にしてはいけません)
+command = F, F
+time = 10
+
+[Command]
+name = "BB"     ;要求済み (キーの変更は可能ですが名前を変えたり無効にしてはいけません)
+command = B, B
+time = 10
+
+;------------------------------------------------------------------------------
+;-| 同時押し |-----------------------------------------------------------------
+[Command]
+name = "recovery" 
+command = x+y
+time = 1
+
+[Command]
+name = "recovery" 
+command = a+b
+time = 1
+
+
+[Command]
+name = "roll"
+command = y+a
+time = 1
+
+;------------------------------------------------------------------------------
+;-| 方向キー＋ボタン |---------------------------------------------------------
+
+[Command]
+name = "F_x"
+command = F, x
+time = 1
+
+[Command]
+name = "F_y"
+command = F, x
+time = 1
+
+[Command]
+name = "F_a"
+command = F, a
+time = 1
+
+[Command]
+name = "B_s"
+command = B, s
+time = 1
+
+
+[Command]
+name = "down_a"
+command = /$D,a
+time = 1
+
+[Command]
+name = "down_b"
+command = /$D,b
+time = 1
+
+;------------------------------------------------------------------------------
+;-| ボタン単発 |---------------------------------------------------------------
+[Command]
+name = "a"
+command = a
+time = 1
+
+[Command]
+name = "b"
+command = b
+time = 1
+
+[Command]
+name = "c"
+command = c
+time = 1
+
+[Command]
+name = "x"
+command = x
+time = 1
+
+[Command]
+name = "y"
+command = y
+time = 1
+
+[Command]
+name = "z"
+command = z
+time = 1
+
+[Command]
+name = "start"
+command = s
+time = 1
+
+;---------------------------
+
+[Command]
+name = "hold_x"
+command = /x
+
+[Command]
+name = "hold_y"
+command = /y
+
+[Command]
+name = "hold_c"
+command = /c
+
+
+[Command]
+name = "holdupfwd"
+command = /UF
+time = 1
+
+[Command]
+name = "holdupback"
+command = /UB
+time = 1
+
+;------------------------------------------------------------------------------
+;-| 方向キー押しっぱなし |-----------------------------------------------------
+[Command]
+name = "holdfwd"
+command = /$F
+time = 1
+
+[Command]
+name = "holdback"
+command = /$B
+time = 1
+
+[Command]
+name = "holdup" 
+command = /$U
+time = 1
+
+[Command]
+name = "holddown" 
+command = /$D
+time = 1
+
+;------------------------------------------------------------------------------
+;==============================================================================
+; 技を実行するための条件の設定（ステートエントリーパート）
+;==============================================================================
+;------------------------------------------------------------------------------
+
+
+[Statedef -1];←この行は絶対に消さないでください。必須の項目です。
+
+;==============================================================================
+;３ゲージ技
+
+;極・虎牙雷皇斬
+[State -1, Kyoku-KoGaRaiOuZan -Lightning Tiger Smash-Ultimate-]
+type = ChangeState
+value = 3210
+triggerall = command = "raiouzan"
+triggerall = power >= 3000
+triggerall = var(10) = 1   
+;triggerall = var(20) = 0   ;AIが発動していないとき
+triggerall = stateno != [600,699]
+triggerall = stateno != 810
+triggerall = numhelper(3030) = 0
+triggerall = numprojID(3030) = 0
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = hitdefattr = SC, NA
+trigger2 = stateno != [3000,3050]
+trigger2 = stateno != [3060,3061]
+trigger2 = movecontact
+
+;虎牙雷皇斬
+[State -1, KoGaRaiOuZan -Lightning Tiger Smash-]
+type = ChangeState
+value = 3200
+triggerall = command = "raiouzan"
+triggerall = power >= 3000
+triggerall = var(10) = 0   
+;triggerall = var(20) = 0   ;AIが発動していないとき
+triggerall = stateno != [600,699]
+triggerall = stateno != 810
+triggerall = numhelper(3030) = 0
+triggerall = numprojID(3030) = 0
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = hitdefattr = SC, NA
+trigger2 = stateno != [3000,3050]
+trigger2 = stateno != [3060,3061]
+trigger2 = movecontact
+
+;------------------------------------------------------------------------------
+;２ゲージ技
+
+;乱破雷散
+[State -1, RappaRaiSan -Sparkle Shatterer-]
+type = ChangeState
+value = 3100
+triggerall = command = "raisan"
+triggerall = power >= 2000
+;triggerall = var(20) = 0   ;AIが発動していないとき
+triggerall = stateno != [600,699]
+triggerall = stateno != 810
+triggerall = numhelper(3030) = 0
+triggerall = numprojID(3030) = 0
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = hitdefattr = SC, NA
+trigger2 = stateno != [3000,3050]
+trigger2 = stateno != [3060,3061]
+trigger2 = movecontact
+
+;------------------------------------------------------------------------------
+;１ゲージ技
+
+;襲雷光・轟
+[State -1, Shuu-Raikou Todoroki -Thunder Strike -Roar--]
+type = ChangeState
+value = 3000
+triggerall = command = "todoroki"
+triggerall = power >= 1000
+;triggerall = var(20) = 0   ;AIが発動していないとき
+triggerall = stateno != [600,699]
+triggerall = stateno != 810
+triggerall = numhelper(3030) = 0
+triggerall = numprojID(3030) = 0
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = hitdefattr = SC, NA
+trigger2 = stateno != [3000,3050]
+trigger2 = stateno != [3060,3061]
+trigger2 = movecontact
+
+
+
+;===========================================================================
+;連続技を決める変数。変数にすると便利みたいです。
+;使いたい人は使うと良いでしょう。
+
+[State -1, Combo Condition Reset] ;初期化
+type = VarSet
+trigger1 = 1
+var(1) = 0
+
+;※重大なバグが発覚。　ダメージを受けた瞬間は、var(1)が0にならない。
+;　ダメージを受けた直後2Fの間、ダメージ無効のカウンターができる。
+;　修正方法は、movetypeをうまく使うことにある。
+
+
+[State -1, Combo Condition Check] ;キャンセル可なステートナンバーを決定
+type = VarSet
+triggerall = movetype != H        ;ここに使っても無駄！
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = (stateno = [200,299]) || (stateno = [400,499])
+trigger2 = stateno != 440
+trigger2 = movecontact
+var(1) = 1
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------
+
+;------------------------------------------------------------------------------
+
+;猛雷掌
+
+[State -1, TenRaiDan S -Thunderbolt Fist-]
+type = ChangeState
+value = 1400
+triggerall = command = "624_x"
+triggerall = stateno != 1000
+triggerall = statetype != A
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+
+[State -1, TenRaiDan L -Thunderbolt Fist-]
+type = ChangeState
+value = 1401
+triggerall = command = "624_y"
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+trigger2 = var(1)
+
+;------------------------------------------------------------------------------
+
+;天雷断
+
+[State -1, TenRaiDan S -Electro Cutter-]
+type = ChangeState
+value = 1100
+triggerall = command = "421_x"
+triggerall = stateno != 1000
+triggerall = statetype != A
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+
+[State -1, TenRaiDan L -Electro Cutter-]
+type = ChangeState
+value = 1101
+triggerall = command = "421_y"
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+trigger2 = var(1)
+
+;------------------------------------------------------------------------------
+
+;襲雷光
+
+[State -1, Shuu-Raikou S -Thunder Strike-]
+type = ChangeState
+value = 1200
+triggerall = (command = "236_x")
+triggerall = numhelper(1300) = 0 ;ＩＤナンバー1300のヘルパーが画面中に１個も出てない時
+triggerall = numprojID(1300) = 0 ;ＩＤナンバー1300の飛び道具が画面中に１個も出てない時
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != 440
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+
+[State -1, Shuu-Raikou L -Thunder Strike-]
+type = ChangeState
+value = 1201
+triggerall = (command = "236_y")
+triggerall = numhelper(1310) = 0 ;ＩＤナンバー1310のヘルパーが画面中に１個も出てない時
+triggerall = numprojID(1310) = 0 ;ＩＤナンバー1310の飛び道具が画面中に１個も出てない時
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != 440
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+
+;------------------------------------------------------------------------------
+
+;雷駆
+
+[State -1, RaiKu S -Flash Sprint-]
+type = ChangeState
+value = 1000
+triggerall = command = "46_a"
+triggerall = stateno != 1000
+triggerall = statetype != A
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+
+[State -1, RaiKu L -Flash Sprint-]
+type = ChangeState
+value = 1001
+triggerall = command = "46_b"
+triggerall = (stateno != [600,699]) || (stateno != [3100,3199])
+triggerall = stateno != 810
+triggerall = numhelper(3080) = 0 
+triggerall = numprojID(3080) = 0 
+trigger1 = statetype != A
+trigger1 = ctrl = 1
+trigger1 = var(1)
+trigger2 = (stateno = [200,256]) || (stateno = [400,499]) || stateno != 260
+trigger2 = stateno != [1000,1999]
+trigger2 = movecontact
+trigger2 = hitdefattr = SC, NA
+trigger2 = var(1)
+
+;------------------------------------------------------------------------------
+
+
+
+;------------------------------------------------------------------------------
+
+
+;==============================================================================
+;==============================================================================
+
+
+
+;------------------------------------------------------------------------------
+;ダッシュ
+[State -1, Dash]
+type = ChangeState
+value = 100
+trigger1 = command = "FF"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;バックステップ
+[State -1, Back Step]
+type = ChangeState
+value = 105
+trigger1 = command = "BB"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+
+;------------------------------------------------------------------------------
+;投げ
+
+[State -1, DoRaiDan -Steaming Torpedo-]
+type = ChangeState
+value = 800
+triggerall = command = "y"
+triggerall = statetype = S
+triggerall = ctrl
+triggerall = stateno != 100
+triggerall = var(20) = 0
+trigger1 = command = "holdfwd"
+trigger1 = p2bodydist X = (-7,5) 
+trigger1 = (p2statetype = S) || (p2statetype = C)
+trigger1 = p2movetype != H
+trigger2 = command = "holdback"
+trigger2 = p2bodydist X = (-5,7) 
+trigger2 = (p2statetype = S) || (p2statetype = C)
+trigger2 = p2movetype != H
+
+[State -1, GaiRyuShi -Dragon Shaver-]
+type = ChangeState
+value = 805
+triggerall = command = "b"
+triggerall = statetype = S
+triggerall = ctrl
+triggerall = stateno != 100
+triggerall = var(20) = 0
+trigger1 = command = "holdfwd"
+trigger1 = p2bodydist X = (-7,5) 
+trigger1 = (p2statetype = S) || (p2statetype = C)
+trigger1 = p2movetype != H
+trigger2 = command = "holdback"
+trigger2 = p2bodydist X = (-5,7) 
+trigger2 = (p2statetype = S) || (p2statetype = C)
+trigger2 = p2movetype != H
+
+;==============================================================================
+;特殊技
+
+;エレメントバースト
+[State -1, Element Barst]
+type = ChangeState
+value = 2200
+triggerall = command = "eb"
+triggerall = var(24) != 1
+triggerall = var(25) <= 0
+trigger1 = var(30) >= 3600
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = [150,152] 
+trigger2 = var(30) >= 4800
+trigger2 = statetype != A
+trigger3 = stateno = [5000,5010]
+trigger3 = var(30) >= 4800
+trigger3 = statetype != A
+
+;武雷怒
+[State -1, BuRaiDo -Thunder God's Rage-]
+type = ChangeState
+value = 250
+triggerall = command = "x" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+
+;裏風
+[State -1, RiFuu -Returned Wind-]
+type = ChangeState
+value = 260
+triggerall = command = "x" && command = "holdback"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+
+[State -1, RiFuu -Returned Wind-(cancel)]
+type = ChangeState
+value = 261
+triggerall = command = "x" && command = "holdback"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = stateno = 200
+trigger1 = AnimElemTime(4) > 0 
+
+;==============================================================================
+;------------------------------------------------------------------------------
+;立ち弱パンチ
+[State -1, Stand Light Punch]
+type = ChangeState
+value = 200
+triggerall = command = "x"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+
+
+;遠立ち強パンチ
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 210
+triggerall = command = "y"
+triggerall = command != "holddown"
+triggerall = statetype = S
+triggerall = p2bodydist X > 19
+trigger1 = ctrl
+
+
+;近立ち強パンチ
+[State -1, Stand Strong Punch-N]
+type = ChangeState
+value = 215
+triggerall = command = "y"
+triggerall = command != "holddown"
+triggerall = statetype = S
+triggerall = p2bodydist X < 20
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+;立ち弱キック
+[State -1, Stand Light Kick]
+type = ChangeState
+value = 230
+triggerall = command = "a"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+
+
+;遠立ち強キック
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 240
+triggerall = command = "b"
+triggerall = command != "holddown"
+triggerall = statetype = S
+triggerall = p2bodydist X > 23
+trigger1 = ctrl
+
+
+;近立ち強キック
+[State -1, Standing Strong Kick-N]
+type = ChangeState
+value = 245
+triggerall = command = "b"
+triggerall = command != "holddown"
+triggerall = statetype = S
+triggerall = p2bodydist X < 24
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+
+;応雷
+[State -1, Ou-Rai -Lightning Respond-]
+type = ChangeState
+value = 195
+triggerall = command = "c"
+triggerall = var(10) = 0
+triggerall = var(20) = 0
+trigger1 = statetype != A
+trigger1 = ctrl
+
+;挑発
+[State -1, Taunt]
+type = ChangeState
+value = 196
+triggerall = command = "start"
+triggerall = var(20) = 0
+trigger1 = statetype != A
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+
+;しゃがみ弱パンチ
+[State -1, Crouching Light Punch]
+type = ChangeState
+value = 400
+triggerall = command = "x"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+
+;しゃがみ強パンチ
+[State -1, Crouching Strong Punch]
+type = ChangeState
+value = 410
+triggerall = command = "y"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+;しゃがみ弱キック
+[State -1, Crouching Light Kick]
+type = ChangeState
+value = 430
+triggerall = command = "a"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+
+;しゃがみ強キック
+[State -1, Crouching Strong Kick]
+type = ChangeState
+value = 440
+triggerall = command = "b"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;空中弱パンチ
+[State -1, Jump Light Punch]
+type = ChangeState
+value = 600
+triggerall = command = "x"
+triggerall = stateno != 105  ;バックステップ中は禁止
+triggerall = stateno != 1053 
+triggerall = var(20) = 0  
+trigger1 = statetype = A
+trigger1 = ctrl
+
+
+;空中強パンチ
+[State -1, Jump Strong Punch]
+type = ChangeState
+value = 610
+triggerall = command = "y"
+triggerall = stateno != 105
+triggerall = stateno != 1053 
+triggerall = Pos Y < -28
+triggerall = var(20) = 0
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+;空中弱キック
+[State -1, Jump Light Kick]
+type = ChangeState
+value = 630
+triggerall = command = "a"
+triggerall = stateno != 105
+triggerall = stateno != 1053 
+triggerall = var(20) = 0
+trigger1 = statetype = A
+trigger1 = ctrl
+
+
+;空中強キック
+[State -1, Jump Strong Kick]
+type = ChangeState
+value = 640
+triggerall = command = "b"
+triggerall = stateno != 105
+triggerall = stateno != 1053 
+triggerall = Pos Y < -28
+triggerall = var(20) = 0
+trigger1 = statetype = A
+trigger1 = ctrl
+
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+
+;この下、一行以上空ける事…
+
+
+

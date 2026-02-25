@@ -1,0 +1,1356 @@
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
+
+[Defaults]
+command.time = 15
+command.buffer.time = 1
+
+;-| AI |------------------------------------------------------
+[Command]
+name = "AI0"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI1"
+command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
+time = 0
+[Command]
+name = "AI2"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI3"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI4"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI5"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI6"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI7"
+command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F
+time = 0
+[Command]
+name = "AI8"
+command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+time = 0
+[Command]
+name = "AI9"
+command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+time = 0
+[Command]
+name = "AI10"
+command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U
+time = 0
+[Command]
+name = "AI11"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI12"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI13"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI14"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI15"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI16"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI17"
+command = a,B,c,x,y,z,s,B,D,F,U,a,b,c,x,y,z,s,s
+time = 0
+[Command]
+name = "AI18"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI19"
+command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
+time = 0
+[Command]
+name = "AI20"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI21"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI22"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI23"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI24"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI25"
+command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F
+time = 0
+[Command]
+name = "AI26"
+command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+time = 0
+[Command]
+name = "AI27"
+command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+time = 0
+[Command]
+name = "AI28"
+command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U
+time = 0
+[Command]
+name = "AI29"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI30"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI31"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI32"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI33"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI34"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI35"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI36"
+command = z,z,z,z,z,z,a,a,a,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI37"
+command = z,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,z,z,z
+time = 0
+[Command]
+name = "AI38"
+command = z,z,z,z,z,a,a,a,z,z,z,z,z,a,a,a,z,z,z
+time = 0
+[Command]
+name = "AI39"
+command = z,z,z,z,z,a,a,a,z,z,z,z,z,z,a,a,z,z,z
+time = 0
+[Command]
+name = "AI40"
+command = z,z,z,z,a,a,a,z,z,z,z,a,z,z,a,a,z,z,z
+time = 0
+[Command]
+name = "AI41"
+command = z,z,z,a,z,z,z,z,z,z,z,z,z,a,a,z,z,z,z
+time = 0
+[Command]
+name = "AI42"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI43"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,a,a,z
+time = 0
+[Command]
+name = "AI44"
+command = z,z,a,a,a,a,z,z,z,z,z,z,z,z,z,a,a,a,z
+time = 0
+[Command]
+name = "AI45"
+command = z,z,z,z,z,z,a,a,z,z,z,z,z,a,a,a,a,z,z
+time = 0
+[Command]
+name = "AI46"
+command = z,z,z,z,z,z,z,z,a,a,a,a,a,a,z,z,z,z,z
+time = 0
+[Command]
+name = "AI47"
+command = z,z,z,a,a,a,a,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI48"
+command = z,z,z,z,z,a,a,a,z,z,z,a,a,a,z,z,a,z,a
+time = 0
+[Command]
+name = "AI49"
+command = z,z,z,z,a,a,a,z,z,z,z,z,a,a,a,z,z,z,z
+time = 0
+[Command]
+name = "AI50"
+command = z,z,z,a,a,z,z,z,z,z,z,z,z,z,a,a,z,z,z
+time = 0
+[Command]
+name = "AI51"
+command = z,z,z,a,a,z,z,c,z,y,z,x,z,z,a,a,z,z,z
+time = 0
+
+;-| Special Motions |------------------------------------------------------
+[Command]
+name = "kesen"
+command = ~D, F,D,B,a+b
+time = 35
+
+
+[Command]
+name = "anryu"
+command = ~D,F,a+b;~D, DF, F,a+b
+time = 35
+
+[Command]
+name = "Excalibur"
+command = ~D,F,x+y;~D, DF, F,x+y
+time = 35
+
+[Command]
+name = "GalaxianXPlosion"
+command = ~D,D,x+y
+time = 35
+
+
+
+[Command]
+name = "heaven_a"
+command = ~D,F,D,F,a;~D, DF, F,D, DF, F, a
+time = 35
+
+[Command]
+name = "heaven_b"
+command = ~D,F,D,F,b;~D, DF, F,D, DF, F, b
+time = 35
+
+[Command]
+name = "hakura_x"
+command = ~D,F,D,F,x;~D, DF, F,D, DF, F, x
+time = 35
+
+[Command]
+name = "hakura_y"
+command = ~D,F,D,F,y;~D, DF, F,D, DF, F, y
+time = 35
+
+
+
+[Command]
+name = "syoryu_x"
+command =  ~F,D,DF, x
+time = 15
+
+[Command]
+name = "syoryu_y"
+command =  ~F,D,DF, y
+time = 15
+
+[Command]
+name = "kofnage"   ;Same name as above
+command = ~F,D,B,F,a
+time = 20
+
+[Command]
+name = "kofnage"   ;Same name as above
+command = ~F,D,B,F,b
+time = 20
+
+[Command]
+name = "hado_x"
+command = ~D,DF,F,x
+time = 20
+
+[Command]
+name = "hado_y"
+command = ~D,DF,F,y
+time = 20
+
+[Command]
+name = "kaze"
+command = ~F,B,F,x
+
+[Command]
+name = "kaze"
+command = ~F,B,F,y
+
+[Command]
+name = "kami"
+command= ~D,DB,B,x
+
+[Command]
+name = "kami"
+command= ~D,DB,B,y
+
+[command]
+name="kataa"
+command=~D,DB,B,a
+time=16
+
+[command]
+name="katab"
+command=~D,DB,B,b
+time=16
+
+
+
+
+
+
+;-| Double Tap |-----------------------------------------------------------
+[Command]
+name = "FF"     ;Required (do not remove)
+command = F, F
+time = 10
+
+[Command]
+name = "BB"     ;Required (do not remove)
+command = B, B
+time = 10
+
+;-| 2/3 Button Combination |-----------------------------------------------
+[Command]
+name = "recovery";Required (do not remove)
+command = x+y
+time = 1
+
+[Command]
+name = "xy";Required (do not remove)
+command = x+y
+time = 1
+
+[Command]
+name = "ab";Required (do not remove)
+command = a+b
+time = 1
+
+[Command]
+name = "yb";Required (do not remove)
+command = y+b
+time = 1
+
+
+[Command]
+name = "nage";Required (do not remove)
+command = a+x
+time = 1
+
+[Command]
+name = "stryker"
+command = a+y
+time = 1
+
+
+
+;-| Dir + Button |---------------------------------------------------------
+[Command]
+name = "down_a"
+command = /$D,a
+time = 1
+
+[Command]
+name = "down_b"
+command = /$D,b
+time = 1
+
+;-| Single Button |---------------------------------------------------------
+[Command]
+name = "a"
+command = a
+time = 1
+
+[Command]
+name = "b"
+command = b
+time = 1
+
+[Command]
+name = "c"
+command = c
+time = 1
+
+[Command]
+name = "x"
+command = x
+time = 1
+
+[Command]
+name = "y"
+command = y
+time = 1
+
+[Command]
+name = "z"
+command = z
+time = 1
+
+[Command]
+name = "start"
+command = s
+time = 1
+
+;-| Hold Dir |--------------------------------------------------------------
+[Command]
+name = "holdfwd";Required (do not remove)
+command = /$F
+time = 1
+
+[Command]
+name = "holdback";Required (do not remove)
+command = /$B
+time = 1
+
+[Command]
+name = "holdup" ;Required (do not remove)
+command = /$U
+time = 1
+
+[Command]
+name = "holddown";Required (do not remove)
+command = /$D
+time = 1
+
+[Command]
+name = "holds";Required (do not remove)
+command = /$s
+time = 1
+
+
+[command]
+name="hold_c"
+command=/c
+buffer.time=1
+
+;------------------------------------------------------------------------------
+;AI用
+[command]
+name="fwd"
+command=F
+time=1
+[command]
+name="back"
+command=B
+time=1
+[command]
+name="up"
+command=U
+time=1
+[command]
+name="down"
+command=D
+time=1
+
+;------------------------------------------------------------------------------
+[Statedef -1]
+
+;===========================================================================
+
+
+
+
+
+
+
+;===========================================================================
+
+[State -1, anrui]
+type = ChangeState
+value = 4200
+triggerall = var(59)<=0
+triggerall=power>=3000
+triggerall = command = "anryu"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+;---------------------------------------------------------------------------
+
+[State -1, Galaxian]
+type = ChangeState
+value = 4000
+triggerall = var(59)<=0
+triggerall=power>=3000
+triggerall = command = "GalaxianXPlosion"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+;---------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------
+
+
+[State -1, Excalibur]
+type = ChangeState
+value = 4301
+triggerall = var(59)<=0
+triggerall=power>=1000
+triggerall = command = "Excalibur"
+triggerall = statetype != A
+trigger1 = AnimElem = 11,>0
+trigger1 = stateno = 4300
+
+
+
+[State -1, Excalibur]
+type = ChangeState
+value = 4300
+triggerall = var(59)<=0
+triggerall=power>=3000
+triggerall = command = "Excalibur"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+;---------------------------------------------------------------------------
+
+[State -1, hakurax]
+type = ChangeState
+value = 3550
+triggerall = var(59)<=0
+triggerall=power>=2000
+triggerall = command = "hakura_y"
+triggerall = statetype = A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+[State -1, hakurax]
+type = ChangeState
+value = 3500
+triggerall = var(59)<=0
+triggerall=power>=2000
+triggerall = command = "hakura_y"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+[State -1, hakurax]
+type = ChangeState
+value = 3050
+triggerall = var(59)<=0
+triggerall=power>=1000
+triggerall = command = "hakura_x"
+triggerall = statetype = A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+[State -1, hakurax]
+type = ChangeState
+value = 3000
+triggerall = var(59)<=0
+triggerall=power>=1000
+triggerall = command = "hakura_x"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+[State -1, heaven]
+type = ChangeState
+value = 3400
+triggerall = var(59)<=0
+triggerall=power>=1000
+triggerall = command = "heaven_a"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+[State -1, heaven]
+type = ChangeState
+value = 3600
+triggerall = var(59)<=0
+triggerall=power>=2000
+triggerall = command = "heaven_b"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+
+
+;---------------------------------------------------------------------------
+[state -1,hado]
+type=changestate
+value=2050
+triggerall=var(59)<=0
+triggerall=command="hado_y"
+triggerall=statetype=a
+trigger1=ctrl || stateno = 1420
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+;---------------------------------------------------------------------------
+[state -1,hado]
+type=changestate
+value=2000
+triggerall=var(59)<=0
+triggerall=command="hado_x"
+triggerall=statetype=a
+trigger1=ctrl || stateno = 1420
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+;===========================================================================
+;This is not a move, but it sets up var(1) to be 1 if conditions are right
+;for a combo into a special move (used below).
+;Since a lot of special moves rely on the same conditions, this reduces
+;redundant logic.
+
+
+;気功髪
+[State -1, kami]
+type = ChangeState
+value = 1800
+triggerall = var(59)<=0
+triggerall = command = "kami"
+triggerall=statetype!=a
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------------------------------------------------------
+
+
+;Kung Fu Throw
+;投げ
+[State -1, Kung Fu Throw]
+type = ChangeState
+value = 1850
+triggerall = var(59)<=0
+triggerall = command = "kofnage"
+triggerall=statetype!=a
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+;---------------------------------------------------------------------------
+[state -1,kataa]
+type=changestate
+value=1900
+triggerall=var(59)<=0
+triggerall=command="kataa"
+triggerall=statetype=a
+trigger1=ctrl || stateno = 1420
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+[state -1,katab]
+type=changestate
+value=1910
+triggerall=var(59)<=0
+triggerall= command="katab"
+triggerall=statetype=a
+trigger1=ctrl || stateno = 1420
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+[state -1,kataa]
+type=changestate
+value=1900
+triggerall=var(59)<=0
+triggerall=command="kataa"
+triggerall=statetype!=a
+trigger1=ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+[state -1,katab]
+type=changestate
+value=1910
+triggerall=var(59)<=0
+triggerall= command="katab"
+triggerall=statetype!=a
+trigger1=ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+;---------------------------------------------------------------------------
+
+
+;疾風正拳突き
+[State -1, kaze]
+type = ChangeState
+value = 1000
+triggerall = var(59)<=0
+triggerall = command = "kaze"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------------------------------------------------------
+; ライジングダークムーンＸ
+[State -1]
+type = ChangeState
+value = 1100
+triggerall = var(59)<=0
+triggerall = command = "syoryu_x" 
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+; ライジングダークムーンＹ
+[State -1]
+type = ChangeState
+value = 1110
+triggerall = var(59)<=0
+triggerall = command = "syoryu_y" 
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------------------------------------------------------
+
+
+;---------------------------------------------------------------------------------------------------------------------------
+; テュホンレイジ・Ｘ
+[State -1]
+type = ChangeState
+value = 1300
+triggerall = var(59)<=0
+triggerall = command = "hado_x"
+trigger1 = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+; テュホンレイジ・Ｙ
+[State -1]
+type = ChangeState
+value = 1310
+triggerall = var(59)<=0
+triggerall = command = "hado_y"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = (stateno=[200,699])
+trigger2 =movecontact
+
+
+
+;===========================================================================
+
+[State -1, Jump]
+type = ChangeState
+value = 40
+triggerall = var(59)<=0
+triggerall = command ="holdup"
+trigger1 = stateno = 410 
+trigger1 = movecontact
+
+
+;---------------------------------------------------------------------------
+;Run Fwd
+;ダッシュ
+[State -1, Run Fwd]
+type = ChangeState
+value = 100
+triggerall = var(59)<=0
+trigger1 = command = "FF"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+
+;---------------------------------------------------------------------------
+;Run Back
+;後退ダッシュ
+[State -1, Run Back]
+type = ChangeState
+value = 105
+triggerall = var(59)<=0
+trigger1 = command = "BB"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+
+;---------------------------------------------------------------------------
+
+
+;Kung Fu Throw
+;空中投げ
+[State -1, Kung Fu Throw]
+type = ChangeState
+value = 850
+triggerall = var(59)<=0
+triggerall = command = "nage"
+triggerall = statetype = A
+triggerall = ctrl || stateno = 1420
+trigger1 = 1
+
+
+
+
+
+;Kung Fu Throw
+;投げ
+[State -1, Kung Fu Throw]
+type = ChangeState
+value = 800
+triggerall = var(59)<=0
+triggerall = command = "nage"
+triggerall = statetype = S
+triggerall = ctrl || stateno = 1430 || stateno = 1510
+trigger1 = 1
+
+;===========================================================================
+;
+;ストライカー
+[State -1, ]
+type = ChangeState
+value = 2100
+triggerall = var(59)<=0
+triggerall = command = "stryker"
+trigger1 = statetype != A
+trigger1 = ctrl
+
+;===========================================================================
+
+
+
+[State -1, skip]
+type = ChangeState
+value = 1530
+triggerall = var(59)<=0
+triggerall = command = "holddown"
+triggerall = command = "yb"
+triggerall = statetype = A
+triggerall = stateno!=1400
+triggerall = stateno!=1500
+triggerall = stateno!=1520
+triggerall = stateno!=1530
+triggerall = stateno!=1600
+trigger1 = ctrl || stateno = 1430 || stateno = 1510 || stateno = 3001 || stateno = 3051 || stateno = 3501
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+[State -1, skip]
+type = ChangeState
+value = 1600
+triggerall = var(59)<=0
+triggerall = command = "holddown"
+triggerall = command = "yb"
+triggerall = statetype != A
+triggerall = stateno!=1400
+triggerall = stateno!=1500
+triggerall = stateno!=1520
+triggerall = stateno!=1530
+triggerall = stateno!=1600
+trigger1 = ctrl || stateno = 1430 || stateno = 1510 || stateno = 3001 || stateno = 3051 || stateno = 3501
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+[State -1, skip]
+type = ChangeState
+value = 1400
+triggerall = var(59)<=0
+triggerall = command = "yb"
+triggerall = statetype != A
+triggerall = stateno!=1400
+triggerall = stateno!=1500
+triggerall = stateno!=1520
+triggerall = stateno!=1530
+triggerall = stateno!=1600
+trigger1 = ctrl || stateno = 1430 || stateno = 1510|| stateno = 3001 || stateno = 3051 || stateno = 3501
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+[State -1, skip]
+type = ChangeState
+value = 1520
+triggerall = var(59)<=0
+triggerall = command = "holdfwd"
+triggerall = command = "yb"
+triggerall = statetype = A
+triggerall = stateno!=1400
+triggerall = stateno!=1500
+triggerall = stateno!=1520
+triggerall = stateno!=1530
+triggerall = stateno!=1600
+trigger1 = ctrl || stateno = 1420|| stateno = 3001 || stateno = 3051 || stateno = 3501
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+[State -1, airskip]
+type = ChangeState
+value = 1500
+triggerall = var(59)<=0
+triggerall = command = "yb"
+triggerall = statetype = A
+triggerall = stateno!=1400
+triggerall = stateno!=1500
+triggerall = stateno!=1520
+triggerall = stateno!=1530
+triggerall = stateno!=1600
+trigger1 = ctrl || stateno = 1420|| stateno = 3001 || stateno = 3051 || stateno = 3501
+trigger2=stateno=[200,1999]
+trigger2=movecontact || Projcontact(7205)>=0 || Projcontact(2000)>=0
+
+
+
+
+
+
+;---------------------------------------------------------------------------
+;シールド
+
+[State Shield_A]
+type = ChangeState
+value = 920
+triggerall=var(59)<=0
+triggerall = command = "ab"
+triggerall = command!= "holddown"
+trigger1 = statetype = A && ctrl || stateno = 1420
+
+
+
+[State Shield_S]
+type = ChangeState
+value = 900
+triggerall=var(59)<=0
+triggerall = command = "ab"
+triggerall = command!= "holddown"
+triggerall = stateno != [900,911]
+trigger1 = statetype = S && ctrl || stateno = 1430 || stateno = 1510
+trigger2 = time >= 14
+trigger2 = anim = 901
+trigger3 = stateno = [900,911]
+trigger3 = movecontact
+
+[State Shield_C]
+type = ChangeState
+value = 910
+triggerall=var(59)<=0
+triggerall = command = "ab"
+triggerall = command = "holddown"
+triggerall = stateno != [900,911]
+trigger1 = statetype = C && ctrl || stateno = 1430 || stateno = 1510
+trigger2 = time >= 15
+trigger2 = anim = 901|| anim = 911
+trigger3 = stateno = [900,911]
+trigger3 = movecontact
+
+
+;---------------------------------------------------------------------------
+
+[state -1,ガーキャン後ろ回り込み]
+type=changestate
+value=706
+triggerall=var(59)<=0
+triggerall=command="recovery"
+triggerall=command="holdback"
+triggerall=statetype!=a
+;triggerall=power>=1000
+trigger1=stateno=[150,155]
+
+[state -1,後ろ回り込み]
+type=changestate
+value=705
+triggerall=var(59)<=0
+triggerall=command="recovery"
+triggerall=command="holdback"
+triggerall=statetype!=a
+trigger1=ctrl || stateno = 1430 || stateno = 1510
+trigger2=  canrecover = 1
+trigger2= stateno = 5100 && Alive
+
+[state -1,ガーキャン回り込み]
+type=changestate
+value=701
+triggerall=var(59)<=0
+triggerall=command="recovery"
+triggerall=statetype!=a
+;triggerall=power>=1000
+trigger1=stateno=[150,155]
+
+[state -1,クイック回り込み]
+type=changestate
+value=702
+triggerall=var(59)<=0
+triggerall=command="recovery"
+triggerall=statetype=s
+;triggerall=power>=1000
+trigger1=stateno=[200,399]
+trigger1=movecontact
+
+[state -1,回り込み]
+type=changestate
+value=700
+triggerall=var(59)<=0
+triggerall=command="recovery"
+triggerall=statetype!=a
+trigger1=ctrl || stateno = 1430 || stateno = 1510
+
+
+;===========================================================================
+
+[State -1, Counter] ;
+type = ChangeState
+value = 290
+triggerall = var(59)<=0
+triggerall = p2movetype = A
+triggerall = command = "holdfwd"
+triggerall = command = "holddown"
+triggerall = command =  "x"
+triggerall = statetype != A
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno=[150,155]
+
+;===========================================================================
+;---------------------------------------------------------------------------
+;Stand Light Punch
+;→立ち弱パンチ
+[State -1, Stand Light Punch]
+type = ChangeState
+value = 275
+triggerall = var(59)<=0
+triggerall = command = "x"
+triggerall = command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+;---------------------------------------------------------------------------
+;Gun
+;
+[State -1,gun]
+type = ChangeState
+value = 271
+triggerall = var(59)<=0
+triggerall = command = "z"
+triggerall = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 =  stateno = [190,191]
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;Stand Light Punch
+;立ち弱パンチ
+[State -1, Stand Light Punch]
+type = ChangeState
+value = 200
+triggerall = var(59)<=0
+triggerall = command = "x"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+;---------------------------------------------------------------------------
+;Stand Strong Punch
+;←立ち強パンチ
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 210
+triggerall = var(59)<=0
+triggerall = command = "y"
+triggerall = command = "holdback"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = stateno!=220
+trigger2 = stateno!=210
+trigger2 = stateno!=215
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+
+
+
+
+;---------------------------------------------------------------------------
+;Stand Strong Punch
+;立ち強パンチ
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 220
+triggerall = var(59)<=0
+triggerall = command = "y"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = stateno!=220
+trigger2 = stateno!=215
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+
+;---------------------------------------------------------------------------
+;Stand Light Kick
+;→立ち弱キック
+[State -1, Stand Light Kick]
+type = ChangeState
+value = 265
+triggerall = var(59)<=0
+triggerall = command = "a"
+triggerall = command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+
+;---------------------------------------------------------------------------
+;Stand Light Kick
+;←立ち弱キック
+[State -1, Stand Light Kick]
+type = ChangeState
+value = 235
+triggerall = var(59)<=0
+triggerall = command = "a"
+triggerall = command = "holdback"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = stateno= 200 || stateno= 400
+trigger2 =movecontact
+;---------------------------------------------------------------------------
+;Stand Light Kick
+;立ち弱キック
+[State -1, Stand Light Kick]
+type = ChangeState
+value = 230
+triggerall = var(59)<=0
+triggerall = command = "a"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = stateno= 200 || stateno= 400
+trigger2 =movecontact
+;---------------------------------------------------------------------------
+;Standing Strong Kick
+;←立ち強キック
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 240
+triggerall = var(59)<=0
+triggerall = command = "b"
+triggerall = command = "holdback"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+
+;---------------------------------------------------------------------------
+;Standing Strong Kick
+;立ち強キック
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 250
+triggerall = var(59)<=0
+triggerall = command = "b"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = (stateno=[200,239])|| stateno= 400 || stateno= 430
+trigger2 =movecontact
+;---------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------
+;Taunt
+;挑発
+[State -1, Taunt]
+type = ChangeState
+value = 195
+triggerall = var(59)<=0
+triggerall = command = "start"
+trigger1 = statetype != A
+trigger1 = ctrl
+
+;---------------------------------------------------------------------------
+;Crouching Light Punch
+;しゃがみ弱パンチ
+[State -1, Crouching Light Punch]
+type = ChangeState
+value = 400
+triggerall = var(59)<=0
+triggerall = command = "x"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+;---------------------------------------------------------------------------
+;Crouching Strong Punch
+;しゃがみ強パンチ
+[State -1, Crouching Strong Punch]
+type = ChangeState
+value = 410
+triggerall = var(59)<=0
+triggerall = command = "y"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = stateno!=220
+trigger2 = stateno!=210
+trigger2 = stateno!=220
+trigger2 = stateno!=215
+trigger2 = (stateno=[200,239])|| stateno=  400 || stateno=  430
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------
+;Crouching Light Kick
+;しゃがみ弱キック
+[State -1, Crouching Light Kick]
+type = ChangeState
+value = 430
+triggerall = var(59)<=0
+triggerall = command = "a"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno=  400 || stateno=  200
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------
+;Crouching Strong Kick
+;しゃがみ強キック
+[State -1, Crouching Strong Kick]
+type = ChangeState
+value = 440
+triggerall = var(59)<=0
+triggerall = command = "b"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl || stateno = 1430 || stateno = 1510
+trigger2 = stateno!=265
+trigger2 = stateno!=275
+trigger2 = (stateno=[200,250])|| stateno=  400 || stateno=  430
+trigger2 =movecontact
+
+
+;---------------------------------------------------------------------------
+;Jump Light Punch
+;空中弱パンチ
+[State -1, Jump Light Punch]
+type = ChangeState
+value = 600
+triggerall = var(59)<=0
+triggerall = command = "x"
+trigger1 = statetype = A
+trigger1 = ctrl || stateno = 1420
+
+
+;---------------------------------------------------------------------------
+;Jump Strong Punch
+[State -1, Jump Strong Punch]
+type = ChangeState
+value = 610
+triggerall = var(59)<=0
+triggerall = command = "y"
+trigger1 = statetype = A
+trigger1 = ctrl || stateno = 1420
+trigger2 = stateno = 600 || stateno = 630 ;jump_x or jump_a
+trigger2 = movecontact
+
+;---------------------------------------------------------------------------
+;Jump Light Kick
+[State -1, Jump Light Kick]
+type = ChangeState
+value = 630
+triggerall = var(59)<=0
+triggerall = command = "a"
+trigger1 = statetype = A
+trigger1 = ctrl || stateno = 1420
+
+
+;---------------------------------------------------------------------------
+;Jump Strong Kick
+;空中強キック
+[State -1, Jump Strong Kick]
+type = ChangeState
+value = 640
+triggerall = var(59)<=0
+triggerall = command = "b"
+trigger1 = statetype = A
+trigger1 = ctrl || stateno = 1420
+trigger2 = stateno = 600 || stateno = 630 || stateno = 610 ;jump_x or jump_a
+trigger2 = movecontact
+
+
+;---------------------------------------------------------------------------
+;jp/en/ch
+[State jp/en/ch]
+type = varset
+trigger1 = 1
+;var(15) = 0;jp
+;var(15) = 1;ch
+var(15) = 2;en
+

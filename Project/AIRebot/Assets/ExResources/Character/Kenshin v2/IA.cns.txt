@@ -1,0 +1,387 @@
+[Statedef -2]
+
+[state 0]
+type=changestate
+trigger1=alive
+trigger1=(((ailevel)&&(time>8-(ailevel))&&(random%10=0))&&(ctrl)&&(roundstate=2)&&(p2bodydist x>50))
+trigger1=(stateno!=60)||(stateno!=65)||(stateno!=66)||(stateno!=70)
+value=cond(pos y>=0,60,65)
+
+[state 0]
+type=changestate
+trigger1=alive
+trigger1=(((ailevel)&&(time>8-(ailevel))&&(random%3=0))&&(ctrl)&&(roundstate=2)&&(p2bodydist x<50))
+trigger1=(stateno!=60)||(stateno!=65)||(stateno!=66)||(stateno!=70)
+value=cond(pos y>=0,70,66)
+
+[state 0]
+type=changestate
+trigger1=alive
+triggerall=ailevel
+triggerall=enemynear,movetype=a
+triggerall=p2bodydist x<60
+triggerall=p2bodydist y=[-50,50]
+triggerall=roundstate=2
+triggerall=ctrl
+trigger1=time>8-(ailevel)
+trigger1=random%1=1
+value=cond(statetype=a,132,cond(statetype=c,131,cond(statetype=s,130,130)))
+
+[state 0]
+type=changestate
+trigger1=alive
+triggerall=ailevel
+triggerall=p2bodydist y<-100
+triggerall=roundstate=2
+trigger1=stateno!=[130,132]
+value=cond(statetype=a,132,cond(statetype=c,131,cond(statetype=s,130,130)))
+
+[State 0,A]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<30
+trigger1=random<(ailevel * 100)
+value=200
+
+[State 0,B]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<30
+trigger1=random<(ailevel * 100)
+value=300
+
+[State 0,C]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<30
+trigger1=random<(ailevel * 100)/10
+value=400
+
+[State 0,Counter]
+type=ChangeState
+triggerall=power>=500
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<50
+trigger1=random<(ailevel * 100)/6
+value=250
+
+[State 0,Ryukansen]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+trigger1=p2bodydist x>=100
+trigger1=random<(ailevel * 100)/6
+trigger2=p2bodydist x=[50,100]
+trigger2=random<(ailevel * 100)/8
+trigger3=p2bodydist x<50
+trigger3=random<(ailevel * 100)/10
+value=350
+
+[State 0,Ryusuisen]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<50
+trigger1=random<(ailevel * 100)/6
+value=450
+
+[State 0,A Aire]
+type=ChangeState
+triggerall=statetype=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<30
+trigger1=random<(ailevel * 100)
+value=600
+
+[State 0,B Aire]
+type=ChangeState
+triggerall=statetype=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<30
+trigger1=random<(ailevel * 100)
+value=610
+
+[State 0,C Aire]
+type=ChangeState
+triggerall=pos y<-30
+triggerall=power>=200
+triggerall=statetype=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x=[30,60]
+trigger1=random<(ailevel * 100)/10
+value=620
+
+[State 0,Amakakeru Ryu No Shirameki LV3]
+type=ChangeState
+triggerall=power>=3000
+triggerall=statetype!=A
+triggerall=p2movetype!=H
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+trigger1=p2bodydist x<300
+trigger1=random<(ailevel * 100)*2
+trigger2=p2bodydist x<300
+trigger2=random<(ailevel * 100)
+value=3000
+
+[State 0,Doryusen]
+type=ChangeState
+triggerall=statetype!=A
+triggerall=power>=1000
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x=[50,200]
+trigger1=random<(ailevel * 100)/4
+value=1000
+
+[State 0,Ryushosen]
+type=ChangeState
+triggerall=power>=1000
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<70
+trigger1=random<(ailevel * 100)/2
+value=ifelse(pos y<0,1101,1100)
+
+[State 0,Ryusonsen]
+type=ChangeState
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x<50
+trigger1=random<(ailevel * 100)
+value=1200
+
+[State 0,Ryumeisen]
+type=ChangeState
+triggerall=stateno!=1300
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+triggerall=p2bodydist x=[80,120]
+trigger1=random<(ailevel * 100)
+value=1300
+
+[State 0,Kuzuryusen]
+type=ChangeState
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+trigger1=p2bodydist x=[100,300]
+trigger1=ifelse(power>=1500,random<(ailevel * 100),random<(ailevel * 100)/2)
+trigger2=p2bodydist x=[150,400]
+trigger2=ifelse(power>=1500,random<(ailevel * 100)/2,random<(ailevel * 100)/4)
+value=1400
+
+[State 0,Amakakeru Ryu No Shirameki]
+type=ChangeState
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=ailevel>0&&roundstate=2
+triggerall=ctrl
+trigger1=p2bodydist x=[50,100]
+trigger1=random<(ailevel * 100)/4
+trigger1=p2movetype!=A
+trigger2=p2bodydist x=[50,100]
+trigger2=random<(ailevel * 100)/2
+trigger2=p2movetype=A
+trigger3=p2bodydist x=[75,150]
+trigger3=random<(ailevel * 100)/6
+trigger3=p2movetype=A
+value=1500
+
+[Statedef -3]
+
+[State 0,Aura Pasiva]
+type=Helper
+triggerall=numhelper(570)=0
+trigger1=numhelper(980)=1
+helpertype=normal
+name="Aura Pasiva"
+ID=570
+stateno=570
+pos=0,0
+postype=p1
+ownpal=1
+Supermovetime=9999999999
+Pausemovetime=9999999999
+Supermove=9999999999
+Pausemove=9999999999
+
+[State 0,Aura FX]
+type=Helper
+triggerall=numhelper(595)=0
+trigger1=numhelper(980)=1
+trigger1=Fvar(16)=1
+helpertype=normal
+name="Aura FX"
+ID=595
+stateno=595
+pos=0,0
+postype=p1
+ownpal=1
+size.xscale=.2
+size.yscale=.25
+Supermovetime=9999999999
+Pausemovetime=9999999999
+Supermove=9999999999
+Pausemove=9999999999
+
+[State 0,Polvo en P2]
+type=Helper
+triggerall=p2movetype=H
+triggerall=numhelper(7075)=0
+trigger1=p2stateno=7005
+helpertype=normal
+name="Polvo en P2"
+ID=7075
+stateno=7075
+pos=0,0
+postype=p1
+ownpal=1
+
+[State 0,P2 Clavado Pared]
+type=Helper
+triggerall=p2movetype=H
+triggerall=numhelper(7070)=0
+trigger1=p2stateno=7006
+helpertype=normal
+name="P2 Clavado Pared"
+ID=7070
+stateno=7070
+pos=0,-30
+postype=p2
+ownpal=1
+Facing=-1
+
+[State 0,P2 - In Floor]
+type=Helper
+triggerall=numhelper(7257)=0
+trigger1=p2stateno=7259
+name="P2 - In Floor"
+ID=7257
+stateno=7257
+pos=0,-30
+postype=p2
+facing=1
+keyctrl=0
+ownpal=1
+
+[State 0,Pared Rota]
+type=Helper
+triggerall=numhelper(7258)=0
+trigger1=p2stateno=7256
+helpertype=normal
+name="Pared Rota"
+ID=7258
+stateno=7258
+pos=0,-30
+postype=p2
+facing=1
+keyctrl=0
+ownpal=1
+
+[State 0,P2 - In Floor]
+type=Helper
+triggerall=numhelper(7260)=0
+trigger1=p2stateno=7255
+name="P2 - In Floor"
+ID=7260
+stateno=7260
+pos=0,-30
+postype=p2
+facing=1
+keyctrl=0
+ownpal=1
+
+[State 0,Suelo Roto]
+type=Helper
+triggerall=p2movetype=H
+triggerall=numhelper(7380)=0
+trigger1=p2stateno=7391
+helpertype=normal
+name="Suelo Roto"
+ID=7380
+stateno=7380
+pos=0,-30
+postype=p2
+ownpal=1
+
+[State 0,Polvo en P2]
+type=Helper
+triggerall=p2movetype=H
+triggerall=numhelper(1680)=0
+trigger1=p2stateno=1690
+helpertype=normal
+name="Polvo en P2"
+ID=1680
+stateno=1680
+pos=0,0
+postype=p1
+ownpal=1
+
+[State 0,P2 Clavado Pared]
+type=Helper
+triggerall=p2movetype=H
+triggerall=numhelper(1670)=0
+trigger1=p2stateno=1691
+helpertype=normal
+name="P2 Clavado Pared"
+ID=1670
+stateno=1670
+pos=0,-30
+postype=p2
+ownpal=1
+Facing=-1
+
+[State 0,StopSnd]
+type=StopSnd
+TRIGGERALL=stateno!=190
+trigger1=time=1
+channel=4
+
+[State 0,StopSnd]
+type=StopSnd
+TRIGGERALL=stateno!=190
+trigger1=time=1
+channel=5
+
+[State 0,StopSnd]
+type=StopSnd
+TRIGGERALL=stateno!=190
+trigger1=time=1
+channel=6
+
+[State 0,StopSnd]
+type=StopSnd
+TRIGGERALL=stateno!=190
+trigger1=time=1
+channel=7
+
+[State 0,Golpeado]
+type=PlaySnd
+trigger1=movetype=H&&(stateno!=[0,155])&&!time&&HitOver=0&&random%3=0
+value=5000,ifelse(random<500,1,ifelse(random<500,2,3))
+
+[State 0,Solucion Stand Aire]
+type=ChangeState
+triggerall=stateno=0||stateno=20
+trigger1=pos y<0
+value=50
+ctrl=1

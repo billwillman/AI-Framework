@@ -1,0 +1,18 @@
+[Info]
+name="Kenshin"
+displayname="Kenshin"
+versiondate=21/11/2020
+mugenversion=1.1
+author="Knightmare"
+pal.defaults=1
+
+[Files]
+sprite=Kenshin.sff
+anim=Kenshin.air
+sound=Kenshin.snd
+cmd=Kenshin.cmd
+cns=Kenshin.cns
+stcommon = common1.cns
+st = Kenshin.cns
+st1 = IA.cns
+pal1=1.act

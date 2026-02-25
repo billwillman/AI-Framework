@@ -1,0 +1,1436 @@
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------------
+[Statedef -2]
+
+
+;[STATE AI停止スイッチ];<WINでの使用時はここを消します。
+;type=VarSet
+;triggerAll=var(59);AI起動中の状態
+;trigger1=AILevel<=1;プレイヤー操作フラグ
+;trigger2=RoundState!=2;試合中以外(開始前・終了以降)の状態
+;trigger3=!Alive;死亡
+;var(59)=0;AI停止
+
+;===========================================================================
+;                       AIレベル＆各種設定用記述
+;===========================================================================
+
+
+
+;---------------------------------------------------------------------------
+;AIレベル
+[State -2,AI Level]
+type = varset
+;triggerall = AILevel >=2;<WINでの使用時はここを消します。
+trigger1 = var(59)=-1
+trigger2 = roundstate = 2 && ctrl
+
+var(59) = 10;ここを設定
+
+; var(59)の数値の変更でAIレベルが変化します。
+; レベルの幅は1～10。10が最高レベルです。0はAIなし。
+; trigger2の前の「;」を消すとAI常時起動になります。
+
+
+
+;AI アクセルキャンセル使用スイッチ
+[State -2,tc]
+type = varset
+triggerall = var(59)>0
+trigger1 = 1
+
+var(54) = 2       ;2:使用する / 1:コンボ中のみ / 0:使用しない
+
+
+
+;AI 超反応スイッチ
+[State -2,tc]
+type = varset
+triggerall = var(59)>0
+trigger1 = 1
+
+var(55) = 1       ; 1:超反応あり / 0:超反応なし
+
+
+
+;根性値ON/OFFスイッチ
+[State -2,DEF up on/off]
+type = varset
+trigger1 = 1
+
+var(56) = 1       ; 1:根性値あり / 0:根性値なし
+
+; 根性値のあり/なしが設定できます。数値を0にすれば全カラーの防御力アップがなしになります。
+
+; 根性値ありの場合、1～6Pカラーは体力30%以下で防御力アップ、7～12Pカラーは常に防御力アップします。
+; 7～12Pカラーは体力半分からさらに防御力アップします。
+
+
+
+;===========================================================================
+;                       凶とか狂とか
+;===========================================================================
+
+;自殺時間計算
+[state -2,]
+type=varadd
+triggerall = !IsHelper
+triggerall = roundstate = 2
+triggerall = movetype =H
+trigger1 = var(21)<999
+trigger1 = time%1 = 0
+var(21)=1
+
+
+;自殺時間計算
+[state -2,]
+type=varadd
+triggerall = !IsHelper
+triggerall = roundstate = 2
+triggerall = movetype !=H
+trigger1 = 1
+var(21)=0
+
+
+[state -2,attackmulset]
+type = attackmulset
+trigger1 = !IsHelper && palno >= 1 || root,palno>=1 && IsHelper(2019)
+trigger1 = !IsHelper && palno <= 3 || root,palno<=3 && IsHelper(2019)
+value = 0.5
+
+
+;弾装填
+[state -2,gun]
+type=varadd
+triggerall = !IsHelper && palno<7 || root,palno<7 && IsHelper(2019)
+triggerall = roundstate = 2
+trigger1 = var(18)<200
+trigger1 = time%3 = 0
+var(18)=1
+
+;弾装填
+[state -2,gun]
+type=varset
+triggerall = roundstate = 2
+trigger1 = !IsHelper && palno>=7|| root,palno>=7 && IsHelper(2019)
+var(18)=20
+
+
+
+[State 0, Explod]
+Type = ScreenBound
+trigger1 = RoundState<2;
+Value = 1
+MoveCamera = 0,0
+
+[State 0, Explod]
+Type = ScreenBound
+Trigger1 = 1
+Value = 1
+MoveCamera = 1,0
+
+
+[State -2,AI]
+Type = Helper
+triggerall=!ishelper
+Trigger1 = NumHelper(2019) <5
+Name = "croon"
+StateNo = 1500;ifelse(roundstate<2,5900,0)
+PosType = p1
+Pos = numhelper(2019)*-600,  numhelper(2019)*-100
+helpertype=player
+Ownpal = 1
+keyctrl=1
+IgnoreHitPause = 1
+SprPriority = 0
+ID = 2019
+
+[State -2,AI]
+Type = Helper
+triggerall=!ishelper
+Trigger1 = NumHelper(2019) <5
+Name = "croon"
+StateNo = 1500;ifelse(roundstate<2,5900,0)
+PosType = p1
+Pos = numhelper(2019)*-600,  numhelper(2019)*-100
+helpertype=player
+Ownpal = 1
+keyctrl=1
+IgnoreHitPause = 1
+SprPriority = 0
+ID = 2019
+
+[State -2,AI]
+Type = Helper
+triggerall=!ishelper
+Trigger1 = NumHelper(2019) <5
+Name = "croon"
+StateNo = 1500;ifelse(roundstate<2,5900,0)
+PosType = p1
+Pos = numhelper(2019)*-600,  numhelper(2019)*-100
+helpertype=player
+Ownpal = 1
+keyctrl=1
+IgnoreHitPause = 1
+SprPriority = 0
+ID = 2019
+
+
+
+[State -2,];
+type = HitOverride
+triggerall = ishelper(2019)
+trigger1 = 1
+attr = SCA,AA,AP,AT
+stateno = -1
+IgnoreHitPause = 1
+time = -1
+
+
+[State 0]
+type = null;CtrlSet
+triggerall = ishelper(2019)
+triggerall = roundstate = 2
+trigger1 = parent,ctrl
+trigger2 = roundstate = 2
+value = 1
+
+[State 191, 2]
+type = null;AssertSpecial
+trigger1 = ishelper(2019)
+flag = nostandguard
+flag2 = nocrouchguard
+flag3 = noairguard
+ignorehitpause = 1
+
+
+[state -3]
+type = selfstate
+Triggerall=ishelper(2019)
+triggerall=win
+triggerall=alive
+trigger1=root,stateno=180
+trigger1=stateno!=[180,182]
+value=180
+IgnoreHitPause = 1
+
+
+
+[state -3]
+type = selfstate
+Triggerall=ishelper(2019)
+triggerall=roundstate >= 3
+triggerall=lose
+triggerall=alive
+trigger1=stateno != 170
+value=170
+IgnoreHitPause = 1
+
+[State -2]
+type = Lifeset
+Triggerall=ishelper(2019)
+trigger1 = root,palno>=12
+Value = Lifemax
+
+;7P ラウンド中ゲージ回復
+[state -2,g]
+type = poweradd
+triggerall = !IsHelper &&palno>=7 || root,palno>=7 && IsHelper(2019)
+triggerall = alive && life > 0
+triggerall = roundstate = 2
+trigger1 = time%3 = 0
+value = 5
+
+
+;===========================================================================
+;                       ダメージ条件
+;===========================================================================
+
+[State 0, VarSet];ダメージ条件
+type = VarAdd
+triggerall = !Ishelper
+triggerall = palno>=7 
+triggerall = GetHitVar(damage) =[0,4900];ここでダメージ制限;これで大ダメージ即死を防ぎます
+trigger1 = Stateno != [120,155];これでガードしているときはダメージを受けないくなります
+sysvar(3) = Floor(GetHitVar(damage))* (Floor(Life/1000));ダメージを増やす
+ignorehitpause = 1
+
+[State -2];ライフをセットします
+type = LifeSet
+triggerall = var(21)<999
+triggerall = !IsHelper
+triggerall = palno>=7
+trigger1 = RoundState>=2;試合が始まって終わってから
+Value = LifeMax - sysvar(3);体力満タン-受けたダメージ= 現在の体力としています
+ignorehitpause=1
+
+[State ]
+type = VarSet
+triggerAll = !IsHelper
+triggerall = palno>=7
+trigger1 = Sysvar(3) < 0
+Sysvar(3) = 0
+
+
+[State -2];体力を減らせる
+type = Lifeadd
+triggerall = alive 
+triggerall = !IsHelper
+triggerall = palno<7
+triggerall = GetHitVar(damage) 
+trigger1 = RoundState>=2;試合が始まって終わってから
+Value = -GetHitVar(damage)*7 
+ignorehitpause=1
+
+
+
+[State -2];試合長引きすぎると自殺
+type = LifeSet
+triggerall = movetype =H
+triggerall = var(21)>=999
+triggerall = !IsHelper
+trigger1 = RoundState>=2;
+Value = -LifeMax 
+ignorehitpause=1
+
+
+
+
+;=====================================================================
+; Statedef -2の記述　いじっちゃダメ
+;=====================================================================
+;AI用重力加速度計測
+[state -2,yaccel]
+type = varset
+trigger1 = fvar(20) != enemynear(var(58)),const(movement.yaccel)
+trigger1 = enemynear(var(58)),stateno != [5000,5210]
+trigger1 = enemynear(var(58)),vel y != 0
+fv = 20
+value = enemynear(var(58)),const(movement.yaccel)
+ignorehitpause = 1
+
+[state -2,yaccel]
+type = varset
+trigger1 = fvar(20) != enemynear(var(58)),gethitvar(yaccel)
+trigger1 = enemynear(var(58)),stateno = [5000,5210]
+fv = 20
+value = enemynear(var(58)),gethitvar(yaccel);(打撃当てた時のyaccel値)
+ignorehitpause = 1
+
+;敵が空中じゃない時
+[state -2, yaccel]
+type = varset
+trigger1 = fvar(20) != 0
+trigger1 = enemynear(var(58)),vel y = 0
+fv = 20
+value = 0;(打撃当てた時のyaccel値)
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------
+;無敵
+;---------------------------------------------------------------------------
+;無敵ヘルパー
+[state -2,ｶｧﾝ後無敵]
+type = nothitby
+triggerall = !ishelper
+trigger1 = numhelper(9998)>0
+value = SCA
+time = 20
+
+[State -2,];残像
+type = afterimage
+triggerall = !ishelper
+triggerall = numhelper(9998)>0
+triggerall = movetype != H
+triggerall = time = 0
+trigger1 = stateno = [0,110]
+trigger2 = stateno = [200,699]
+time = 20
+trans = add1
+timegap = 2
+framegap = 2
+length = 6
+palbright = 12,12,12
+palcontrast = 200,200,200
+palpostbright = 0,0,0
+paladd = 0,0,0
+palmul = 1,1,1
+
+;12P 削りダメージ無効
+[state -2,Gl]
+type = lifeadd
+triggerall = palno=12 || root,palno>=12 && IsHelper(2019)
+triggerall = alive && life > 0
+triggerall = roundstate = 2
+trigger1 = stateno = [120,159]
+value = gethitvar(damage)
+
+;7-12P 相手起き上がり時無敵
+[State -2,a]
+type = nothitby
+triggerall = palno>=7 || root,palno>=12 && IsHelper(2019)
+trigger1 = enemy,stateno = 5120 && enemy,animtime = -1
+value = SCA
+time = 5+ifelse(palno=12,7,0)
+
+;12P ラウンド中ゲージ回復
+[state -2,g]
+type = poweradd
+triggerall = palno=12 
+triggerall = alive && life > 0
+triggerall = roundstate = 2
+trigger1 = time%3 = 0
+value = 205
+
+;ガードorやられ後の投げ無敵
+[State -2, 1]
+type = nothitby
+triggerall = palno=12 || root,palno>=12 && IsHelper(2019)
+triggerall = !hitover
+trigger1 = stateno = [150,155]
+value = SCA,NT,ST,HT
+time = 1
+ignorehitpause = 1
+
+[State -2, 2]
+type = nothitby
+triggerall = palno=12 || root,palno>=12 && IsHelper(2019)
+triggerall = hitover
+trigger1 = stateno = [150,155]
+value = SCA,NT,ST,HT
+time = 6
+ignorehitpause = 1
+
+[State -2, 3]
+type = nothitby
+triggerall = palno=12 || root,palno>=12 && IsHelper(2019)
+triggerall = hitover
+trigger1 = stateno = [5000,5001]
+trigger2 = stateno = [5010,5011]
+value = SCA,NT,ST,HT
+time = 7
+ignorehitpause = 1
+persistent = 0
+
+
+
+[State -2, 3]
+type = nothitby
+triggerall = palno>=7  || root,palno>=7 && IsHelper(2019)
+triggerall = stateno = [3000,3599]
+trigger1 = numhelper(3100)>0
+trigger2 = numhelper(3101)>0
+trigger3 = numhelper(3500)>0
+trigger4 = numhelper(3501)>0
+value = SCA
+time = 3
+ignorehitpause = 1
+
+
+;---------------------------------------------------------------------------
+;根性値
+;---------------------------------------------------------------------------
+;1HIT目の防御力アップフラグ1
+[State -2,DEF1h 1]
+type = varset
+triggerall = var(56)>0
+trigger1 = fvar(21)=0
+fv = 21
+value = gethitvar(damage)
+ignorehitpause = 1
+
+[State -2,DEF1h r];↑リセット
+type = varset
+triggerall = var(56)>0
+triggerall = fvar(21)>0
+trigger1 = movetype != H
+trigger2 = stateno = [120,159]
+trigger3 = time = 2
+fv = 21
+value = 0
+ignorehitpause = 1
+
+;1HIT目の防御力アップフラグ2
+[State -2,DEF1h 2];hit count
+type = varset
+triggerall = var(56)>0
+triggerall = !ishelper
+triggerall = stateno != [120,159]
+trigger1 = movetype = H
+fv = 22
+value = gethitvar(hitcount)
+ignorehitpause = 1
+
+[State -2,DEF1h 2r];↑リセット
+type = varset
+triggerall = var(56)>0
+triggerall = !ishelper
+trigger1 = movetype != H
+trigger2 = stateno = [120, 159]
+fv = 22
+value = 0
+ignorehitpause = 1
+
+;1HIT目の防御力アップ適用
+[State -2,DEF1h a]
+type = lifeadd
+triggerall = var(56)>0
+triggerall = fvar(22)=1 || time=2
+triggerall = alive && life > 0
+trigger1 = palno<7 || root,palno<7 && IsHelper(2019)
+trigger1 = (100*life/const(data.life)) <= 30 || life <= 300
+trigger2 = palno>=7 || root,palno>=7 && IsHelper(2019)
+value = floor(fvar(21) * 0.5)
+absolute = 1
+persistent = 0
+ignorehitpause = 1
+
+;防御力アップ1
+[State -2,DEFup1]
+type = DefenceMulSet
+triggerall = var(56)>0
+trigger1 = palno<7|| root,palno<6 && IsHelper(2019)
+trigger1 = (100*life/const(data.life)) <= 30 || life <= 300
+trigger2 = palno>=7 || root,palno>=7 && IsHelper(2019)
+trigger2 = (100*life/const(data.life)) > 30 || life > 300
+trigger3 = palno=12
+trigger3 = (100*life/const(data.life)) > 50 || life > 500
+value =  0.7
+
+;防御力アップ2
+[State -2,DEFup1]
+type = DefenceMulSet
+triggerall = palno>=7 || root,palno>=7 && IsHelper(2019)
+triggerall = var(56)>0
+trigger1 =  (100*life/const(data.life)) <= 30 || life <= 300
+value =  0.5
+
+;防御力アップ3
+[State -2,DEFup1]
+type = DefenceMulSet
+triggerall = palno=12|| root,palno>=12 && IsHelper(2019)
+triggerall = var(56)>0
+trigger1 =  (100*life/const(data.life)) <= 50 || life <= 500
+value =  1/3
+
+[state -2,lifeset];死亡
+type = null;lifeset
+trigger1 = !alive
+trigger2 = life<=0
+value = 0
+
+
+
+
+
+;===========================================================================
+[State 180, Randomizer]
+type = VarRandom
+trigger1 = stateno != [3999,4320]
+v = 17
+range = 0,6
+
+
+[state a]
+type = removeexplod
+trigger1 = stateno != [3999,4300]
+ID = 1430
+
+
+[state a]
+type = removeexplod
+trigger1 = stateno != [1900,1930]
+ID = 1905
+
+
+
+
+[State -2]
+type = PlaySnd
+;triggerall = var(0)=1
+triggerall = movetype=A
+triggerall = time = 3
+trigger1 = stateno = [200,700]
+trigger2 = stateno = 900
+trigger3 = stateno = 910
+trigger4 = stateno = 860
+trigger5 = stateno = 1800
+trigger6 = stateno = 1860
+persistent = 0
+value = s200,var(17)
+
+
+
+
+[State -2]
+type = PlaySnd
+;triggerall = var(0)=1
+triggerall = movetype=H
+triggerall = time = 1
+triggerall = stateno = 5000
+trigger1 = anim = 5000 || anim = 5001 || anim = 5010
+trigger2 = anim = 5011 || anim = 5020 || anim = 5021
+persistent = 0
+value = s5000,0+(random%1)
+volume = 255
+
+[State -2]
+type = PlaySnd
+;triggerall = var(0)=1
+trigger1 = movetype=H
+triggerall = time = 1
+triggerall = stateno = 5000
+trigger1 = anim = 5002 || anim = 5012 || anim = 5022
+persistent = 0
+value = s5000,1+(random%2)
+volume = 255
+
+
+[State -2]
+type = PlaySnd
+;triggerall = var(0)=1
+triggerall = time = 1
+triggerall = stateno = 5120
+trigger1 = anim = 5120
+trigger2 = anim = 5121
+persistent = 0
+value = s5120,1+(random%2)
+
+
+[state -2,]
+type=null;lifeset
+triggerall=roundstate<2
+triggerall=numenemy
+trigger1=(teammode=turns)||(enemy,teammode=turns)
+trigger1=roundsexisted=0
+trigger2=!(teammode=turns)
+trigger2=!(enemy,teammode=turns)
+value=lifemax
+
+;
+
+
+;===========================================================================
+
+
+
+
+
+
+;===========================================================================
+
+[state -2,ハイジャンプ判定]
+type=varadd
+trigger1=var(5)>0
+var(5)=-1
+
+;===========================================================================
+
+
+;===========================================================================
+;効果音
+[state -2,滑りダウン効果音]
+type=playsnd
+trigger1=numtarget=1
+trigger1=target,stateno=5422
+trigger1=target,time=1
+trigger2=numtarget=2
+trigger2=enemynear,stateno=5422
+trigger2=enemynear,time=1
+value=5420,0
+ignorehitpause=1
+
+[state -2,ガークラ効果音]
+type=playsnd
+trigger1=numtarget=1
+trigger1=target,stateno=5430
+trigger1=target,time=1
+trigger2=numtarget=2
+trigger2=enemynear,stateno=5430
+trigger2=enemynear,time=1
+value=5430,0
+ignorehitpause=1
+
+;===========================================================================
+
+
+
+
+;===============
+
+; （一人勝手に）気絶処理
+[State -2, Varadd]
+type = Varadd
+triggerall = var(37) > 0
+trigger1 = stateno != [150,155]
+trigger1 = stateno != [5000,5899]
+ignorehitpause = 1
+var(37) = -1
+
+[State -2,varset]
+type = varset
+trigger1 = stateno = [150,155]
+trigger2 = stateno = [5000,5900]
+var(37) = 100
+ignorehitpause = 1
+
+[State -2, 6]
+type = Varadd
+trigger1 = Time = 1
+trigger1 = GetHitVar(hitcount) = 1
+trigger1 = stateno = 5000 || stateno = 5010 || stateno = 5020
+ignorehitpause = 1
+var(36) = GetHitVar(animtype)+1
+
+[State -2,varset]
+type = varset
+trigger1 = var(1) <= 800
+trigger1 = var(37) = 0
+var(36) = 0
+
+[State -2, Stand_NotHitBy]
+type = NotHitBy
+trigger1 = alive
+trigger1 = var(36) >= 30
+trigger1 = stateno = [5000,5299]
+value = SCA
+time = 1
+
+[State -2, 8]
+type = ChangeState
+triggerall = alive
+triggerall = var(36) >= 30 
+trigger1 =  (stateno = 5000 || stateno = 5010 || stateno = 5020)
+value = 5300
+ignorehitpause = 1
+ctrl = 0
+
+[State -2, 8]
+type = ChangeState
+triggerall = alive
+triggerall = var(36) >= 30 
+trigger1= stateno=1400
+trigger1 = animelem=3
+trigger2= stateno=1500
+trigger2 = animelem=4
+trigger3= stateno=1600
+trigger3 = animelem=2
+trigger4= stateno=1520
+trigger4 = animelem=3
+trigger5= stateno=701 || stateno= 702 || stateno= 706
+trigger5 = animelem=2
+trigger6= stateno= [3000,4999]
+trigger6 = animelem=2
+trigger6 = prevstateno=[1000,2999]
+value = 5300
+ignorehitpause = 1
+ctrl = 0
+
+
+
+[state a]
+type = removeexplod
+trigger1 = stateno != [5100,5399]
+trigger2 = !alive
+ID = 2
+
+
+
+
+;===========================================================================
+
+
+;===========================================================================
+
+[state -2,追撃不可フラグリセット]
+type=varset
+triggerall=!numtarget
+trigger1=numhelper
+trigger1=!helper,numtarget
+trigger2=!numhelper
+trigger3=palno=12 || root,palno>=12 && IsHelper(2019)
+var(9)=0
+
+
+
+;===========================================================================
+
+;===========================================================================
+;カウンターヒット処理
+[state -2,カウンターヒットするフラグ]
+type=varset
+triggerall=numenemy
+trigger1=p2movetype=a
+var(3)=1
+ignorehitpause=1
+
+[state -2,カウンターヒットフラグリセット(ヒット後)]
+type=varset
+trigger1=var(3)=2
+var(3)=0
+ignorehitpause=1
+
+[state -2,カウンターヒットしたフラグ]
+type=varset
+triggerall=var(3)=1
+trigger1=movehit=1
+trigger2=numhelper
+trigger2=helper,movehit=1
+trigger3=projhittime(0)=0
+var(3)=2
+ignorehitpause=1
+
+[state -2,カウンターヒット時の背景フラッシュ]
+type=envcolor
+trigger1=var(3)=2
+time=1
+value=255,255,255
+under=1
+ignorehitpause=1
+
+[state -2,カウンターヒットフラグリセット(通常時)]
+type=varset
+trigger1=var(3)=1
+trigger1=numenemy
+trigger1=p2movetype!=a
+var(3)=0
+ignorehitpause=1
+
+
+
+
+;---------------------------------------------------------------------------
+
+[state -2,skip]
+type=varadd
+triggerall=!IsHelper && palno<12 || root,palno<12 && IsHelper(2019)
+triggerall=var(1)<=900
+trigger1= stateno=1400
+trigger1 = animelem=3
+trigger2= stateno=1500
+trigger2 = animelem=4
+trigger3= stateno=1600
+trigger3 = animelem=2
+trigger4= stateno=1520
+trigger4 = animelem=3
+trigger5= stateno=701 || stateno= 702 || stateno= 706
+trigger5 = animelem=2
+trigger6= stateno= [3000,4999]
+trigger6 = animelem=2
+trigger6 = prevstateno=[1000,2999]
+var(1)=100+(!IsHelper && palno=[1,3])*700
+
+
+[state -2,skip]
+type=varset
+triggerall=var(1)>=900
+trigger1= 1
+var(1)=900
+
+
+
+[state -2,skip]
+type=varset
+triggerall=!IsHelper && palno<12 || root,palno<12 && IsHelper(2019)
+triggerall=var(1)>=900
+triggerall=random<=200
+trigger1= stateno=1400
+trigger1 = animelem=3
+trigger2= stateno=1500
+trigger2 = animelem=4
+trigger3= stateno=1600
+trigger3 = animelem=2
+trigger4= stateno=1520
+trigger4 = animelem=3
+trigger5= stateno=701 || stateno= 702 || stateno= 706
+trigger5 = animelem=2
+trigger6= stateno= [3000,4999]
+trigger6 = animelem=2
+trigger6 = prevstateno=[1000,2999]
+var(36) = 31
+persistent = 0
+
+[state -2,skip]
+type=lifeadd
+triggerall=!IsHelper && palno<12 || root,palno<12 && IsHelper(2019)
+triggerall=var(1)>=900
+trigger1= stateno=1400
+trigger1 = animelem=3
+trigger2= stateno=1500
+trigger2 = animelem=4
+trigger3= stateno=1600
+trigger3 = animelem=2
+trigger4= stateno=1520
+trigger4 = animelem=3
+trigger5= stateno=701 || stateno= 702 || stateno= 706
+trigger5 = animelem=2
+trigger6= stateno= [3000,4999]
+trigger6 = animelem=2
+trigger6 = prevstateno=[1000,2999]
+value=-499
+kill= ifelse(random<799,0,1)
+persistent = 0
+
+
+;---------------------[ヘルパー]
+[state a];MAX発動ゲージ
+type = Helper
+triggerall = !ishelper
+trigger1 = numhelper(7550) = 0
+id = 7550
+name = "MAX"
+sprpriority = 1
+pos = 0,0
+postype = p1
+stateno = 7550
+helpertype = normal
+pausemovetime = 99999999
+supermovetime = 99999999
+keyctrl = 0 
+ownpal = 1
+
+
+;===========================================================================
+;MAX発動関係
+[state -2,MAXタイマー]
+type=varadd
+trigger1=var(1)>0
+var(1)=-1
+ignorehitpause=1
+
+[state -2,MAXタイマーが負の値に突き抜けたとき]
+type=varset
+trigger1=var(1)<0
+trigger2=lose
+var(1)=0
+ignorehitpause=1
+
+
+
+[state -2,MAX状態の点滅]
+type=palfx
+trigger1=var(1)>800
+trigger1=gametime%2=0
+time=1
+add=200,100,100
+ignorehitpause=1
+
+
+
+[State -2,MAXゲージ:枠]
+type=explod
+triggerall = !ishelper
+trigger1=var(1)
+anim=4510
+pos=ifelse(teamside=1,10,310),70-10
+postype=left
+facing=ifelse(teamside=1,1,-1)
+bindtime=-1
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[State -2,MAXゲージ:中身]
+type=explod
+triggerall = !ishelper
+trigger1=var(1)
+anim=4511
+pos=ifelse(teamside=1,10,311-(var(1)/15)),70-10
+postype=left
+bindtime=-1
+scale=var(1)/15
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,表示:百の位]
+type=explod
+triggerall = !ishelper
+trigger1=var(1)
+anim=4500+(var(1)/100)
+pos=ifelse(teamside=1,78,226),69-10
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,表示:十の位]
+type=explod
+triggerall = !ishelper
+trigger1=var(1)
+anim=4500+(var(1)%100/10)
+pos=ifelse(teamside=1,86,234),69-10
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,表示:一の位]
+type=explod
+triggerall = !ishelper
+trigger1=var(1)
+anim=4500+(var(1)%10)
+pos=ifelse(teamside=1,94,242),69-10
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[State -2,危険表示]
+type=explod
+triggerall = !ishelper
+trigger1 = numexplod(4512)=0
+trigger1=var(1)>=800
+anim=4512
+pos=ifelse(teamside=1,10,251),70-10
+postype=left
+bindtime=-1
+scale=1
+ontop=1
+ownpal=1
+ignorehitpause=1
+ID=4512
+
+[state a]
+type = removeexplod
+triggerall = !ishelper
+trigger1 = numexplod(4512)
+trigger1=var(1)<700
+id = 4512
+pausemovetime = 99999999
+supermovetime = 99999999
+
+
+
+
+;===========================================================================
+;7P強化表示
+[State 1]
+type = Explod
+triggerall = !ishelper
+triggerall = palno = [7,11]
+trigger1 = Teamside = 1
+trigger1 = Numexplod(18000)=0
+Anim = 18000
+ID = 18000
+pos = 15,63
+postype = left
+scale = .5,.5
+ownpal = 1
+bindtime = -1
+removetime = -1
+ontop = 1
+facing = 1
+sprpriority = 10
+supermovetime = 999
+pausemovetime = 999
+
+
+[State 1]
+type = Explod
+triggerall = !ishelper
+triggerall = palno = [7,11]
+trigger1 = Teamside = 2
+trigger1 = Numexplod(18000)=0
+Anim = 18000
+ID = 18000
+pos = -25,63
+postype = right
+scale = .5,.5
+ownpal = 1
+bindtime = -1
+removetime = -1
+ontop = 1
+facing = 1
+sprpriority = 10
+supermovetime = 999
+pausemovetime = 999
+
+
+
+[State 1]
+type = Explod
+triggerall = !ishelper
+triggerall = palno = 12
+trigger1 = Teamside = 1
+trigger1 = Numexplod(18000)=0
+Anim = 18001
+ID = 18000
+pos = 15,63
+postype = left
+scale = .5,.5
+ownpal = 1
+bindtime = -1
+removetime = -1
+ontop = 1
+facing = 1
+sprpriority = 10
+supermovetime = 999
+pausemovetime = 999
+
+
+[State 1]
+type = Explod
+triggerall = !ishelper
+triggerall = palno = 12
+trigger1 = Teamside = 2
+trigger1 = Numexplod(18000)=0
+Anim = 18001
+ID = 18000
+pos = -25,63
+postype = right
+scale = .5,.5
+ownpal = 1
+bindtime = -1
+removetime = -1
+ontop = 1
+facing = 1
+sprpriority = 10
+supermovetime = 999
+pausemovetime = 999
+
+
+
+
+;===========================================================================
+[State 90000, スコアグラフ]
+type = Helper
+triggerall= !IsHomeTeam
+triggerall = !NumHelper(10023)
+triggerall = !Ishelper
+triggerall = roundstate = 2
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+stateno = 10023
+id = 10023
+pos = 0,0
+postype = Back
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+
+;===========================================================================
+;スコアを増やす、技
+[State 960, VarAdd]
+type = VarAdd
+triggerall= !IsHomeTeam
+triggerall = var(20)<999999999                          
+triggerall = movehit =1
+triggerall = HitDefAttr= SCA,NA,NP
+triggerall = HitPauseTime=1  ||  Enemy,GetHitVar(HitShakeTime)=1
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+v = 20
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+;スコアを増やす、必殺技
+[State 960, VarAdd]
+type = VarAdd
+triggerall= !IsHomeTeam
+triggerall = var(20)<999999999
+triggerall = movehit =1
+triggerall = HitDefAttr= SCA,SA,SP
+triggerall = HitPauseTime=1  ||  Enemy,GetHitVar(HitShakeTime)=1
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+v = 20
+value = 5
+IgnoreHitPause = 1
+Persistent = 0
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+;スコアを増やす、超必殺技
+[State 960, VarAdd]
+type = VarAdd
+triggerall= !IsHomeTeam
+triggerall = var(20)<999999999
+triggerall = movehit =1
+triggerall = HitDefAttr= SCA,HA,HP
+triggerall = HitPauseTime=1  ||  Enemy,GetHitVar(HitShakeTime)=1
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+v = 20
+value = 12
+IgnoreHitPause = 1
+Persistent = 0
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+
+;スコアを増やす、投げ
+[State 960, VarAdd]
+type = VarAdd
+triggerall= !IsHomeTeam
+triggerall = var(20)<999999999
+triggerall = movehit =1
+triggerall = HitDefAttr= SCA,AT
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+v = 20
+value = 5
+IgnoreHitPause = 1
+Persistent = 0
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+
+;スコアを増やす
+[State 960, VarAdd]
+type = VarAdd
+triggerall= !IsHomeTeam
+triggerall = var(20)<999999999
+triggerall = ProjHit=1
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+v = 20
+value = 10
+IgnoreHitPause = 1
+Persistent = 0
+pausemovetime = 9999999999
+supermovetime = 9999999999
+
+
+
+;上限固定
+[State -2,]
+type = varset
+trigger1 = var(20)>=999999999
+var(20) = 999999999;上限
+
+
+
+
+
+;===========================================================================
+
+[state -2,スコア表示:枠]
+type=explod
+triggerall=numexplod(20211)=0
+triggerall= !IsHomeTeam
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20211
+pos=ifelse(teamside=1,43,193),2
+scale=0.5,0.5
+postype=left
+ontop=0
+ownpal=1
+ignorehitpause=1
+id=20211
+bindtime=-1
+sprpriority = 10
+
+[state -2,スコア表示:スコア]
+type=explod
+triggerall=numexplod(20210)=0
+triggerall= !IsHomeTeam
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20210
+pos=ifelse(teamside=1,50,200),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+id=20210
+bindtime=-1
+
+[state -2,スコア表示:百億の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>100000000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%1000000000/100000000)
+pos=ifelse(teamside=1,90,240),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,スコア表示:十億の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>10000000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%100000000/10000000)
+pos=ifelse(teamside=1,95,245),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[state -2,スコア表示:億の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>1000000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%10000000/1000000)
+pos=ifelse(teamside=1,100,250),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[state -2,スコア表示:千万の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>100000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%1000000/100000)
+pos=ifelse(teamside=1,105,255),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[state -2,スコア表示:百万の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>10000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%100000/10000)
+pos=ifelse(teamside=1,110,260),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+
+[state -2,スコア表示:十万の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>1000
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%10000/1000)
+pos=ifelse(teamside=1,115,265),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[state -2,スコア表示:万の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>100
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%1000/100)
+pos=ifelse(teamside=1,120,270),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,スコア表示:千の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)>10
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%100/10)
+pos=ifelse(teamside=1,125,275),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,スコア表示:百の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)%10)
+pos=ifelse(teamside=1,130,280),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+[state -2,スコア表示:十の位]
+type=explod
+triggerall= !IsHomeTeam
+triggerall=var(20)
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)=999999999)*9
+pos=ifelse(teamside=1,135,285),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[state -2,スコア表示:個の位]
+type=explod
+triggerall= !IsHomeTeam
+;triggerall=var(20)
+trigger1 = teammode = Single || teammode = Turns
+trigger2 = numpartner
+trigger2 = ((partner, alive) ^^ (ID > partner, ID))
+anim=20110+(var(20)=999999999)*9
+pos=ifelse(teamside=1,140,290),3
+scale=0.5,0.5
+postype=left
+ontop=1
+ownpal=1
+ignorehitpause=1
+
+
+[State -2]
+type = null;poweradd
+triggerall = palno>=6 
+trigger1 = GetHitVar(Damage)
+trigger2 = movetype=H
+value = GetHitVar(Damage)*3+25
+ignorehitpause = 1

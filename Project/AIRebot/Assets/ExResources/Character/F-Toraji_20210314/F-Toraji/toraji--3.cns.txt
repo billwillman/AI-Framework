@@ -1,0 +1,233 @@
+;---------------------------------------------------------------------------------
+[Statedef -3];常時監視ステート(p2statenoなどで相手に行動を制御された時は実行しない)
+;---------------------------------------------------------------------------------
+
+[State -3, ガード削りKO条件]
+type = ChangeState
+triggerAll = Life <= 0
+trigger1 = PrevStateno = [120,121]
+trigger1 = statetype !=A
+trigger2 = PrevStateno = [130,131]
+trigger3 = PrevStateno = [140,141]
+trigger3 = statetype !=A
+trigger4 = PrevStateno = [150,151]
+value = 5950
+
+[State -3, ガード削りKO条件]
+type = assertspecial
+;triggerAll = Life <= 0
+trigger1 = PrevStateno = [120,121]
+trigger1 = statetype !=A
+trigger2 = PrevStateno = [130,131]
+trigger3 = PrevStateno = [140,141]
+trigger3 = statetype !=A
+trigger4 = PrevStateno = [150,151]
+flag = noKOsnd
+
+
+
+[State -3, 着地音を鳴らす]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52
+trigger2 = stateno = 53
+trigger3 = stateno = 106
+value = 40, 0
+
+
+
+;---------------------------------------------------------------------------------
+
+[State -3,ダメージ]
+type = PlaySnd
+triggerall = alive && time = 1
+triggerall = random <= 500
+trigger1 = stateno = 5000
+trigger1 = anim = 5000 || anim = 5010
+trigger2 = stateno = 5010
+trigger2 = anim = 5020
+value = 5000,0+Random%2
+channel = 0
+
+[State -3,]
+type = PlaySnd
+triggerall = alive && time = 1
+triggerall = random <= 500
+trigger1 = stateno = 5000
+trigger1 = anim = 5002 || anim = 5012
+trigger2 = stateno = 5010
+trigger2 = anim = 5022
+value = 5000,2+Random%2
+channel = 0
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 500
+triggerall = time = 1
+trigger1 = stateno = 5101
+trigger2 = stateno = 5102
+value = 5100,6
+channel = 0
+
+[State -3,PlaySnd]
+type = PlaySnd
+trigger1 = anim = 5950
+Trigger1 = Alive = 0
+trigger1 = AnimElem = 1,=0
+value = 11, 9
+channel = 0
+
+;---------------------------------------------------------------------------------
+
+;[State -3, ガードボイス]
+;type = PlaySnd
+;triggerall = Time = 1
+;triggerall = Alive && GameTime % 4 = 0 
+;trigger1 = stateno=151 || stateno=153 || stateno=155 
+;trigger2 = stateno = 702 
+;value = 5060,random/334 
+;channel = 0 
+
+[State -3, 受身ボイス]
+type = PlaySnd
+triggerall = Time = 1
+triggerall = Alive = 1     
+trigger1 = stateno = 5200 || stateno = 5210 ;受身直後
+value = 5070,0
+volume = 255
+channel = 0
+
+[State -3, 起き上がりボイス]
+type = PlaySnd
+triggerall = Time = 1
+triggerall = Alive && GameTime % 3 = 0
+triggerall = random <= 500
+trigger1 = stateno = 5120              ;起き上がり時
+value = 5120,0+random%2
+volume = 255
+channel = 0 ;
+
+
+;---------------------------------------------------------------------------
+
+;ハイジャンプ
+
+[State -3, ] 
+type = VarSet
+trigger1 = stateno = 10
+;trigger1 = time = 0
+trigger2 = stateno = 100
+v = 3
+value = 1
+
+[State -3, sysvarを引継ぐ]
+type = VarSet
+trigger1 = Var(3) = 1
+trigger1 = stateno = 40 
+trigger1 = AnimTime = 0 
+var(3) = ifelse(sysvar(1)=0, 2, ifelse(sysvar(1)=1, 3, 4))
+
+[State -3, varをOFFに]
+type = VarSet
+triggerall = Time = 2
+trigger1 = stateno = 50
+trigger2 = stateno != [40,59]
+v = 3
+value = 0
+
+[State 240, 音を鳴らす]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = var(3) = 2
+trigger2 = var(3) = 3
+trigger3 = var(3) = 4
+value = 2000, 2
+
+[State -3, 前に加速]
+type = VelAdd
+trigger1 = var(3) = 3
+trigger1 = stateno = 50
+y = -1.2
+x = 2
+
+[State -3, 後ろに加速]
+type = VelAdd
+trigger1 = var(3) = 4
+trigger1 = stateno = 50
+y = -1.2
+x = -2.1
+
+[State -3, 垂直ジャンプ]
+type = VelAdd
+trigger1 = var(3) = 2
+trigger1 = stateno = 50
+y = -3
+
+[State -3, 垂直ジャンプ]
+type = VelSet
+triggerall = var(3) = 2
+trigger1 = stateno = 50
+x = 0
+
+[State -3, 垂直ジャンプ]
+type = ChangeAnim
+triggerall = var(3) = 2
+trigger1 = stateno = 50
+trigger1 = Time <= 1
+value = 41
+
+
+;---------------------------------------------------------------------------
+
+; 小ジャンプ処理
+
+[State -3, 5]
+type = varset
+trigger1 = stateno = 40
+trigger1 = command != "holdup"
+v = 16
+value = 1
+
+[State -3, 5]
+type = varset
+trigger1 = stateno = 40
+trigger1 = command = "holdup"
+v = 16
+value = 0
+
+[State -3, 5]
+type = velset
+trigger1 = stateno = 50
+trigger1 = anim = 42
+trigger1 = time = 1
+trigger1 = var(15) >= 1
+x = 4.05
+;y = -9
+
+
+[State -3, 5]
+type = velset
+trigger1 = stateno = 50
+trigger1 = anim = 43
+trigger1 = time = 1
+trigger1 = var(15) >= 1
+x = -8.5
+;y = -9
+
+[State -3, 5];小ジャンプ
+type = veladd
+trigger1 = stateno = 50
+trigger1 = time = 1
+trigger1 = var(16) = 1
+y = 3
+
+
+
+;--------------------------------------------------------------------------------------
+
+
+
+;この下、一行以上空ける事！
+
+

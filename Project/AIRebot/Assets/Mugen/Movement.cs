@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using BehavicTree;
+using BehavicTree;
 
 [System.Serializable]
 public class WALK

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XLua;
 using BehavicTree;
 
 public struct VarValue
@@ -83,12 +84,12 @@ public class CnsCommander : MonoBehaviour
     public TMoveType movetype = TMoveType.None;
     public TPhysicType physics = TPhysicType.S;
 
-    private Dictionary<string, LuaBaseRef> m_LuaObjMap = null;
+    private Dictionary<string, LuaFunction> m_LuaObjMap = null;
 
-    private LuaBaseRef GetCacheLuaObj(string funcName) {
+    private LuaFunction GetCacheLuaObj(string funcName) {
         if (string.IsNullOrEmpty(funcName) || m_LuaObjMap == null)
             return null;
-        LuaBaseRef ret;
+        LuaFunction ret;
         if (!m_LuaObjMap.TryGetValue(funcName, out ret))
             ret = null;
         return ret;
@@ -101,27 +102,33 @@ public class CnsCommander : MonoBehaviour
         R ret = default(R);
         LuaFunction func = GetCacheLuaObj(funcName) as LuaFunction;
         if (func == null) {
+            /*
             LuaState lua = main.Instance.LuaEngine;
             if (lua == null)
                 return ret;
-            lua.GetFunction(funcName);
+            lua.GetFunction(funcName);*/
+            func = SOC.GamePlay.GameStart.EnvLua.Global.Get<LuaFunction>(funcName);
             if (func == null)
                 return ret;
             m_LuaObjMap[funcName] = func;
         }
         
-        func.BeginPCall();
+        //func.BeginPCall();
         try {
+            /*
             func.Push(this);
             func.PushGeneric<T>(param);
             func.PCall();
             ret = func.CheckValue<R>();
+            */
+            var result = func.Call(this, param)[0];
+            ret = (R)result;
         } catch (Exception e) {
 #if DEBUG
             Debug.LogError(e.ToString());
 #endif
         }
-        func.EndPCall();
+        //func.EndPCall();
 
         return ret;
     }
@@ -131,26 +138,31 @@ public class CnsCommander : MonoBehaviour
         LuaFunction func = GetCacheLuaObj(funcName) as LuaFunction;
 
         if (func == null) {
+            /*
             LuaState lua = main.Instance.LuaEngine;
             if (lua == null)
                 return;
             func = lua.GetFunction(funcName);
+            */
+            func = SOC.GamePlay.GameStart.EnvLua.Global.Get<LuaFunction>(funcName);
             if (func == null)
                 return;
             m_LuaObjMap[funcName] = func;
         }
 
-        func.BeginPCall();
+        //func.BeginPCall();
         try {
+            /*
             func.Push(this);
             func.PushGeneric<T>(param);
-            func.PCall();
+            func.PCall();*/
+            func.Call(this, param);
         } catch (Exception e) {
 #if DEBUG
             Debug.LogError(e.ToString());
 #endif
         }
-        func.EndPCall();
+        //func.EndPCall();
     }
 
     public void CallLuaFunc(string funcName, string json = null) {

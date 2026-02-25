@@ -82,6 +82,12 @@ public class SingetonMono<T> : CachedMonoBehaviour where T : CachedMonoBehaviour
         m_IsDestroy = true;
     }
 
+    public static bool IsDestroy {
+        get {
+            return m_IsDestroy;
+        }
+    }
+
     protected static T m_Instance = null;
     protected static bool m_IsDestroy = false;
 }

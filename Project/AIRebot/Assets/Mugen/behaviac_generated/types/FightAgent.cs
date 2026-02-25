@@ -20,6 +20,7 @@ namespace BehavicTree
 
 	public class FightAgent
 ///<<< BEGIN WRITING YOUR CODE FightAgent
+	: MonoBehaviour
 ///<<< END WRITING YOUR CODE
 	{
 		private BehavicTree.TMoveType movetype = BehavicTree.TMoveType.None;

@@ -300,6 +300,7 @@ public struct ImageAnimateNode
 }
 
 // 角色动画处理
+[RequireComponent(typeof(Unit))]
 public class ImageAnimation : SkillEditor.Runtime.AnimationBaseComponent {
 
     public void Load(byte[] buffer) {

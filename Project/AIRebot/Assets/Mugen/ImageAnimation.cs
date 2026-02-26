@@ -300,7 +300,7 @@ public struct ImageAnimateNode
 }
 
 // 角色动画处理
-public class ImageAnimation : MonoBehaviour {
+public class ImageAnimation : SkillEditor.Runtime.AnimationBaseComponent {
 
     public void Load(byte[] buffer) {
         if (mStateAniMap != null)
@@ -470,6 +470,13 @@ public class ImageAnimation : MonoBehaviour {
 
     public bool PlayerPlayerAni(int actionNo, bool isLoop = true) {
         return PlayerPlayerAni(actionNo, -1, -1, isLoop);
+    }
+
+    public override void PlayAnimation(string name, bool loop) {
+        int actionNo;
+        if (int.TryParse(name, out actionNo)) {
+            PlayerPlayerAni(actionNo, loop);
+        }
     }
 
     public bool PlayerPlayerAni(int actionNo, int startFrame, int endFrame, bool isLoop = true) {

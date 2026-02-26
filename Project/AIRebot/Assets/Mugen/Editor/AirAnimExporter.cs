@@ -161,10 +161,12 @@ public static class AirAnimExporter {
                 outFileName = string.Format("{0}/{1:D}.anim", animClipDir, actionNo);
                 AssetDatabase.CreateAsset(clip, outFileName);
                 // 创建Animancer Translate Asset
+                /*
                 Animancer.ClipTransitionAsset animancerAsset = ScriptableObject.CreateInstance<Animancer.ClipTransitionAsset>();
                 animancerAsset.Transition.Clip = clip;
                 outFileName = Path.ChangeExtension(outFileName, ".asset");
                 AssetDatabase.CreateAsset(animancerAsset, outFileName);
+                */
             }
         }
         

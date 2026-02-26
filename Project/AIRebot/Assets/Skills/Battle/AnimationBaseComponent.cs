@@ -46,8 +46,13 @@ namespace SkillEditor.Runtime
 
         protected virtual void Awake() {
             // 自动获取组件
-            if (_asc == null)
-                _asc = GetComponent<Unit>().ownerASC;
+            if (_asc == null) {
+                var unit = GetComponent<Unit>();
+                if (unit)
+                    _asc = unit.ownerASC;
+                else
+                    _asc = GetComponent<AbilitySystemComponent>();
+            }
         }
 
         protected virtual void OnEnable() {

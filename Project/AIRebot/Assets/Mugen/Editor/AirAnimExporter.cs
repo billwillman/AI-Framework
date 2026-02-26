@@ -162,9 +162,7 @@ public static class AirAnimExporter {
                 AssetDatabase.CreateAsset(clip, outFileName);
                 // 创建Animancer Translate Asset
                 Animancer.ClipTransitionAsset animancerAsset = ScriptableObject.CreateInstance<Animancer.ClipTransitionAsset>();
-                animancerAsset.Transition = new Animancer.ClipTransition {
-                    Clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(outFileName),
-                };
+                animancerAsset.Transition.Clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(outFileName);
                 outFileName = Path.ChangeExtension(outFileName, ".asset");
                 AssetDatabase.CreateAsset(animancerAsset, outFileName);
             }

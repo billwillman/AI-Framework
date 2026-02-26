@@ -157,7 +157,7 @@ public static class Common {
     }
 
     public static GameObject CreateBehaviourPlayer(string playerName, bool isCameraFollow = false) {
-        string fileName = StringHelper.Format("resources/BehavicTree/{0}.prefab", playerName);
+        string fileName = StringHelper.Format("resources/character/{0}/{0}.prefab", playerName);
         GameObject ret = ResourceMgr.Instance.CreateGameObject(fileName);
         if (ret != null) {
             if (ret.GetComponent<RegisterFighter>() == null)

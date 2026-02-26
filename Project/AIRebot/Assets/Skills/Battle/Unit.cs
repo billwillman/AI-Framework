@@ -26,6 +26,9 @@ public class Unit : MonoBehaviour
 
     private void InitFromTable()
     {
+        if (LubanManager.Instance.Tables == null || LubanManager.Instance.Tables.TbUnit == null)
+            return;
+
         var data = LubanManager.Instance.Tables.TbUnit.GetOrDefault(id);
         if (data == null)
         {

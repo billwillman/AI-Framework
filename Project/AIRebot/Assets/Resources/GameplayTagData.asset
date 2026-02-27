@@ -27,8 +27,20 @@ MonoBehaviour:
     Guid: bb8fdc9c-56f8-4580-981f-16a75fc1be90
     Expanded: 1
     Multi: 0
+    Reference:
+    - GlobalObjectId_V1-3-19d5b7ce960fa4c4bb8568dcc409da8e-11400000-0/Active Tags
+  - Name: Mugen.Stand.Idle
+    Guid: 5ab42697-6347-4cb3-b62c-169e720997e3
+    Expanded: 1
+    Multi: 0
+    Reference:
+    - GlobalObjectId_V1-3-19d5b7ce960fa4c4bb8568dcc409da8e-11400000-0/Ability Tags
+  - Name: Mugen.Stand.Run
+    Guid: 3d300e14-7896-49ad-adbc-df942a409060
+    Expanded: 1
+    Multi: 0
     Reference: []
-  - Name: Mugen.Walk
+  - Name: Mugen.Stand.Walk
     Guid: 3ec8a44f-a3d3-46da-8bbd-e7e55ded858d
     Expanded: 1
     Multi: 0

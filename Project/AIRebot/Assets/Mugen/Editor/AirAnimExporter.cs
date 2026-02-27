@@ -110,7 +110,7 @@ public static class AirAnimExporter {
             string actionNoStr = actionNo.ToString();
             var clip = new AnimationClip();
             clip.frameRate = 30;
-            clip.legacy = true;
+            clip.legacy = false;
             clip.name = actionNoStr;
             List<AnimationEvent> evtList = new List<AnimationEvent>();
             if (iter.Current.Value != null && iter.Current.Value.Count > 0) {

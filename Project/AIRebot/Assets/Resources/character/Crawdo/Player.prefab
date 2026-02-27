@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 868855674028382317}
   - component: {fileID: 5621285849525944617}
   - component: {fileID: 6137596582995906061}
+  - component: {fileID: 6192565652925084788}
+  - component: {fileID: 2491170143570820297}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -101,7 +103,8 @@ MonoBehaviour:
   RotationRate: 0
   HorizontalInputLerpSpeed: 0
   ForwardSpeedLerpSpeed: 0
-  Abilities: []
+  Abilities:
+  - {fileID: 11400000, guid: 19d5b7ce960fa4c4bb8568dcc409da8e, type: 2}
   ExternalForceDamp: 0
   StopOnCharacter: 0
   UnitLayer:
@@ -195,6 +198,41 @@ MonoBehaviour:
     impartPlatformRotation: 0
     impartPlatformVelocity: 0
   _minSlopeLimit: 0.7069833
+--- !u!95 &6192565652925084788
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148507575885441402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2491170143570820297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148507575885441402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc885513ae86bc44b5117e4b5653ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 0}
+  ApplyRootMotion: 0
 --- !u!1001 &5780042320755747803
 PrefabInstance:
   m_ObjectHideFlags: 0

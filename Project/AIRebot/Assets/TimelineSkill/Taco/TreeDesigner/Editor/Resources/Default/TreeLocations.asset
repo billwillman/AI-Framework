@@ -143,19 +143,22 @@ MonoBehaviour:
     name: AirLoop_GroundDistance_OnUpdate
     type: BaseTree
     locked: 0
+  - guid: 19d5b7ce960fa4c4bb8568dcc409da8e
+    path: Assets/Resources/character/Crawdo/@Skills/Ability_Idle.asset
+    name: Ability_Idle
+    type: BaseTree
+    locked: 0
   FolderInfos:
   - path: Assets
     expanded: 1
-  - path: Assets/Data
-    expanded: 1
-  - path: Assets/Data/TimelineTree
-    expanded: 1
-  - path: Assets/Data/Ability
-    expanded: 1
-  - path: Assets/Data/TimelineTree/Loop
-    expanded: 1
-  - path: Assets/Data/TimelineTree/Force
-    expanded: 1
+  - path: Assets/Resources
+    expanded: 0
+  - path: Assets/Resources/character
+    expanded: 0
+  - path: Assets/Resources/character/Crawdo
+    expanded: 0
+  - path: Assets/Resources/character/Crawdo/@Skills
+    expanded: 0
   ShowInfos:
   - type: BaseTree
     show: 1

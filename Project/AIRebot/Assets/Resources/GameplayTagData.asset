@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2e1ee5bec931a45bb3ccc4d389f0a3, type: 3}
   m_Name: GameplayTagData
   m_EditorClassIdentifier: 
-  m_GameplayTagInfos: []
+  m_GameplayTagInfos:
+  - Name: Mugen
+    Guid: 29d4c7b4-8023-4c16-b273-c8e85082702c
+    Expanded: 1
+    Multi: 0
+    Reference: []
+  - Name: Mugen.Jump
+    Guid: 6bf55a5e-74c7-4233-a132-154ab32667aa
+    Expanded: 1
+    Multi: 0
+    Reference: []
+  - Name: Mugen.Stand
+    Guid: bb8fdc9c-56f8-4580-981f-16a75fc1be90
+    Expanded: 1
+    Multi: 0
+    Reference: []
+  - Name: Mugen.Walk
+    Guid: 3ec8a44f-a3d3-46da-8bbd-e7e55ded858d
+    Expanded: 1
+    Multi: 0
+    Reference: []

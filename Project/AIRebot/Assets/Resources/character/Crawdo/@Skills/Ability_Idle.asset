@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a2467fa12516f48846356c92cfbe0f, type: 3}
+  m_Name: Ability_Idle
+  m_EditorClassIdentifier: 
+  m_Nodes:
+  - rid: 5297167269952749569
+  - rid: 5297167269952749570
+  - rid: 5297167269952749571
+  m_Edges: []
+  m_PropertyEdges: []
+  m_ExposedProperties:
+  - rid: 5297167269952749572
+  - rid: 5297167269952749573
+  m_NodeGroups: []
+  m_StackNodes: []
+  m_RootGUID: c147de90-30d3-4b2d-b845-0412ae99f8f6
+  AbilityTags:
+    TagGuids: []
+    ReferencePath: CustomData
+  CancelAbilitiesWithTag:
+    TagGuids: []
+    ReferencePath: CustomData
+  BlockAbilitiesWithTag:
+    TagGuids: []
+    ReferencePath: CustomData
+  ActiveTags:
+    TagGuids: []
+    ReferencePath: CustomData
+  RequiredTags:
+    TagGuids: []
+    ReferencePath: CustomData
+  m_OnStartGUID: de5b0a30-a997-4633-bab3-d91fee092c44
+  m_OnStopGUID: a29029ef-a559-481f-b338-f8a8210b78f5
+  references:
+    version: 2
+    RefIds:
+    - rid: 5297167269952749569
+      type: {class: RootNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: c147de90-30d3-4b2d-b845-0412ae99f8f6
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 0}
+        m_DeltaTime:
+          m_Name: m_DeltaTime
+          m_Direction: 1
+          m_InputEdgeGUID: 
+          m_OutputEdgeGUIDs: []
+          m_Index: 0
+          m_Expanded: 0
+          m_Value: 0
+        m_OutputEdgeGUID: 
+        DeltaTime: 0
+    - rid: 5297167269952749570
+      type: {class: EnterNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: de5b0a30-a997-4633-bab3-d91fee092c44
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 200}
+        m_OutputEdgeGUID: 
+        NodeName: OnStart
+    - rid: 5297167269952749571
+      type: {class: EnterNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: a29029ef-a559-481f-b338-f8a8210b78f5
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 400}
+        m_OutputEdgeGUID: 
+        NodeName: OnStop
+    - rid: 5297167269952749572
+      type: {class: BoolExposedProperty, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 8611d86a-77d0-4e97-a52b-342d29e71b31
+        m_Name: Active
+        m_Index: 0
+        m_Expanded: 1
+        m_Internal: 1
+        m_ShowOutside: 1
+        m_CanEdit: 0
+        m_Value: 0
+    - rid: 5297167269952749573
+      type: {class: FloatExposedProperty, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 6346b674-f8bd-4ad9-b111-9358cfa78ee5
+        m_Name: Duration
+        m_Index: 1
+        m_Expanded: 1
+        m_Internal: 1
+        m_ShowOutside: 1
+        m_CanEdit: 0
+        m_Value: 0

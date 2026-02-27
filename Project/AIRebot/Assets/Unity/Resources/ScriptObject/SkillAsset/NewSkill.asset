@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
+  m_Name: NewSkill
+  m_EditorClassIdentifier: 
+  nodes:
+  - rid: 5297167027618971649
+  - rid: 5297167097618759681
+  - rid: 5297167097618759682
+  - rid: 5297167253993947136
+  - rid: 5297167253993947137
+  - rid: 5297167253993947138
+  connections:
+  - outputNodeGuid: 1aa0a07a-baef-4500-aaca-8ec751bb6de0
+    outputPortName: "\u6D88\u8017"
+    inputNodeGuid: 48baed7e-22a2-453d-92b8-b2e00c66db3c
+    inputPortName: "\u8F93\u5165"
+  - outputNodeGuid: 1aa0a07a-baef-4500-aaca-8ec751bb6de0
+    outputPortName: "\u51B7\u5374"
+    inputNodeGuid: fc7c4667-18c3-452c-ad3b-fa3512fc647c
+    inputPortName: "\u8F93\u5165"
+  - outputNodeGuid: 14f7a85d-7549-46c1-afab-5059ed948a5d
+    outputPortName: 92e96325-273e-4c45-89c3-70bfbb7b9700
+    inputNodeGuid: 5b6ba64e-0d1f-4c22-9000-e4376b5deef0
+    inputPortName: "\u8F93\u5165"
+  references:
+    version: 2
+    RefIds:
+    - rid: 5297167027618971649
+      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 1aa0a07a-baef-4500-aaca-8ec751bb6de0
+        nodeType: 0
+        position: {x: -1146, y: -266}
+        targetType: 1
+        skillId: 0
+        assetTags:
+          _tags: []
+        cancelAbilitiesWithTags:
+          _tags: []
+        blockAbilitiesWithTags:
+          _tags: []
+        activationOwnedTags:
+          _tags: []
+        activationRequiredTags:
+          _tags: []
+        activationBlockedTags:
+          _tags: []
+        ongoingBlockedTags:
+          _tags: []
+        eventOutputPorts: []
+    - rid: 5297167097618759681
+      type: {class: CostEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 48baed7e-22a2-453d-92b8-b2e00c66db3c
+        nodeType: 3
+        position: {x: -523, y: -123}
+        targetType: 1
+        assetTags:
+          _tags: []
+        grantedTags:
+          _tags: []
+        applicationRequiredTags:
+          _tags: []
+        applicationImmunityTags:
+          _tags: []
+        removeGameEffectsWithTags:
+          _tags: []
+        durationType: 0
+        duration: 0
+        isPeriodic: 0
+        period: 1
+        executeOnApplication: 0
+        attributeModifiers:
+        - attrType: 1
+          operation: 0
+          magnitudeSourceType: 0
+          fixedValue: -50
+          formula: 
+          mmcType: 0
+          setByCallerKey: 
+          mmcCaptureAttribute: 200
+          mmcAttributeSource: 0
+          mmcCoefficient: 1
+          mmcUseSnapshot: 1
+        stackType: 0
+        stackLimit: 0
+        stackDurationRefreshPolicy: 0
+        stackPeriodResetPolicy: 0
+        stackExpirationPolicy: 0
+        stackOverflowPolicy: 0
+        ongoingRequiredTags:
+          _tags: []
+        cancelOnAbilityEnd: 0
+    - rid: 5297167097618759682
+      type: {class: CooldownEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: fc7c4667-18c3-452c-ad3b-fa3512fc647c
+        nodeType: 10
+        position: {x: -911, y: -26}
+        targetType: 1
+        assetTags:
+          _tags: []
+        grantedTags:
+          _tags: []
+        applicationRequiredTags:
+          _tags: []
+        applicationImmunityTags:
+          _tags: []
+        removeGameEffectsWithTags:
+          _tags: []
+        durationType: 1
+        duration: 0
+        isPeriodic: 0
+        period: 1
+        executeOnApplication: 0
+        attributeModifiers: []
+        stackType: 0
+        stackLimit: 0
+        stackDurationRefreshPolicy: 0
+        stackPeriodResetPolicy: 0
+        stackExpirationPolicy: 0
+        stackOverflowPolicy: 0
+        ongoingRequiredTags:
+          _tags: []
+        cancelOnAbilityEnd: 0
+        cooldownType: 0
+        maxCharges: 2
+        chargeTime: 10
+    - rid: 5297167253993947136
+      type: {class: AnimancerNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 14f7a85d-7549-46c1-afab-5059ed948a5d
+        nodeType: 23
+        position: {x: -1346, y: -613}
+        targetType: 1
+        animationName: 
+        animationDuration: 10
+        isAnimationLooping: 0
+        timeEffects: []
+        timeCues:
+        - startTime: 0
+          endTime: 5
+          portId: 92e96325-273e-4c45-89c3-70bfbb7b9700
+        Data: {fileID: 0}
+    - rid: 5297167253993947137
+      type: {class: AnimationNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 5b6ba64e-0d1f-4c22-9000-e4376b5deef0
+        nodeType: 20
+        position: {x: -273, y: -354}
+        targetType: 1
+        animationName: 
+        animationDuration: 10
+        isAnimationLooping: 0
+        timeEffects: []
+        timeCues: []
+        skeletonDataAsset: {fileID: 0}
+    - rid: 5297167253993947138
+      type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 487fbb8d-9939-45ab-bb2a-335cd14bc339
+        nodeType: 8
+        position: {x: -613, y: -276}
+        targetType: 1
+        assetTags:
+          _tags: []
+        grantedTags:
+          _tags: []
+        applicationRequiredTags:
+          _tags: []
+        applicationImmunityTags:
+          _tags: []
+        removeGameEffectsWithTags:
+          _tags: []
+        durationType: 2
+        duration: 0
+        isPeriodic: 0
+        period: 1
+        executeOnApplication: 0
+        attributeModifiers: []
+        stackType: 0
+        stackLimit: 0
+        stackDurationRefreshPolicy: 0
+        stackPeriodResetPolicy: 0
+        stackExpirationPolicy: 0
+        stackOverflowPolicy: 0
+        ongoingRequiredTags:
+          _tags: []
+        cancelOnAbilityEnd: 0
+        launchPositionSource: 0
+        launchBindingName: 
+        targetPositionSource: 1
+        targetBindingName: 
+        projectileTargetType: 0
+        flyOver: 0
+        offsetAngle: 0
+        curveHeight: 0
+        projectilePrefab: {fileID: 0}
+        speed: 10
+        maxDistance: -1
+        collisionRadius: 0.5
+        isPiercing: 0
+        maxPierceCount: 1
+        collisionTargetTags:
+          _tags: []
+        collisionExcludeTags:
+          _tags: []

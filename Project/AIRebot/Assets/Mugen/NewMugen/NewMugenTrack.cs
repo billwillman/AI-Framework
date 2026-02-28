@@ -7,12 +7,32 @@ using Taco.Timeline;
 
 namespace Taco.Timeline.Mugen
 {
-    [TrackGroup("Ability"), ScriptGuid("f6e6bb52a7c30ce4789f78dcd9059c85"), Color(165, 032, 025)]
+    [TrackGroup("Ability"), ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
     public class NewMugenImageAnimationTrack : CharacterTrack
+    {
+
+#if UNITY_EDITOR
+       // public override string Name => "ImageAnimationTrack";
+        public override Type ClipType => typeof(NewMugenImageAnimationClip);
+        public override Clip AddClip(UnityEngine.Object referenceObject, int frame) {
+            NewMugenImageAnimationClip clip = new NewMugenImageAnimationClip(this, frame);
+            m_Clips.Add(clip);
+            return clip;
+        }
+#endif
+    }
+
+    [ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
+    public class NewMugenImageAnimationClip : CharacterClip
     {
         [ShowInInspector, OnValueChanged("RebindTimeline")]
         public int actionNo = ImageAnimation._cNoVaildState;
         [ShowInInspector, OnValueChanged("RebindTimeline")]
         public UnityEngine.AnimationClip animClip = null;
+#if UNITY_EDITOR
+        public NewMugenImageAnimationClip(Track track, int frame) : base(track, frame) { }
+
+        public override string Name => "ImageAnimationClip";
+#endif
     }
 }

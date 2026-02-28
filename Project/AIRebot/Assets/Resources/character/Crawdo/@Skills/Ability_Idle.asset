@@ -146,7 +146,8 @@ MonoBehaviour:
         m_Position: {x: 196, y: 200}
         m_InputEdgeGUID: 7b95a101-8195-4fdb-b4af-50ff660062d2
         m_OutputEdgeGUID: 
-        TimelinePrefab: {fileID: 0}
+        TimelinePrefab: {fileID: 11400000, guid: 72e3718f33958824a9cb5adad0793344,
+          type: 2}
         m_Timeline:
           m_Name: m_Timeline
           m_Direction: 1

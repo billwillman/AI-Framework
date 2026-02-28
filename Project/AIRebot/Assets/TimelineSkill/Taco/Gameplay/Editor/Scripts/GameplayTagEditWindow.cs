@@ -213,13 +213,15 @@ namespace Taco.Gameplay.Editor
             DrawReferenceView(dialogueContext, new List<GameplayTagInfo>() { m_TagData.NameToInfo(tagToRemove) });
             m_TagData.OnReferenceChanged += Draw;
             // 新的函数处理
+            /*
             void OnCallbackOnce(DetachFromPanelEvent i) {
                 m_TagData.OnReferenceChanged -= Draw;
                 dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
             }
             dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+            */
             //--------------
-            //dialogueContext.RegisterCallbackOnce<DetachFromPanelEvent>((i) => m_TagData.OnReferenceChanged -= Draw);
+            dialogueContext.RegisterCallbackOnce<DetachFromPanelEvent>((i) => m_TagData.OnReferenceChanged -= Draw);
 
             WarningWindow.Show("Confirm to remove".ToUpper(), dialogueContext, () =>
             {
@@ -242,13 +244,15 @@ namespace Taco.Gameplay.Editor
             m_TagData.OnReferenceChanged += Draw;
 
             // 新的函数处理
+            /*
             void OnCallbackOnce(DetachFromPanelEvent i) {
                 m_TagData.OnReferenceChanged -= Draw;
                 dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
             }
             dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+            */
             //--------------
-            // dialogueContext.RegisterCallbackOnce<DetachFromPanelEvent>((i) => m_TagData.OnReferenceChanged -= Draw);
+            dialogueContext.RegisterCallbackOnce<DetachFromPanelEvent>((i) => m_TagData.OnReferenceChanged -= Draw);
 
             WarningWindow.Show("Confirm to remove".ToUpper(), dialogueContext, () =>
             {

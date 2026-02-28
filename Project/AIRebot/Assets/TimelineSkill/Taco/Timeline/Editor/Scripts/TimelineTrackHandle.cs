@@ -61,12 +61,14 @@ namespace Taco.Timeline.Editor
 
             FieldView.OnGeometryChangedCallback += OnGeometryChanged;
             // 新的函数处理
+            /*
             void OnCallbackOnce(GeometryChangedEvent e) {
                 OnGeometryChanged();
                 UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce);
             }
+            */
             //-------------
-            // RegisterCallbackOnce<GeometryChangedEvent>((e) => OnGeometryChanged());
+            RegisterCallbackOnce<GeometryChangedEvent>((e) => OnGeometryChanged());
             RegisterCallback<DetachFromPanelEvent>((e) => FieldView.OnGeometryChangedCallback -= OnGeometryChanged);
             //RegisterCallback<PointerDownEvent>(OnPointerDown);
 

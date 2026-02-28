@@ -8,7 +8,7 @@ using Taco.Timeline;
 namespace Taco.Timeline.Mugen
 {
     [TrackGroup("Character"), ScriptGuid("828a8311b89bab843b655b0181bf41e4"), Color(165, 032, 025)]
-    public class NewMugenImageAnimationTrack : Track
+    public class NewMugenImageAnimationTrack : CharacterTrack
     {
         [ShowInInspector, OnValueChanged("RebindTimeline")]
         public int actionNo = ImageAnimation._cNoVaildState;

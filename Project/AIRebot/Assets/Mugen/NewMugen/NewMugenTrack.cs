@@ -25,11 +25,22 @@ namespace Taco.Timeline.Mugen
     [ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
     public class NewMugenImageAnimationClip : CharacterClip
     {
-        [ShowInInspector, OnValueChanged("RebindTimeline")]
+        [ShowInInspector, OnValueChanged("RebindTimeline", "OnCheckImageAnimationVaild")]
         public int actionNo = ImageAnimation._cNoVaildState;
-        [ShowInInspector, OnValueChanged("RebindTimeline")]
+        [ShowInInspector, OnValueChanged("RebindTimeline", "OnCheckImageAnimationVaild")]
         public UnityEngine.AnimationClip animClip = null;
 #if UNITY_EDITOR
+
+        [ButtonAttribute("Reset Clip Length")]
+        void OnBtnClickAnimClipResetLength() {
+            EndFrame = Length + StartFrame;
+            RebindTimeline();
+            // RepaintInspector();
+        }
+
+        void OnCheckImageAnimationVaild() {
+            Invalid = actionNo == ImageAnimation._cNoVaildState || animClip == null;
+        }
 
         public override ClipCapabilities Capabilities {
             get {
@@ -40,7 +51,7 @@ namespace Taco.Timeline.Mugen
         public override int Length {
             get {
                 if (animClip != null) {
-                    int ret = Mathf.RoundToInt(animClip.length / TimelineUtility.FrameRate);
+                    int ret = Mathf.RoundToInt(animClip.length * TimelineUtility.FrameRate);
                     return ret;
                 }
                 return base.Length;

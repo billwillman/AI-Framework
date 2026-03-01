@@ -30,6 +30,23 @@ namespace Taco.Timeline.Mugen
         [ShowInInspector, OnValueChanged("RebindTimeline")]
         public UnityEngine.AnimationClip animClip = null;
 #if UNITY_EDITOR
+
+        public override ClipCapabilities Capabilities {
+            get {
+                return ClipCapabilities.Resizable | ClipCapabilities.ClipInable;
+            }
+        }
+
+        public override int Length {
+            get {
+                if (animClip != null) {
+                    int ret = Mathf.RoundToInt(animClip.length / TimelineUtility.FrameRate);
+                    return ret;
+                }
+                return base.Length;
+            }
+        }
+
         public NewMugenImageAnimationClip(Track track, int frame) : base(track, frame) { }
 
         public override string Name => "ImageAnimationClip";

@@ -31,7 +31,7 @@ namespace Taco.Timeline.Mugen
         public UnityEngine.AnimationClip animClip = null;
 #if UNITY_EDITOR
 
-        [ButtonAttribute("Reset Clip Length")]
+        [Button("Reset Clip Length")]
         void OnBtnClickAnimClipResetLength() {
             EndFrame = Length + StartFrame;
             RebindTimeline();

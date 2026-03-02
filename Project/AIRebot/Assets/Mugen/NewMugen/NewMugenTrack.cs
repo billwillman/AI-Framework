@@ -29,6 +29,21 @@ namespace Taco.Timeline.Mugen
         public int actionNo = ImageAnimation._cNoVaildState;
         [ShowInInspector, OnValueChanged("RebindTimeline", "OnCheckImageAnimationVaild")]
         public UnityEngine.AnimationClip animClip = null;
+
+        public override void Bind() {
+            base.Bind();
+            if (Character != null && Character is NewMugnCharacter) {
+
+            }
+        }
+
+        public override void Unbind() {
+            if (Character != null && Character is NewMugnCharacter) {
+
+            }
+            base.Unbind();
+        }
+
 #if UNITY_EDITOR
 
         [Button("Reset Clip Length")]

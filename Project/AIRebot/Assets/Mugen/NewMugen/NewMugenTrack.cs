@@ -104,6 +104,7 @@ namespace Taco.Timeline.Mugen
         [Button("Reset Clip Length")]
         void OnBtnClickAnimClipResetLength() {
             EndFrame = Length + StartFrame;
+            FrameToTime();
             RebindTimeline();
             // RepaintInspector();
         }

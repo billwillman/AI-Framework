@@ -94,6 +94,6 @@ MonoBehaviour:
         SelfEaseInFrame: 0
         SelfEaseOutFrame: 0
         ClipInFrame: 0
-        CanSkip: 0
+        CanSkip: 1
         actionNo: -9999
         animClip: {fileID: 7400000, guid: d67c86e430ead074fae48971fc2143ef, type: 2}

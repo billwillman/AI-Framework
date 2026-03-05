@@ -91,6 +91,14 @@ namespace Taco.Timeline.Mugen
             }
         }
 
+        public override void OnEnable() {
+            SampleAnimComponent();
+        }
+
+        public override void OnDisable() {
+            ResetAnimComponent();
+        }
+
 #if UNITY_EDITOR
 
         [Button("Reset Clip Length")]

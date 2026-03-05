@@ -86,8 +86,8 @@ namespace Taco.Timeline.Mugen
             if (animComponent != null && animClip != null) {
                 if (animComponent.enabled)
                     animComponent.enabled = false;
-                if (animComponent.clip == animClip)
-                    animComponent.clip = null;
+               // if (animComponent.clip == animClip)
+              //      animComponent.clip = null;
             }
         }
 

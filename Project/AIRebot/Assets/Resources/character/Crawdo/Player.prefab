@@ -243,7 +243,7 @@ MonoBehaviour:
   HalfFrameEvent:
     m_PersistentCalls:
       m_Calls: []
-  PlatformCharacter: {fileID: 5210802151330773510}
+  PlatformCharacter: {fileID: 0}
 --- !u!114 &6378115726386460533
 MonoBehaviour:
   m_ObjectHideFlags: 0

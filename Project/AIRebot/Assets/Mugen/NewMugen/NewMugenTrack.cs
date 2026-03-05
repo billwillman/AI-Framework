@@ -66,7 +66,7 @@ namespace Taco.Timeline.Mugen
             base.Unbind();
         }
 
-        public override void OnEnable() {
+        void SampleAnimComponent() {
             if (animComponent != null && animClip != null) {
                 if (animComponent.enabled)
                     animComponent.enabled = false;
@@ -82,12 +82,12 @@ namespace Taco.Timeline.Mugen
             }
         }
 
-        public override void OnDisable() {
+        void ResetAnimComponent() {
             if (animComponent != null && animClip != null) {
                 if (animComponent.enabled)
                     animComponent.enabled = false;
-               // if (animComponent.clip == animClip)
-              //      animComponent.clip = null;
+                if (animComponent.clip == animClip)
+                    animComponent.clip = null;
             }
         }
 

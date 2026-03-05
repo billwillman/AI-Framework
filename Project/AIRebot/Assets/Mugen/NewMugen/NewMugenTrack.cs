@@ -10,6 +10,19 @@ namespace Taco.Timeline.Mugen
     [TrackGroup("Ability"), ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
     public class NewMugenImageAnimationTrack : CharacterTrack
     {
+
+        public override void Bind() {
+#if UNITY_EDITOR
+            if (Timeline is CharacterTimeline characterTimeline) {
+                var CharTimeline = Timeline as CharacterTimeline;
+                if (CharTimeline != null && CharTimeline.TimelinePlayer != null && CharTimeline.Character == null) {
+                    CharTimeline.Character = CharTimeline.TimelinePlayer.GetComponentInChildren<PlatformCharacter>();
+                }
+            }
+#endif
+            base.Bind();
+        }
+
 #if UNITY_EDITOR
         // public override string Name => "ImageAnimationTrack";
         public override Type ClipType => typeof(NewMugenImageAnimationClip);

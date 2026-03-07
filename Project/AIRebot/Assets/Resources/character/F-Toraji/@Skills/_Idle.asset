@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e6bb52a7c30ce4789f78dcd9059c85, type: 3}
+  m_Name: _Idle
+  m_EditorClassIdentifier: 
+  m_Tracks:
+  - rid: 5380831962186645580
+  Scale: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5380831962186645580
+      type: {class: NewMugenImageAnimationTrack, ns: Taco.Timeline.Mugen, asm: Assembly-CSharp}
+      data:
+        Name: NewMugenImageAnimation
+        m_PersistentMuted: 0
+        m_Clips:
+        - rid: 5380831962186645581
+    - rid: 5380831962186645581
+      type: {class: NewMugenImageAnimationClip, ns: Taco.Timeline.Mugen, asm: Assembly-CSharp}
+      data:
+        StartFrame: 0
+        EndFrame: 51
+        OtherEaseInFrame: 0
+        OtherEaseOutFrame: 0
+        SelfEaseInFrame: 0
+        SelfEaseOutFrame: 0
+        ClipInFrame: 0
+        CanSkip: 1
+        actionNo: -9999
+        animClip: {fileID: 7400000, guid: d67c86e430ead074fae48971fc2143ef, type: 2}

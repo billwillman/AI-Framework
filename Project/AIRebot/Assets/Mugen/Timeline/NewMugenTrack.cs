@@ -66,16 +66,19 @@ namespace Taco.Timeline.Mugen
             base.Unbind();
         }
 
-        void SampleAnimComponent() {
+        void SampleAnimComponent(float time) {
             if (animComponent != null && animClip != null) {
                 if (animComponent.enabled)
                     animComponent.enabled = false;
-                animComponent.clip = animClip;
-                float animDeltaTime = TargetTime - StartTime;
-                if (animDeltaTime >= 0) {
+                if (animComponent.clip != animClip)
+                    animComponent.clip = animClip;
+                
+                float animDeltaTime = time - StartTime;
+                float durTime = this.DurationTime;
+                if (animDeltaTime >= 0 && durTime > 0) {
                     var animState = animComponent[animClip.name];
                     if (animState != null) {
-                        animState.time = animDeltaTime;
+                        animState.normalizedTime = animDeltaTime/ durTime;
                         animComponent.Sample();
                     }
                 }
@@ -102,8 +105,11 @@ namespace Taco.Timeline.Mugen
         public override void Evaluate(float deltaTime) {
             base.Evaluate(deltaTime);
             if (Active) {
-
+                if (animComponent != null && animClip != null) {
+                    SampleAnimComponent(this.Time);
+                }
             }
+           // Debug.Log(Time);
         }
 
 #if UNITY_EDITOR

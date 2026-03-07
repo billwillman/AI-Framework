@@ -266,14 +266,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285052725502035098, guid: 13f75bdebe31f894dbdf8401e3296641,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285052725502035098, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
       propertyPath: m_Animation
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1285052725502035098, guid: 13f75bdebe31f894dbdf8401e3296641,
         type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285052725502035098, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
       propertyPath: 'm_Animations.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7400000, guid: d67c86e430ead074fae48971fc2143ef, type: 2}
     - target: {fileID: 4071896698428417975, guid: 13f75bdebe31f894dbdf8401e3296641,
         type: 3}
       propertyPath: m_LocalPosition.x

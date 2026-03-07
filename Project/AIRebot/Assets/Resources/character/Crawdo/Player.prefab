@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1848689535800242847}
   - component: {fileID: 2440482001956167305}
   - component: {fileID: 6378115726386460533}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,11 +339,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crawdo
       objectReference: {fileID: 0}
+    - target: {fileID: 4435743024360625409, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335060158215133564, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335060158215133564, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335060158215133564, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5027509340213622084, guid: fffacdb40e5331949bcf2d40afebeff5,
+        type: 3}
+    - target: {fileID: 7335060158215133564, guid: 13f75bdebe31f894dbdf8401e3296641,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7335060158215133564, guid: 13f75bdebe31f894dbdf8401e3296641,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: e168174812602844f83bc98e5b7a820a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

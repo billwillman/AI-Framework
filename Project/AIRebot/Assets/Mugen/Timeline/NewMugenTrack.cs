@@ -7,7 +7,7 @@ using Taco.Timeline;
 
 namespace Taco.Timeline.Mugen
 {
-    [TrackGroup("Ability"), ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
+    [TrackGroup("Character"), ScriptGuid("e75a4b28054c19fc48904a387acd1feb"), Color(165, 032, 025)]
     public class NewMugenImageAnimationTrack : CharacterTrack
     {
 
@@ -92,11 +92,18 @@ namespace Taco.Timeline.Mugen
         }
 
         public override void OnEnable() {
-            SampleAnimComponent();
+           // SampleAnimComponent();
         }
 
         public override void OnDisable() {
             ResetAnimComponent();
+        }
+
+        public override void Evaluate(float deltaTime) {
+            base.Evaluate(deltaTime);
+            if (Active) {
+
+            }
         }
 
 #if UNITY_EDITOR

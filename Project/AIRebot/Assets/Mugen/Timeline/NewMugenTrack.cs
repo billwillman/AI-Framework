@@ -26,11 +26,13 @@ namespace Taco.Timeline.Mugen
 #if UNITY_EDITOR
         // public override string Name => "ImageAnimationTrack";
         public override Type ClipType => typeof(NewMugenImageAnimationClip);
+        /*
         public override Clip AddClip(UnityEngine.Object referenceObject, int frame) {
             NewMugenImageAnimationClip clip = new NewMugenImageAnimationClip(this, frame);
             m_Clips.Add(clip);
             return clip;
         }
+        */
 #endif
     }
 

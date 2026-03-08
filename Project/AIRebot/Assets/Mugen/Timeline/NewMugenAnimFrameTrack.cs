@@ -27,6 +27,19 @@ namespace Taco.Timeline.Mugen
         [ShowInInspector, ReadOnly]
         public List<NewMugenAnimFrameData> Frames;
 
+        [NonSerialized]
+        private ImageAnimation m_ImageAnim = null;
+
+        public ImageAnimation ImageAnim {
+            get {
+                if (m_ImageAnim == null && this.Character && this.Character is NewMugnCharacter) {
+                    var MugenChar = Character as NewMugnCharacter;
+                    m_ImageAnim = MugenChar.MugenImageAnimation;
+                }
+                return m_ImageAnim;
+            }
+        }
+
 #if UNITY_EDITOR
         public NewMugenAniFrameClip(Track track, int frame) : base(track, frame) {
             CanSkip = true;

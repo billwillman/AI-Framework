@@ -24,6 +24,7 @@ namespace Taco.Timeline.Mugen
     [ScriptGuid("a1066dc4983be8144a7d778751f131b0"), Color(165, 032, 025)]
     public class NewMugenAniFrameClip : CharacterClip
     {
+        [ShowInInspector, ReadOnly]
         public List<NewMugenAnimFrameData> Frames;
 
 #if UNITY_EDITOR

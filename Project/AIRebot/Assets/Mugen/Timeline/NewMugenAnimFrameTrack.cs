@@ -41,6 +41,11 @@ namespace Taco.Timeline.Mugen
         }
 
 #if UNITY_EDITOR
+        [Button("Select Trans By AnimationClip")]
+        public void DoSelectAnimClip() {
+            
+        }
+
         public NewMugenAniFrameClip(Track track, int frame) : base(track, frame) {
             CanSkip = true;
         }

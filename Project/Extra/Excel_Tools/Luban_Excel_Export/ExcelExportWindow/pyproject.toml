@@ -2,4 +2,4 @@
 name = "PySide Project"
 
 [tool.pyside6-project]
-files = ["main.py", "mainwindow.ui"]
+files = ["QExportExcelMainUI.py", "main.py", "mainwindow.ui"]

@@ -43,7 +43,8 @@ namespace Taco.Timeline.Mugen
 #if UNITY_EDITOR
         [Button("Select Trans By AnimationClip")]
         public void DoSelectAnimClip() {
-            
+         // UnityEditor.Experimental.GraphView.SearchWindowContext context = new UnityEditor.Experimental.GraphView.SearchWindowContext(new Vector2(Screen.width / 2f, Screen.height / 2.0f);
+         // UnityEditor.Experimental.GraphView.SearchWindow.Open<AnimationClip>(context);
         }
 
         public NewMugenAniFrameClip(Track track, int frame) : base(track, frame) {

@@ -11,5 +11,5 @@ class QExportExcelMainUI(QtWidgets.QMainWindow):
         # 加载 .ui 的设计文件
         current_dir = os.path.dirname(os.path.abspath(__file__))
         ui_file_path = os.path.join(current_dir, "mainwindow.ui")
-        uic.loadui(ui_file_path, self)
+        uic.loadUi(ui_file_path, self)
         pass

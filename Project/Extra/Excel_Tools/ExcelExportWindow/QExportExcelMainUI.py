@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 from PySide6 import QtCore
 from PyQt6 import QtWidgets, uic
+from PyQt6.QtGui import QStandardItemModel, QStandardItem
 import os
 from pathlib import Path
 
@@ -17,6 +18,12 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         if os.path.exists(dir) and os.path.isdir(dir):
             dir = os.path.abspath(dir)
             self.AllExcePaths = self.GetAllExcelFilePath(dir)
+            if self.AllExcePaths != None and self.QExcelList != None:
+                model = QStandardItemModel()
+                for path in self.AllExcePaths:
+                    name = os.path.basename(path)
+                    model.appendRow(QStandardItem(name))
+                self.QExcelList.setModel(model)
         pass
 
     ## 获得所有EXCEL文件路径

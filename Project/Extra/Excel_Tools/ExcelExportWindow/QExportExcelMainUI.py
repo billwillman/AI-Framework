@@ -22,7 +22,10 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                 model = QStandardItemModel()
                 for path in self.AllExcePaths:
                     name = os.path.basename(path)
-                    model.appendRow(QStandardItem(name))
+                    if name != None:
+                        if name.startswith("#"):
+                            name = name[1:]
+                        model.appendRow(QStandardItem(name))
                 self.QExcelList.setModel(model)
         pass
 

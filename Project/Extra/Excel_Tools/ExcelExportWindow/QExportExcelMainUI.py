@@ -2,6 +2,7 @@
 from PySide6 import QtCore
 from PyQt6 import QtWidgets, uic
 import os
+from pathlib import Path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 ui_file_path = os.path.join(current_dir, "mainwindow.ui")
@@ -11,4 +12,28 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
     def __init__(self):
         super(QExportExcelMainUI, self).__init__()
         self.setupUi(self)
+        # 获得所有EXCEL
+        dir = os.path.dirname(os.path.abspath(__file__)) + "/../../../Excel"
+        if os.path.exists(dir) and os.path.isdir(dir):
+            dir = os.path.abspath(dir)
+            self.AllExcePaths = self.GetAllExcelFilePath(dir)
         pass
+
+    ## 获得所有EXCEL文件路径
+    def GetAllExcelFilePath(self, root_directory):
+        """
+            递归搜索 root_directory 及其子目录下所有的 Excel 文件路径。
+            支持 .xlsx, .xls, .xlsm, .xltx, .xltm 等常见格式。
+            """
+        root_path = Path(root_directory)
+
+        # 定义 Excel 文件扩展名
+        excel_extensions = ('.xlsx', '.xls', '.xlsm', '.xltx', '.xltm')
+
+        # 使用 rglob 进行递归搜索
+        excel_files = []
+        for ext in excel_extensions:
+            excel_files.extend(root_path.rglob(f'*{ext}'))
+
+        # 转换为字符串路径列表并返回
+        return [str(file.resolve()) for file in excel_files]

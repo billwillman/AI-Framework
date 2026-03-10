@@ -14,6 +14,10 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         super(QExportExcelMainUI, self).__init__()
         self.setupUi(self)
         # 获得所有EXCEL
+        self.InitExcelList()
+        pass
+
+    def InitExcelList(self):
         dir = os.path.dirname(os.path.abspath(__file__)) + "/../../../Excel"
         if os.path.exists(dir) and os.path.isdir(dir):
             dir = os.path.abspath(dir)
@@ -27,6 +31,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                             name = name[1:]
                         model.appendRow(QStandardItem(name))
                 self.QExcelList.setModel(model)
+                self.MExcelList = model
         pass
 
     ## 获得所有EXCEL文件路径

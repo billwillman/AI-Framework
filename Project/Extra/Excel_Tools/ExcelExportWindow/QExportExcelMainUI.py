@@ -19,7 +19,11 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         self.InitBtnExport()
         pass
 
+    def QBtnExport_OnClick(self):
+        return
+
     def InitBtnExport(self):
+        self.QBtnExport.clicked.connect(self.QBtnExport_OnClick)
         return
 
     def InitExcelList(self):

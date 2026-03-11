@@ -80,7 +80,8 @@ function UILayer:BringToFront(wndName)
     if view and view.bp and view.bp._Canvas then
         local canvas = view.bp._Canvas
         -- canvas.overrideSorting = true
-        canvas.sortingOrder = self.LayerId * 100 + data.ZOrder
+        -- canvas.sortingOrder = self.LayerId * 100 + data.ZOrder
+        canvas.sortingOrder = data.ZOrder * 100
     end
     return true
 end
@@ -114,7 +115,10 @@ function UILayer:_AppendWindow(wndName)
         if view.bp and view.bp._Canvas then
             local canvas = view.bp._Canvas
             canvas.overrideSorting = true
-            canvas.sortingOrder = self.LayerId * 100 + zorder
+            -- canvas.sortingOrder = self.LayerId * 100 + zorder
+            -- canvas.sortingLayerID = self.LayerId
+            canvas.sortingLayerName = self.LayerName
+            canvas.sortingOrder = zorder * 100 -- 给每个界面保留 100 个zorder
         end
     end
     return true

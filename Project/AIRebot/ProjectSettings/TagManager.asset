@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MainLayer
+    uniqueID: 680622557
+    locked: 0
+  - name: NormalLayer1
+    uniqueID: 1026722701
+    locked: 0
+  - name: NormalLayer2
+    uniqueID: 722574073
+    locked: 0
+  - name: NormalLayer3
+    uniqueID: 508504851
+    locked: 0
+  - name: PopLayer1
+    uniqueID: 2583775483
+    locked: 0
+  - name: PopLayer2
+    uniqueID: 1176656775
+    locked: 0
+  - name: PopLayer3
+    uniqueID: 4054251631
+    locked: 0

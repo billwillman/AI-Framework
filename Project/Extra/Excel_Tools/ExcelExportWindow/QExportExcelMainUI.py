@@ -29,7 +29,9 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                     if name != None:
                         if name.startswith("#"):
                             name = name[1:]
-                        model.appendRow(QStandardItem(name))
+                        item = QStandardItem(name)
+                        item.setCheckable(True)
+                        model.appendRow(item)
                 self.QExcelList.setModel(model)
                 self.MExcelList = model
         pass

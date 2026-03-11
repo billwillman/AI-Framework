@@ -15,7 +15,12 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         self.setupUi(self)
         # 获得所有EXCEL
         self.InitExcelList()
+        # 设置按钮导出
+        self.InitBtnExport()
         pass
+
+    def InitBtnExport(self):
+        return
 
     def InitExcelList(self):
         dir = os.path.dirname(os.path.abspath(__file__)) + "/../../../Excel"

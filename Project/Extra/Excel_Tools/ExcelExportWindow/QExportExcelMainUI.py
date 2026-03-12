@@ -4,6 +4,7 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 import os
 from pathlib import Path
+from PyQt6.QtCore import QProcess
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 ui_file_path = os.path.join(current_dir, "mainwindow.ui")

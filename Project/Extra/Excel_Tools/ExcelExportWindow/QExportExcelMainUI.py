@@ -21,6 +21,9 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         pass
 
     def QBtnExport_OnClick(self):
+        if self.AllExcePaths != None:
+            for path in self.AllExcePaths:
+                path = path.replace('\\', '/')
         return
 
     def InitBtnExport(self):

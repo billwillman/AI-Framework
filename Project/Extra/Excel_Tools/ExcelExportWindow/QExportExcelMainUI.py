@@ -20,10 +20,47 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         self.InitBtnExport()
         pass
 
+    def handle_stdout(self):
+        data = self.process.readAllStandardOutput()
+        stdout = bytes(data).decode("utf8").strip()
+        print(stdout)
+        #self.output_log.append(stdout)
+
+    def handle_stderr(self):
+        data = self.process.readAllStandardError()
+        stderr = bytes(data).decode("utf8").strip()
+        if stderr:
+            err = f"ERROR: {stderr}"
+            print(err)
+            #self.output_log.append(f"ERROR: {stderr}")
+
+    def handle_finished(self):
+        #self.output_log.append("命令执行完毕。")
+        #self.btn_run.setEnabled(True)
+        print("命令执行完毕。")
+
     def QBtnExport_OnClick(self):
         if self.AllExcePaths != None:
+            lubanPath = "../../../Tools/Luban/Luban.dll"
+            self.process = QProcess(self)
+            self.process.readyReadStandardOutput.connect(self.handle_stdout)
+            self.process.readyReadStandardError.connect(self.handle_stderr)
+            self.process.finished.connect(self.handle_finished)
             for path in self.AllExcePaths:
                 path = path.replace('\\', '/')
+                cmd = ("donet %s -t %s -c protobuf2 -d protobuf2-bin --conf ../../../Excel/luban.conf -x outputDataDir=../../../AIRebot/Assets/Resources/@Config/ -x outputCodeDir=./../../AIRebot/Assets/Resources/@PB_Config/") % (lubanPath, path)
+                print(cmd)
+                # 根据操作系统选择命令
+                import os
+                if os.name == 'nt':  # Windows
+                    program = cmd
+                    arguments = []
+                else:  # Linux/Mac
+                    program = cmd
+                    arguments = []
+
+                self.process.start(program, arguments)
+
         return
 
     def InitBtnExport(self):

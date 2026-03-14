@@ -13,6 +13,7 @@ Ui_MainWindow, baseClass = uic.loadUiType(ui_file_path)
 class QExportExcelMainUI(baseClass, Ui_MainWindow):
     def __init__(self):
         super(QExportExcelMainUI, self).__init__()
+        self.SelectExcelIndexes = []
         self.setupUi(self)
         # 获得所有EXCEL
         self.InitExcelList()
@@ -40,13 +41,14 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         print("命令执行完毕。")
 
     def QBtnExport_OnClick(self):
-        if self.AllExcePaths != None:
+        if self.SelectExcelIndexes != None:
             lubanPath = "../../../Tools/Luban/Luban.dll"
             self.process = QProcess(self)
             self.process.readyReadStandardOutput.connect(self.handle_stdout)
             self.process.readyReadStandardError.connect(self.handle_stderr)
             self.process.finished.connect(self.handle_finished)
-            for path in self.AllExcePaths:
+            for idx in self.SelectExcelIndexes:
+                path = self.AllExcePaths[idx]
                 path = path.replace('\\', '/')
                 cmd = ("donet %s -t %s -c protobuf2 -d protobuf2-bin --conf ../../../Excel/luban.conf -x outputDataDir=../../../AIRebot/Assets/Resources/@Config/ -x outputCodeDir=./../../AIRebot/Assets/Resources/@PB_Config/") % (lubanPath, path)
                 print(cmd)
@@ -84,7 +86,15 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                         model.appendRow(item)
                 self.QExcelList.setModel(model)
                 self.MExcelList = model
+                self.MExcelList.itemChanged.connect(self.OnExcelItemChanged)
         pass
+
+    def OnExcelItemChanged(self, item):
+        if item.checkState().value == 2:
+            self.SelectExcelIndexes.append(item.index().row())
+        elif item.checkState().value == 0:
+            self.SelectExcelIndexes.remove(item.index().row())
+        return
 
     ## 获得所有EXCEL文件路径
     def GetAllExcelFilePath(self, root_directory):

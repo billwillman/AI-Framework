@@ -424,7 +424,7 @@ public class PlayerLoader
                         UnityEditor.AnimationUtility.SetAnimationClips(ctl, clips);
                     }
 #else
-			       ctl.AddClip(m_Clip, clip.name);
+			       ctl.AddClip(m_Clip, m_Clip.name);
 #endif
                 }
 

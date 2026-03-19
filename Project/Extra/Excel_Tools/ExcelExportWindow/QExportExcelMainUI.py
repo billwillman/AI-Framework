@@ -41,28 +41,103 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         print("命令执行完毕。")
 
     def QBtnExport_OnClick(self):
-        if self.SelectExcelIndexes != None:
-            lubanPath = "../../../Tools/Luban/Luban.dll"
-            self.process = QProcess(self)
-            self.process.readyReadStandardOutput.connect(self.handle_stdout)
-            self.process.readyReadStandardError.connect(self.handle_stderr)
-            self.process.finished.connect(self.handle_finished)
-            for idx in self.SelectExcelIndexes:
-                path = self.AllExcePaths[idx]
-                path = path.replace('\\', '/')
-                cmd = ("donet %s -t %s -c protobuf2 -d protobuf2-bin --conf ../../../Excel/luban.conf -x outputDataDir=../../../AIRebot/Assets/Resources/@Config/ -x outputCodeDir=./../../AIRebot/Assets/Resources/@PB_Config/") % (lubanPath, path)
-                print(cmd)
-                # 根据操作系统选择命令
-                import os
-                if os.name == 'nt':  # Windows
-                    program = cmd
-                    arguments = []
-                else:  # Linux/Mac
-                    program = cmd
-                    arguments = []
-
-                self.process.start(program, arguments)
-
+        """导出 Excel 数据到 protobuf2 格式
+        
+        Luban 工具会根据 luban.conf 配置批量处理 Excel 目录中的所有文件，
+        生成 protobuf2 的 proto 文件（.proto）和二进制数据文件（.bytes）
+        """
+        if self.SelectExcelIndexes is None or len(self.SelectExcelIndexes) == 0:
+            print("未选择任何 Excel 文件")
+            return
+        
+        # 获取选中的 Excel 文件列表
+        selected_files = []
+        for idx in self.SelectExcelIndexes:
+            excelPath = self.AllExcePaths[idx]
+            tableName = Path(excelPath).stem
+            if tableName.startswith("#"):
+                tableName = tableName[1:]
+            selected_files.append(tableName)
+        
+        print(f"选中的表: {', '.join(selected_files)}")
+        
+        # 获取当前脚本所在目录
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Luban 工具路径（使用绝对路径）
+        lubanPath = os.path.normpath(os.path.join(script_dir, "../../../Tools/Luban/Luban.dll"))
+        lubanPath = os.path.abspath(lubanPath)
+        
+        # 配置文件路径
+        confPath = os.path.normpath(os.path.join(script_dir, "../../../Excel/luban.conf"))
+        confPath = os.path.abspath(confPath)
+        
+        # 输出目录
+        outputDataDir = os.path.normpath(os.path.join(script_dir, "../../../AIRebot/Assets/Resources/@Config/"))
+        outputDataDir = os.path.abspath(outputDataDir)
+        outputCodeDir = os.path.normpath(os.path.join(script_dir, "../../../AIRebot/Assets/Resources/@PB_Config/"))
+        outputCodeDir = os.path.abspath(outputCodeDir)
+        
+        # 确保输出目录存在
+        os.makedirs(outputDataDir, exist_ok=True)
+        os.makedirs(outputCodeDir, exist_ok=True)
+        
+        # 构建 Luban 命令参数
+        # -t: 指定目标（client/server/all）
+        # -c: 指定代码类型（protobuf2）
+        # -d: 指定数据类型（protobuf2-bin 表示 protobuf2 二进制格式）
+        # --conf: 指定配置文件
+        # -x outputDataDir: 输出数据目录
+        # -x outputCodeDir: 输出代码目录
+        
+        arguments = [
+            lubanPath,
+            "-t", "all",  # 使用 all 目标，生成所有分组的数据
+            "-c", "protobuf2",  # 生成 protobuf2 的 proto 文件
+            "-d", "protobuf2-bin",  # 生成 protobuf2 二进制数据
+            "--conf", confPath,
+            "-x", f"outputDataDir={outputDataDir}",
+            "-x", f"outputCodeDir={outputCodeDir}",
+        ]
+        
+        print("=" * 50)
+        print("开始执行 Luban 导出命令...")
+        print(f"Luban 路径: {lubanPath}")
+        print(f"配置文件: {confPath}")
+        print(f"数据输出目录: {outputDataDir}")
+        print(f"代码输出目录: {outputCodeDir}")
+        print("=" * 50)
+        
+        # 初始化进程
+        self.process = QProcess(self)
+        self.process.readyReadStandardOutput.connect(self.handle_stdout)
+        self.process.readyReadStandardError.connect(self.handle_stderr)
+        self.process.finished.connect(self.handle_finished)
+        
+        # 使用 dotnet 运行 Luban.dll
+        program = "dotnet"
+        
+        print(f"执行命令: {program} {' '.join(arguments)}")
+        print("")
+        
+        # 启动进程
+        self.process.start(program, arguments)
+        
+        # 等待进程完成（使用较长的超时时间，因为可能需要处理多个文件）
+        if not self.process.waitForFinished(300000):  # 5分钟超时
+            print("Luban 导出超时")
+        else:
+            exit_code = self.process.exitCode()
+            if exit_code == 0:
+                print("")
+                print("=" * 50)
+                print("Luban 导出成功完成！")
+                print(f"Proto 文件位置: {outputCodeDir}")
+                print(f"二进制数据位置: {outputDataDir}")
+                print("=" * 50)
+            else:
+                print(f"Luban 导出失败，退出码: {exit_code}")
+        
         return
 
     def InitBtnExport(self):

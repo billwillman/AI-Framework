@@ -24,7 +24,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
     def handle_stdout(self):
         data = self.process.readAllStandardOutput()
         stdout = bytes(data).decode("utf8").strip()
-        print(stdout)
+        self.PrintLog(stdout)
         #self.output_log.append(stdout)
 
     def handle_stderr(self):
@@ -32,13 +32,13 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         stderr = bytes(data).decode("utf8").strip()
         if stderr:
             err = f"ERROR: {stderr}"
-            print(err)
+            self.PrintLog(err)
             #self.output_log.append(f"ERROR: {stderr}")
 
     def handle_finished(self):
         #self.output_log.append("命令执行完毕。")
         #self.btn_run.setEnabled(True)
-        print("命令执行完毕。")
+        self.PrintLog("命令执行完毕。")
 
     def QBtnExport_OnClick(self):
         """导出 Excel 数据到 protobuf2 格式
@@ -47,7 +47,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         生成 protobuf2 的 proto 文件（.proto）和二进制数据文件（.bytes）
         """
         if self.SelectExcelIndexes is None or len(self.SelectExcelIndexes) == 0:
-            print("未选择任何 Excel 文件")
+            self.PrintLog("未选择任何 Excel 文件")
             return
         
         # 获取选中的 Excel 文件列表
@@ -59,7 +59,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                 tableName = tableName[1:]
             selected_files.append(tableName)
         
-        print(f"选中的表: {', '.join(selected_files)}")
+        self.PrintLog(f"选中的表: {', '.join(selected_files)}")
         
         # 获取当前脚本所在目录
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -100,13 +100,13 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             "-x", f"outputCodeDir={outputCodeDir}",
         ]
         
-        print("=" * 50)
-        print("开始执行 Luban 导出命令...")
-        print(f"Luban 路径: {lubanPath}")
-        print(f"配置文件: {confPath}")
-        print(f"数据输出目录: {outputDataDir}")
-        print(f"代码输出目录: {outputCodeDir}")
-        print("=" * 50)
+        self.PrintLog("=" * 50)
+        self.PrintLog("开始执行 Luban 导出命令...")
+        self.PrintLog(f"Luban 路径: {lubanPath}")
+        self.PrintLog(f"配置文件: {confPath}")
+        self.PrintLog(f"数据输出目录: {outputDataDir}")
+        self.PrintLog(f"代码输出目录: {outputCodeDir}")
+        self.PrintLog("=" * 50)
         
         # 初始化进程
         self.process = QProcess(self)
@@ -117,27 +117,33 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         # 使用 dotnet 运行 Luban.dll
         program = "dotnet"
         
-        print(f"执行命令: {program} {' '.join(arguments)}")
-        print("")
+        self.PrintLog(f"执行命令: {program} {' '.join(arguments)}")
+        self.PrintLog("")
         
         # 启动进程
         self.process.start(program, arguments)
         
         # 等待进程完成（使用较长的超时时间，因为可能需要处理多个文件）
         if not self.process.waitForFinished(300000):  # 5分钟超时
-            print("Luban 导出超时")
+            self.PrintLog("Luban 导出超时")
         else:
             exit_code = self.process.exitCode()
             if exit_code == 0:
-                print("")
-                print("=" * 50)
-                print("Luban 导出成功完成！")
-                print(f"Proto 文件位置: {outputCodeDir}")
-                print(f"二进制数据位置: {outputDataDir}")
-                print("=" * 50)
+                self.PrintLog("")
+                self.PrintLog("=" * 50)
+                self.PrintLog("Luban 导出成功完成！")
+                self.PrintLog(f"Proto 文件位置: {outputCodeDir}")
+                self.PrintLog(f"二进制数据位置: {outputDataDir}")
+                self.PrintLog("=" * 50)
             else:
-                print(f"Luban 导出失败，退出码: {exit_code}")
+                self.PrintLog(f"Luban 导出失败，退出码: {exit_code}")
         
+        return
+
+    def PrintLog(self, str):
+        print(str)
+        if self.textBrowser != None:
+            self.textBrowser.append(str)
         return
 
     def InitBtnExport(self):

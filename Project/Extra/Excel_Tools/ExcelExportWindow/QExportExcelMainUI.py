@@ -202,11 +202,12 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                 self.PrintLog(f"原始 schemaFiles: {[s.get('fileName', '') for s in originalSchemaFiles]}")
             
             # 创建临时文件
-            tempDir = tempfile.gettempdir()
+            tempDir = os.path.dirname(originalConfPath)
             tempFileName = f"luban_temp_conf_{os.getpid()}_{len(selectedTables)}tables.conf"
             tempConfPath = os.path.join(tempDir, tempFileName)
             
             # 写入临时配置文件
+            # tempDir = tempfile.gettempdir()
             with open(tempConfPath, 'w', encoding='utf-8') as f:
                 json.dump(config, f, indent='\t', ensure_ascii=False)
             

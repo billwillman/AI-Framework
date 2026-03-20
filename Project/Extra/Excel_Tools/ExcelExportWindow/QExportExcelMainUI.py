@@ -3,6 +3,8 @@ from PySide6 import QtCore
 from PyQt6 import QtWidgets, uic
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 import os
+import json
+import tempfile
 from pathlib import Path
 from PyQt6.QtCore import QProcess
 
@@ -41,9 +43,9 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         self.PrintLog("命令执行完毕。")
 
     def QBtnExport_OnClick(self):
-        """导出 Excel 数据到 protobuf2 格式
+        """导出选中的 Excel 数据到 protobuf2 格式
         
-        Luban 工具会根据 luban.conf 配置批量处理 Excel 目录中的所有文件，
+        为选中的表创建临时配置文件，然后只导出这些表
         生成 protobuf2 的 proto 文件（.proto）和二进制数据文件（.bytes）
         """
         if self.SelectExcelIndexes is None or len(self.SelectExcelIndexes) == 0:
@@ -68,9 +70,9 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         lubanPath = os.path.normpath(os.path.join(script_dir, "../../../Tools/Luban/Luban.dll"))
         lubanPath = os.path.abspath(lubanPath)
         
-        # 配置文件路径
-        confPath = os.path.normpath(os.path.join(script_dir, "../../../Excel/luban.conf"))
-        confPath = os.path.abspath(confPath)
+        # 原始配置文件路径
+        originalConfPath = os.path.normpath(os.path.join(script_dir, "../../../Excel/luban.conf"))
+        originalConfPath = os.path.abspath(originalConfPath)
         
         # 输出目录
         outputDataDir = os.path.normpath(os.path.join(script_dir, "../../../AIRebot/Assets/Resources/@Config/"))
@@ -81,6 +83,14 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         # 确保输出目录存在
         os.makedirs(outputDataDir, exist_ok=True)
         os.makedirs(outputCodeDir, exist_ok=True)
+        
+        # 创建临时配置文件
+        tempConfPath = self.CreateTempConfig(originalConfPath, selected_files)
+        if tempConfPath is None:
+            self.PrintLog("创建临时配置文件失败")
+            return
+        
+        self.PrintLog(f"使用临时配置文件: {tempConfPath}")
         
         # 构建 Luban 命令参数
         # -t: 指定目标（client/server/all）
@@ -95,7 +105,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             "-t", "all",  # 使用 all 目标，生成所有分组的数据
             "-c", "protobuf2",  # 生成 protobuf2 的 proto 文件
             "-d", "protobuf2-bin",  # 生成 protobuf2 二进制数据
-            "--conf", confPath,
+            "--conf", tempConfPath,
             "-x", f"outputDataDir={outputDataDir}",
             "-x", f"outputCodeDir={outputCodeDir}",
         ]
@@ -103,7 +113,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
         self.PrintLog("=" * 50)
         self.PrintLog("开始执行 Luban 导出命令...")
         self.PrintLog(f"Luban 路径: {lubanPath}")
-        self.PrintLog(f"配置文件: {confPath}")
+        self.PrintLog(f"配置文件: {tempConfPath}")
         self.PrintLog(f"数据输出目录: {outputDataDir}")
         self.PrintLog(f"代码输出目录: {outputCodeDir}")
         self.PrintLog("=" * 50)
@@ -138,7 +148,78 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             else:
                 self.PrintLog(f"Luban 导出失败，退出码: {exit_code}")
         
+        # 清理临时文件
+        try:
+            if os.path.exists(tempConfPath):
+                os.remove(tempConfPath)
+                self.PrintLog(f"已清理临时配置文件: {tempConfPath}")
+        except Exception as e:
+            self.PrintLog(f"清理临时文件失败: {str(e)}")
+        
         return
+
+    def CreateTempConfig(self, originalConfPath, selectedTables):
+        """创建临时配置文件，只包含选中的表
+        
+        Args:
+            originalConfPath: 原始配置文件路径
+            selectedTables: 选中的表名列表
+            
+        Returns:
+            临时配置文件路径，失败返回 None
+        """
+        try:
+            # 读取原始配置文件
+            if not os.path.exists(originalConfPath):
+                self.PrintLog(f"原始配置文件不存在: {originalConfPath}")
+                return None
+            
+            with open(originalConfPath, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            # 修改 schemaFiles，只包含选中的表
+            originalSchemaFiles = config.get('schemaFiles', [])
+            newSchemaFiles = []
+            
+            for schemaFile in originalSchemaFiles:
+                schemaName = schemaFile.get('fileName', '')
+                # 检查这个 schema 是否在选中的表列表中
+                for tableName in selectedTables:
+                    # 如果表名完全匹配，或者包含表名（比如 schema 名为 "Table"，表名为 "Table"）
+                    if tableName == schemaName or tableName.startswith(schemaName):
+                        newSchemaFiles.append(schemaFile)
+                        break
+            
+            # 更新配置
+            config['schemaFiles'] = newSchemaFiles
+            
+            # 同时也更新 targets，确保只使用选中的表
+            # 如果没有选中的 schemaFiles，使用原配置
+            if len(newSchemaFiles) == 0:
+                self.PrintLog(f"警告: 未找到选中的表对应的 schema 文件")
+                self.PrintLog(f"选中的表: {selectedTables}")
+                self.PrintLog(f"原始 schemaFiles: {[s.get('fileName', '') for s in originalSchemaFiles]}")
+            
+            # 创建临时文件
+            tempDir = tempfile.gettempdir()
+            tempFileName = f"luban_temp_conf_{os.getpid()}_{len(selectedTables)}tables.conf"
+            tempConfPath = os.path.join(tempDir, tempFileName)
+            
+            # 写入临时配置文件
+            with open(tempConfPath, 'w', encoding='utf-8') as f:
+                json.dump(config, f, indent='\t', ensure_ascii=False)
+            
+            self.PrintLog(f"已创建临时配置文件")
+            self.PrintLog(f"  原始 schema 数量: {len(originalSchemaFiles)}")
+            self.PrintLog(f"  过滤后 schema 数量: {len(newSchemaFiles)}")
+            
+            return tempConfPath
+            
+        except Exception as e:
+            self.PrintLog(f"创建临时配置文件失败: {str(e)}")
+            import traceback
+            self.PrintLog(traceback.format_exc())
+            return None
 
     def PrintLog(self, str):
         print(str)

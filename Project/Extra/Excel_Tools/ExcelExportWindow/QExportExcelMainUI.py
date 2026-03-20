@@ -1,4 +1,6 @@
 # This Python file uses the following encoding: utf-8
+from fileinput import filename
+
 from PySide6 import QtCore
 from PyQt6 import QtWidgets, uic
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
@@ -181,7 +183,7 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             # 修改 schemaFiles，只包含选中的表
             originalSchemaFiles = config.get('schemaFiles', [])
             newSchemaFiles = []
-            
+
             for schemaFile in originalSchemaFiles:
                 schemaName = schemaFile.get('fileName', '')
                 # 检查这个 schema 是否在选中的表列表中
@@ -190,7 +192,11 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
                     if tableName == schemaName or tableName.startswith(schemaName):
                         newSchemaFiles.append(schemaFile)
                         break
-            
+            for tableName in selectedTables:
+                obj = {}
+                obj["fileName"] = "Datas/#" + tableName + ".xlsx"
+                obj["type"] = "bean"
+                newSchemaFiles.append(obj)
             # 更新配置
             config['schemaFiles'] = newSchemaFiles
             
@@ -281,4 +287,11 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             excel_files.extend(root_path.rglob(f'*{ext}'))
 
         # 转换为字符串路径列表并返回
-        return [str(file.resolve()) for file in excel_files]
+        ret = [str(file.resolve()) for file in excel_files]
+        res = []
+        for r in ret:
+            path = os.path.basename(r)
+            if path.startswith("~"):
+                continue
+            res.append(r)
+        return res

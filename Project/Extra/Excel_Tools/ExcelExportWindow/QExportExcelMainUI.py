@@ -44,10 +44,11 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
 
     def QBtnExport_OnClick(self):
         """导出选中的 Excel 数据到 protobuf2 格式
-        
+
         为选中的表创建临时配置文件，然后只导出这些表
         生成 protobuf2 的 proto 文件（.proto）和二进制数据文件（.bytes）
         """
+        self.ClearAllLog()
         if self.SelectExcelIndexes is None or len(self.SelectExcelIndexes) == 0:
             self.PrintLog("未选择任何 Excel 文件")
             return
@@ -220,6 +221,10 @@ class QExportExcelMainUI(baseClass, Ui_MainWindow):
             import traceback
             self.PrintLog(traceback.format_exc())
             return None
+
+    def ClearAllLog(self):
+        self.textBrowser.setText("")
+        return
 
     def PrintLog(self, str):
         print(str)

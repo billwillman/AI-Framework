@@ -66,7 +66,7 @@ namespace Taco.Timeline.Editor
             // 新的函数处理
             void OnCallbackOnce(GeometryChangedEvent e) {
                 OnGeometryChanged();
-                UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce);
+                UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce, TrickleDown.NoTrickleDown);
             }
             //-------------
 #endif

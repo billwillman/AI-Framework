@@ -218,9 +218,9 @@ namespace Taco.Gameplay.Editor
             // 新的函数处理
             void OnCallbackOnce(DetachFromPanelEvent i) {
                 m_TagData.OnReferenceChanged -= Draw;
-                dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+               // dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
             }
-            dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+            dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce, TrickleDown.NoTrickleDown);
             //--------------
 #endif
 
@@ -250,9 +250,9 @@ namespace Taco.Gameplay.Editor
             // 新的函数处理
             void OnCallbackOnce(DetachFromPanelEvent i) {
                 m_TagData.OnReferenceChanged -= Draw;
-                dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+                //dialogueContext.UnregisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
             }
-            dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce);
+            dialogueContext.RegisterCallback<DetachFromPanelEvent>(OnCallbackOnce, TrickleDown.NoTrickleDown);
             //--------------
 #endif
 

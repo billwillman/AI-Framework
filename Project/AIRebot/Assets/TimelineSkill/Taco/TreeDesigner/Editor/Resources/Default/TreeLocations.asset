@@ -159,6 +159,10 @@ MonoBehaviour:
     expanded: 0
   - path: Assets/Resources/character/Crawdo/@Skills
     expanded: 0
+  - path: Assets/Resources/character/F-Toraji
+    expanded: 0
+  - path: Assets/Resources/character/F-Toraji/@Skills
+    expanded: 0
   ShowInfos:
   - type: BaseTree
     show: 1

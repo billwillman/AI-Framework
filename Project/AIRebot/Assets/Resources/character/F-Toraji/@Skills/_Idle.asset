@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Tracks:
   - rid: 5380831962186645580
-  Scale: 1
+  - rid: 5380831982998782027
+  Scale: 0.35432985
   references:
     version: 2
     RefIds:
@@ -28,8 +29,8 @@ MonoBehaviour:
     - rid: 5380831962186645581
       type: {class: NewMugenImageAnimationClip, ns: Taco.Timeline.Mugen, asm: Assembly-CSharp}
       data:
-        StartFrame: 0
-        EndFrame: 51
+        StartFrame: 24
+        EndFrame: 75
         OtherEaseInFrame: 0
         OtherEaseOutFrame: 0
         SelfEaseInFrame: 0
@@ -38,3 +39,22 @@ MonoBehaviour:
         CanSkip: 1
         actionNo: -9999
         animClip: {fileID: 7400000, guid: d67c86e430ead074fae48971fc2143ef, type: 2}
+    - rid: 5380831982998782027
+      type: {class: NewMugenAnimFrameTrack, ns: Taco.Timeline.Mugen, asm: Assembly-CSharp}
+      data:
+        Name: NewMugenAnimFrame
+        m_PersistentMuted: 0
+        m_Clips:
+        - rid: 5380831982998782028
+    - rid: 5380831982998782028
+      type: {class: NewMugenAniFrameClip, ns: Taco.Timeline.Mugen, asm: Assembly-CSharp}
+      data:
+        StartFrame: 0
+        EndFrame: 22
+        OtherEaseInFrame: 0
+        OtherEaseOutFrame: 0
+        SelfEaseInFrame: 0
+        SelfEaseOutFrame: 0
+        ClipInFrame: 0
+        CanSkip: 1
+        Frames: []

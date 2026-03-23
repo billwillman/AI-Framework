@@ -60,15 +60,17 @@ namespace Taco.Timeline.Editor
                 Icon.style.backgroundImage = texture;
 
             FieldView.OnGeometryChangedCallback += OnGeometryChanged;
+#if UNITY_2023_1_OR_NEWER
+             RegisterCallbackOnce<GeometryChangedEvent>((e) => OnGeometryChanged());
+#else
             // 新的函数处理
-            /*
             void OnCallbackOnce(GeometryChangedEvent e) {
                 OnGeometryChanged();
                 UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce);
             }
-            */
             //-------------
-            RegisterCallbackOnce<GeometryChangedEvent>((e) => OnGeometryChanged());
+#endif
+
             RegisterCallback<DetachFromPanelEvent>((e) => FieldView.OnGeometryChangedCallback -= OnGeometryChanged);
             //RegisterCallback<PointerDownEvent>(OnPointerDown);
 

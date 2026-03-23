@@ -66,13 +66,13 @@ namespace Taco.Timeline.Editor
             // 新的函数处理
             void OnCallbackOnce(GeometryChangedEvent e) {
                 OnGeometryChanged();
-                UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce, TrickleDown.NoTrickleDown);
+                UnregisterCallback<GeometryChangedEvent>(OnCallbackOnce);
             }
             //-------------
+            RegisterCallback<GeometryChangedEvent>(OnCallbackOnce);
 #endif
 
             RegisterCallback<DetachFromPanelEvent>((e) => FieldView.OnGeometryChangedCallback -= OnGeometryChanged);
-            //RegisterCallback<PointerDownEvent>(OnPointerDown);
 
             MenuHandler = new DropdownMenuHandler(MenuBuilder);
             DragManipulator = new DragManipulator(

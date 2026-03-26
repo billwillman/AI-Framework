@@ -125,7 +125,7 @@ namespace Animancer
         /************************************************************************************************************************/
 
         /// <summary>[Internal] The <see cref="PlayableGraph"/> containing this <see cref="AnimancerPlayable"/>.</summary>
-        internal PlayableGraph _Graph;
+        public PlayableGraph _Graph;
 
         /// <summary>[Pro-Only] The <see cref="PlayableGraph"/> containing this <see cref="AnimancerPlayable"/>.</summary>
         public PlayableGraph Graph => _Graph;

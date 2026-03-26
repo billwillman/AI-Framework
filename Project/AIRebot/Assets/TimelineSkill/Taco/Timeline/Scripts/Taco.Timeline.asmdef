@@ -2,7 +2,8 @@
     "name": "Taco.Timeline",
     "rootNamespace": "",
     "references": [
-        "GUID:3af8e02729705434aa5c2d77c4a5103a"
+        "GUID:3af8e02729705434aa5c2d77c4a5103a",
+        "Animancer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

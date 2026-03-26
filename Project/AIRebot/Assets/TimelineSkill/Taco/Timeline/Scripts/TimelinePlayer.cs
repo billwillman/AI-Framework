@@ -50,9 +50,9 @@ namespace Taco.Timeline
         public bool IsValid => PlayableGraph.IsValid();
         public Animator Animator { get; private set; }
         public AudioSource AudioSource { get; private set; }
-        public PlayableGraph PlayableGraph { get; private set; }
-        public AnimationLayerMixerPlayable AnimationRootPlayable { get; private set; }
-        public AnimatorControllerPlayable CtrlPlayable { get; private set; }
+        public PlayableGraph PlayableGraph { get; set; }
+        public AnimationLayerMixerPlayable AnimationRootPlayable { get; set; }
+        public AnimatorControllerPlayable CtrlPlayable { get; set; }
         public AudioMixerPlayable AudioRootPlayable { get; private set; }
         public List<Timeline> RunningTimelines { get; private set; }
         public List<RuntimeTrackEaseOut> RuntimeTrackEaseOuts { get; private set; }

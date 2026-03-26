@@ -27,7 +27,7 @@ namespace Animancer
         [Tooltip(Strings.Tooltips.FadeDuration)]
         [AnimationTime(AnimationTimeAttribute.Units.Seconds, Rule = Validate.Value.IsNotNegative)]
         [DefaultFadeValue]
-        private float _FadeDuration = AnimancerPlayable.DefaultFadeDuration;
+        protected float _FadeDuration = AnimancerPlayable.DefaultFadeDuration;
 
         /// <inheritdoc/>
         /// <remarks>[<see cref="SerializeField"/>]</remarks>

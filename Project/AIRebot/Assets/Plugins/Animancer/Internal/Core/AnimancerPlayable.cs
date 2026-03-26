@@ -134,7 +134,7 @@ namespace Animancer
         internal Playable _RootPlayable;
 
         /// <summary>[Internal] The <see cref="Playable"/> which layers connect to.</summary>
-        internal Playable _LayerMixer;
+        public Playable _LayerMixer;
 
         /************************************************************************************************************************/
 

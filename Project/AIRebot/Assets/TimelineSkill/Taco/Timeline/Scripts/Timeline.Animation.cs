@@ -85,7 +85,7 @@ namespace Taco.Timeline
                     Timeline.AnimationRootPlayable.DisconnectInput(PlayableIndex);
                     TrackPlayable.Handle.Destroy();
                 }
-                else if (Timeline.Time < Timeline.Duration)
+                else if (Timeline.TimelinePlayer != null && Timeline.Time < Timeline.Duration)
                 {
                     Timeline.TimelinePlayer.AddAnimationEaseOut(this);
                 }

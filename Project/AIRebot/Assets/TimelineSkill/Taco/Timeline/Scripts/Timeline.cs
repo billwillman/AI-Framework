@@ -51,7 +51,7 @@ namespace Taco.Timeline
             #region Unbind
             bool isBinding = Binding;
             TimelinePlayer timelinePlayer = TimelinePlayer;
-            if (isBinding)
+            if (isBinding && timelinePlayer != null)
             {
                 timelinePlayer.Dispose();
             }

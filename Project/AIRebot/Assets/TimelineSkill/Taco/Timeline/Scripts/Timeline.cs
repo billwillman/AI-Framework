@@ -106,25 +106,6 @@ namespace Taco.Timeline
 
             OnBindStateChanged?.Invoke();
         }
-        /// <summary>
-        /// Bind to an external PlayableGraph without a TimelinePlayer (for Animancer integration).
-        /// </summary>
-        public void Bind(PlayableGraph graph, AnimationLayerMixerPlayable animRoot)
-        {
-            Time = 0;
-            TimelinePlayer = null;
-            PlayableGraph = graph;
-            AnimationRootPlayable = animRoot;
-            AudioRootPlayable = default;
-
-            Binding = true;
-            OnRebind = null;
-            OnValueChanged += RebindAll;
-
-            m_Tracks.ForEach(t => t.Bind());
-
-            OnBindStateChanged?.Invoke();
-        }
         public void Unbind()
         {
             m_Tracks.ForEach(t => t.Unbind());
@@ -157,10 +138,7 @@ namespace Taco.Timeline
                     track.Rebind();
                     track.SetTime(Time);
                 }
-                if (TimelinePlayer != null)
-                    TimelinePlayer.Evaluate(0);
-                else if (PlayableGraph.IsValid())
-                    PlayableGraph.Evaluate(0);
+                TimelinePlayer.Evaluate(0);
             }
         }
         public void RebindTrack(Track track)
@@ -169,10 +147,7 @@ namespace Taco.Timeline
             {
                 track.Rebind();
                 track.SetTime(Time);
-                if (TimelinePlayer != null)
-                    TimelinePlayer.Evaluate(0);
-                else if (PlayableGraph.IsValid())
-                    PlayableGraph.Evaluate(0);
+                TimelinePlayer.Evaluate(0);
             }
         }
         public void RuntimeMute(int index, bool value)

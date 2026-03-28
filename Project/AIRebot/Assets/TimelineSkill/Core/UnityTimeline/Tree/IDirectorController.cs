@@ -14,5 +14,6 @@ namespace UnityTimeline
         bool IsValid { get; }
         void SetSpeed(double speed);
         void SetTrackEnabled(int trackIndex, bool enabled);
+        bool IsTrackEnabled(int trackIndex);
     }
 }

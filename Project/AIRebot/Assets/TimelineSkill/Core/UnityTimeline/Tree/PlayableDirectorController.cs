@@ -77,5 +77,17 @@ namespace UnityTimeline
 
             rootPlayable.SetInputWeight(trackIndex, enabled ? 1f : 0f);
         }
+
+        public bool IsTrackEnabled(int trackIndex)
+        {
+            if (m_Director == null || !m_Director.playableGraph.IsValid())
+                return false;
+
+            var rootPlayable = m_Director.playableGraph.GetRootPlayable(0);
+            if (trackIndex < 0 || trackIndex >= rootPlayable.GetInputCount())
+                return false;
+
+            return rootPlayable.GetInputWeight(trackIndex) > 0f;
+        }
     }
 }

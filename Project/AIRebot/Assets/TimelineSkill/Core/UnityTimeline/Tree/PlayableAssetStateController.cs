@@ -46,7 +46,7 @@ namespace UnityTimeline
         {
             get
             {
-                if (m_State == null || !m_State.IsValid)
+                if (m_State == null || !m_State.IsValid || m_State.IsStopped)
                     return DirectorState.Stopped;
 
                 if (m_State.IsPlaying)

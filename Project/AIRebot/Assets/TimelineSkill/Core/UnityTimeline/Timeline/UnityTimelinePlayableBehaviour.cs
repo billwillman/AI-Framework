@@ -24,8 +24,12 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
-    public void DestroyRuntimeTree() {
+
+    public void DestroyRuntimeTree(bool isCallCallBack = false) {
         if (RuntimeTree != null) {
+            if (isCallCallBack)
+                RuntimeTree.OnTreeDestroy();
+            RuntimeTree.ResetTree();
             RuntimeTree.DisposeTree();
             if (Application.isPlaying)
                 GameObject.Destroy(RuntimeTree);
@@ -35,7 +39,19 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
+    public override void OnBehaviourPlay(Playable playable, FrameData info) {
+        if (RuntimeTree != null) {
+            RuntimeTree.OnTreeEnable();
+        }
+    }
+
+    public override void OnBehaviourPause(Playable playable, FrameData info) {
+        if (RuntimeTree != null) {
+            RuntimeTree.OnTreeDisable();
+        }
+    }
+
     public override void OnPlayableDestroy(Playable playable) {
-        DestroyRuntimeTree();
+        DestroyRuntimeTree(true);
     }
 }

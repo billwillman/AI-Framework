@@ -66,14 +66,16 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     public override void OnBehaviourPlay(Playable playable, FrameData info) {
         if (RuntimeTree != null) {
             ApplyLocalRuntimeTreeController();
-            RuntimeTree.OnTreeEnable();
+            if (RuntimeTree.DirectorController != null)
+                RuntimeTree.OnTreeEnable();
         }
     }
 
     public override void OnBehaviourPause(Playable playable, FrameData info) {
         if (RuntimeTree != null) {
             ApplyLocalRuntimeTreeController();
-            RuntimeTree.OnTreeDisable();
+            if (RuntimeTree.DirectorController != null)
+                RuntimeTree.OnTreeDisable();
         }
     }
 

@@ -8,9 +8,33 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
 {
     [System.NonSerialized]
     public UnityTimeline.UnityTimelineTree RuntimeTree = null;
+    [System.NonSerialized]
+    public UnityTimeline.IDirectorController Controller = null;
+
+    public void ApplyLocalRuntimeTreeController(GameObject owner) {
+        if (owner != null) {
+            if (Controller == null) {
+                var comp1 = owner.GetComponent<PlayableDirector>();
+                if (comp1 != null)
+                    Controller = new UnityTimeline.PlayableDirectorController(comp1);
+            }
+            ApplyLocalRuntimeTreeController();
+        }
+    }
+
+    public void ApplyLocalRuntimeTreeController() {
+        if (RuntimeTree != null && RuntimeTree.DirectorController == null && Controller != null) {
+            RuntimeTree.SetDirectorController(Controller);
+        }
+    }
+
+
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
         if (RuntimeTree != null) {
             if (RuntimeTree.DirectorController == null) {
+                if (Controller != null) {
+                    RuntimeTree.SetDirectorController(Controller);
+                } else
                 if (playerData != null) {
                     PlayableDirector director = playerData as PlayableDirector;
                     if (director != null) {
@@ -41,17 +65,20 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
 
     public override void OnBehaviourPlay(Playable playable, FrameData info) {
         if (RuntimeTree != null) {
+            ApplyLocalRuntimeTreeController();
             RuntimeTree.OnTreeEnable();
         }
     }
 
     public override void OnBehaviourPause(Playable playable, FrameData info) {
         if (RuntimeTree != null) {
+            ApplyLocalRuntimeTreeController();
             RuntimeTree.OnTreeDisable();
         }
     }
 
     public override void OnPlayableDestroy(Playable playable) {
         DestroyRuntimeTree(true);
+        Controller = null;
     }
 }

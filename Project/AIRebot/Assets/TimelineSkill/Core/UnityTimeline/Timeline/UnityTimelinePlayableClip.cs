@@ -8,7 +8,8 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
 {
     public UnityTimelinePlayableBehaviour template = new UnityTimelinePlayableBehaviour ();
 
-    public ExposedReference<UnityTimeline.UnityTimelineTree> timelineTree;
+    // public ExposedReference<UnityTimeline.UnityTimelineTree> timelineTree;
+    public UnityTimeline.UnityTimelineTree timelineTree;
 
     public ClipCaps clipCaps
     {

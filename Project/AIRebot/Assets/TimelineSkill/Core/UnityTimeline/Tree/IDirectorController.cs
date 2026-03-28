@@ -13,5 +13,6 @@ namespace UnityTimeline
         DirectorState state { get; }
         bool IsValid { get; }
         void SetSpeed(double speed);
+        void SetTrackEnabled(int trackIndex, bool enabled);
     }
 }

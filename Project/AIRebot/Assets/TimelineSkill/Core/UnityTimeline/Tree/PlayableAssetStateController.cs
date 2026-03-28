@@ -1,4 +1,5 @@
 using Animancer;
+using UnityEngine.Playables;
 
 namespace UnityTimeline
 {
@@ -20,7 +21,7 @@ namespace UnityTimeline
             if (m_State != null)
             {
                 m_State.IsPlaying = true;
-                m_State.Weight = 1;
+               // m_State.Weight = 1;
             }
         }
 
@@ -62,6 +63,18 @@ namespace UnityTimeline
         {
             if (m_State != null)
                 m_State.Speed = (float)speed;
+        }
+
+        public void SetTrackEnabled(int trackIndex, bool enabled)
+        {
+            if (m_State == null || !m_State.IsValid)
+                return;
+
+            var playable = m_State.Playable;
+            if (trackIndex < 0 || trackIndex >= playable.GetInputCount())
+                return;
+
+            playable.SetInputWeight(trackIndex, enabled ? 1f : 0f);
         }
     }
 }

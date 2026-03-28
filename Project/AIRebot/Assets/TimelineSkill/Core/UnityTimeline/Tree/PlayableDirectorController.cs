@@ -65,5 +65,17 @@ namespace UnityTimeline
                 rootPlayable.SetSpeed(speed);
             }
         }
+
+        public void SetTrackEnabled(int trackIndex, bool enabled)
+        {
+            if (m_Director == null || !m_Director.playableGraph.IsValid())
+                return;
+
+            var rootPlayable = m_Director.playableGraph.GetRootPlayable(0);
+            if (trackIndex < 0 || trackIndex >= rootPlayable.GetInputCount())
+                return;
+
+            rootPlayable.SetInputWeight(trackIndex, enabled ? 1f : 0f);
+        }
     }
 }

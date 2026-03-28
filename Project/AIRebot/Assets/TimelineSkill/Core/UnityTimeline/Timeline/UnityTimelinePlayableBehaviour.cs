@@ -28,6 +28,14 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
+    public override void OnGraphStart(Playable playable) {
+        if (RuntimeTree != null) {
+            RuntimeTree.ResetTree();
+            ApplyLocalRuntimeTreeController();
+        }
+    }
+
+
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
         if (RuntimeTree != null) {

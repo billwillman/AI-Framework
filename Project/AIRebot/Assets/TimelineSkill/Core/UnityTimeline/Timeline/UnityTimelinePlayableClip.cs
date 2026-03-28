@@ -20,16 +20,10 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
     {
         var playable = ScriptPlayable<UnityTimelinePlayableBehaviour>.Create (graph, template);
         UnityTimelinePlayableBehaviour clone = playable.GetBehaviour ();
-        if (clone.RuntimeTree != null) {
-            if (Application.isPlaying)
-                GameObject.Destroy(clone.RuntimeTree);
-            else
-                GameObject.DestroyImmediate(clone.RuntimeTree);
-            clone.RuntimeTree = null;
-        }
-        if (timelineTree != null)
+        clone.DestroyRuntimeTree();
+        if (timelineTree != null) {
             clone.RuntimeTree = GameObject.Instantiate(timelineTree);
-        else
+        } else
             clone.RuntimeTree = null;
         return playable;
     }

@@ -9,16 +9,33 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     [System.NonSerialized]
     public UnityTimeline.UnityTimelineTree RuntimeTree = null;
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
-
+        if (RuntimeTree != null) {
+            if (RuntimeTree.DirectorController == null) {
+                if (playerData != null) {
+                    PlayableDirector director = playerData as PlayableDirector;
+                    if (director != null) {
+                        RuntimeTree.SetDirectorController(new UnityTimeline.PlayableDirectorController(director));
+                    }
+                }
+            }
+            if (RuntimeTree.DirectorController != null) {
+                RuntimeTree.UpdateTree(info.deltaTime);
+            }
+        }
     }
 
-    public override void OnPlayableDestroy(Playable playable) {
+    public void DestroyRuntimeTree() {
         if (RuntimeTree != null) {
+            RuntimeTree.DisposeTree();
             if (Application.isPlaying)
                 GameObject.Destroy(RuntimeTree);
             else
                 GameObject.DestroyImmediate(RuntimeTree);
             RuntimeTree = null;
         }
+    }
+
+    public override void OnPlayableDestroy(Playable playable) {
+        DestroyRuntimeTree();
     }
 }

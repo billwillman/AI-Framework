@@ -8,9 +8,9 @@ namespace UnityTimeline
     /// </summary>
     public class PlayableAssetStateController : IDirectorController
     {
-        private readonly AnimancerState m_State;
+        private readonly PlayableAssetState m_State;
 
-        public PlayableAssetStateController(AnimancerState state)
+        public PlayableAssetStateController(PlayableAssetState state)
         {
             m_State = state;
         }

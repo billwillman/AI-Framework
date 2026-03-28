@@ -6,6 +6,7 @@ using UnityEngine.Timeline;
 public class UnityTimelinePlayableMixerBehaviour : PlayableBehaviour
 {
     // NOTE: This function is called at runtime and edit time.  Keep that in mind when setting the values of properties.
+    /*
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
         PlayableDirector trackBinding = playerData as PlayableDirector;
@@ -25,4 +26,5 @@ public class UnityTimelinePlayableMixerBehaviour : PlayableBehaviour
             
         }
     }
+    */
 }

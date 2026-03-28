@@ -11,4 +11,14 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
 
     }
+
+    public override void OnPlayableDestroy(Playable playable) {
+        if (RuntimeTree != null) {
+            if (Application.isPlaying)
+                GameObject.DestroyImmediate(RuntimeTree);
+            else
+                GameObject.Destroy(RuntimeTree);
+            RuntimeTree = null;
+        }
+    }
 }

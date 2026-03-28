@@ -23,6 +23,8 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
         clone.DestroyRuntimeTree();
         if (timelineTree != null) {
             clone.RuntimeTree = GameObject.Instantiate(timelineTree);
+            clone.RuntimeTree.OnSpawn();
+            clone.RuntimeTree.InitTree(playable);
         } else
             clone.RuntimeTree = null;
         return playable;

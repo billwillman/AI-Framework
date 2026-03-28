@@ -15,9 +15,9 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     public override void OnPlayableDestroy(Playable playable) {
         if (RuntimeTree != null) {
             if (Application.isPlaying)
-                GameObject.DestroyImmediate(RuntimeTree);
-            else
                 GameObject.Destroy(RuntimeTree);
+            else
+                GameObject.DestroyImmediate(RuntimeTree);
             RuntimeTree = null;
         }
     }

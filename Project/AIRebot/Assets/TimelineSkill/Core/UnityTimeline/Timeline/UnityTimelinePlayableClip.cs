@@ -22,9 +22,9 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
         UnityTimelinePlayableBehaviour clone = playable.GetBehaviour ();
         if (clone.RuntimeTree != null) {
             if (Application.isPlaying)
-                GameObject.DestroyImmediate(clone.RuntimeTree);
-            else
                 GameObject.Destroy(clone.RuntimeTree);
+            else
+                GameObject.DestroyImmediate(clone.RuntimeTree);
             clone.RuntimeTree = null;
         }
         if (timelineTree != null)

@@ -29,13 +29,27 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     }
 
     public override void OnGraphStart(Playable playable) {
+        Debug.LogWarning("OnGraphStart");
         if (RuntimeTree != null) {
             RuntimeTree.ResetTree();
+            RuntimeTree.Running = false;
             ApplyLocalRuntimeTreeController();
         }
     }
 
+    public override void OnGraphStop(Playable playable) {
+        Debug.LogWarning("OnGraphStop");
+    }
 
+    public void SpawnRuntimeTree(UnityTimeline.UnityTimelineTree timelineTree, Playable playable) {
+        var temp = this.RuntimeTree;
+        
+        this.RuntimeTree = GameObject.Instantiate(timelineTree);
+        this.RuntimeTree.OnSpawn();
+        this.RuntimeTree.InitTree(playable);
+
+        DestroyRuntimeTree(ref temp);
+    }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
         if (RuntimeTree != null) {
@@ -51,17 +65,17 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
                 }
             }
             if (RuntimeTree.DirectorController != null) {
+                if (!RuntimeTree.Running)
+                    CallTreeEnable();
                 RuntimeTree.UpdateTree(info.deltaTime);
             }
         }
     }
 
-
-    public void DestroyRuntimeTree(bool isCallCallBack = false) {
+    static void DestroyRuntimeTree(ref UnityTimeline.UnityTimelineTree RuntimeTree) {
         if (RuntimeTree != null) {
-            if (isCallCallBack)
-                RuntimeTree.OnTreeDestroy();
             RuntimeTree.ResetTree();
+            RuntimeTree.Running = false;
             RuntimeTree.DisposeTree();
             if (Application.isPlaying)
                 GameObject.Destroy(RuntimeTree);
@@ -71,19 +85,45 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
-    public override void OnBehaviourPlay(Playable playable, FrameData info) {
+    public void DestroyRuntimeTree(bool isCallCallBack = false) {
         if (RuntimeTree != null) {
-            ApplyLocalRuntimeTreeController();
-            if (RuntimeTree.DirectorController != null)
-                RuntimeTree.OnTreeEnable();
+            if (isCallCallBack)
+                RuntimeTree.OnTreeDestroy();
+            DestroyRuntimeTree(ref RuntimeTree);
         }
     }
 
-    public override void OnBehaviourPause(Playable playable, FrameData info) {
+    void CallTreeEnable() {
         if (RuntimeTree != null) {
             ApplyLocalRuntimeTreeController();
-            if (RuntimeTree.DirectorController != null)
+            if (RuntimeTree.DirectorController != null) {
+                Debug.LogWarning("OnTreeEnable");
+                RuntimeTree.OnTreeEnable();
+            }
+        }
+    }
+
+    void CallTreeDisable() {
+        if (RuntimeTree != null) {
+            ApplyLocalRuntimeTreeController();
+            if (RuntimeTree.DirectorController != null) {
+                Debug.LogWarning("OnTreeDisable");
                 RuntimeTree.OnTreeDisable();
+            }
+        }
+    }
+
+    public override void OnBehaviourPlay(Playable playable, FrameData info) {
+        /*
+        if (!RuntimeTree.Running) {
+            CallTreeEnable();
+        }
+        */
+    }
+
+    public override void OnBehaviourPause(Playable playable, FrameData info) {
+        if (RuntimeTree.Running) {
+            CallTreeDisable();
         }
     }
 

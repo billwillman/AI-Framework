@@ -9,6 +9,8 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     [System.NonSerialized]
     public UnityTimeline.UnityTimelineTree RuntimeTree = null;
     [System.NonSerialized]
+    public bool IsRunTreeAsset = false;
+    [System.NonSerialized]
     public UnityTimeline.IDirectorController Controller = null;
 
     public void ApplyLocalRuntimeTreeController(GameObject owner) {
@@ -30,25 +32,32 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
 
     public override void OnGraphStart(Playable playable) {
         Debug.LogWarning("OnGraphStart");
+        SpawnRuntimeTree(RuntimeTree);
+        ApplyLocalRuntimeTreeController();
+        /*
         if (RuntimeTree != null) {
             RuntimeTree.ResetTree();
             RuntimeTree.Running = false;
             ApplyLocalRuntimeTreeController();
         }
+        */
     }
 
     public override void OnGraphStop(Playable playable) {
         Debug.LogWarning("OnGraphStop");
     }
 
-    public void SpawnRuntimeTree(UnityTimeline.UnityTimelineTree timelineTree, Playable playable) {
+    public void SpawnRuntimeTree(UnityTimeline.UnityTimelineTree timelineTree) {
         var temp = this.RuntimeTree;
         
         this.RuntimeTree = GameObject.Instantiate(timelineTree);
         this.RuntimeTree.OnSpawn();
-        this.RuntimeTree.InitTree(playable);
+        this.RuntimeTree.InitTree(this);
 
-        DestroyRuntimeTree(ref temp);
+        if (IsRunTreeAsset) {
+            DestroyRuntimeTree(ref temp);
+        }
+        IsRunTreeAsset = false;
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {

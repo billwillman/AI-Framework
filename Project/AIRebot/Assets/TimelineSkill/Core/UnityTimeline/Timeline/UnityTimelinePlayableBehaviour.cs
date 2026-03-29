@@ -82,10 +82,21 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
-    static void DestroyRuntimeTree(ref UnityTimeline.UnityTimelineTree RuntimeTree) {
+    void ResetTree() {
+        ResetTree(RuntimeTree);
+    }
+
+    static void ResetTree(UnityTimeline.UnityTimelineTree RuntimeTree) {
         if (RuntimeTree != null) {
             RuntimeTree.ResetTree();
             RuntimeTree.Running = false;
+        }
+    }
+
+    static void DestroyRuntimeTree(ref UnityTimeline.UnityTimelineTree RuntimeTree) {
+        if (RuntimeTree != null) {
+            ResetTree(RuntimeTree);
+
             RuntimeTree.DisposeTree();
             if (Application.isPlaying)
                 GameObject.Destroy(RuntimeTree);
@@ -134,6 +145,8 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     public override void OnBehaviourPause(Playable playable, FrameData info) {
         if (RuntimeTree.Running) {
             CallTreeDisable();
+
+            ResetTree();
         }
     }
 

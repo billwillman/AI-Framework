@@ -32,15 +32,16 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
 
     public override void OnGraphStart(Playable playable) {
         Debug.LogWarning("OnGraphStart");
+
+        /*
         SpawnRuntimeTree(RuntimeTree);
         ApplyLocalRuntimeTreeController();
-        /*
+        */
         if (RuntimeTree != null) {
             RuntimeTree.ResetTree();
             RuntimeTree.Running = false;
             ApplyLocalRuntimeTreeController();
         }
-        */
     }
 
     public override void OnGraphStop(Playable playable) {

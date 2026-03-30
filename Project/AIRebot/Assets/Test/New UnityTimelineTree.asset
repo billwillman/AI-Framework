@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ecea94dcdc01d4e8aed164183629e6, type: 3}
+  m_Name: New UnityTimelineTree
+  m_EditorClassIdentifier: 
+  m_Nodes:
+  - rid: 5380832480034553923
+  - rid: 5380832480034553924
+  - rid: 5380832480034553925
+  - rid: 5380832480034553926
+  - rid: 5380832480034553927
+  m_Edges:
+  - m_GUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
+    m_StartNodeGUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
+    m_EndNodeGUID: b7b630d7-46b7-4dfc-9d25-06fa19bce604
+    m_StartPortName: Output
+    m_EndPortName: Input
+  m_PropertyEdges: []
+  m_ExposedProperties: []
+  m_NodeGroups: []
+  m_StackNodes: []
+  m_RootGUID: 9557d372-a751-446f-b276-daed98cd2d22
+  m_OnEnableGUID: 02e7c374-fbdb-4042-87e0-1015ed358312
+  m_OnDisableGUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
+  m_OnDestroyGUID: 79c2b7ac-0688-4ec4-915e-b47a3e8cbcec
+  references:
+    version: 2
+    RefIds:
+    - rid: 5380832480034553923
+      type: {class: RootNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 9557d372-a751-446f-b276-daed98cd2d22
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 0}
+        m_DeltaTime:
+          m_Name: m_DeltaTime
+          m_Direction: 1
+          m_InputEdgeGUID: 
+          m_OutputEdgeGUIDs: []
+          m_Index: 0
+          m_Expanded: 0
+          m_Value: 0
+        m_OutputEdgeGUID: 
+        DeltaTime: 0
+    - rid: 5380832480034553924
+      type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
+      data:
+        m_GUID: 02e7c374-fbdb-4042-87e0-1015ed358312
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 200}
+        m_OutputEdgeGUID: 
+        EnterType: 0
+    - rid: 5380832480034553925
+      type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
+      data:
+        m_GUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 400}
+        m_OutputEdgeGUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
+        EnterType: 1
+    - rid: 5380832480034553926
+      type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
+      data:
+        m_GUID: 79c2b7ac-0688-4ec4-915e-b47a3e8cbcec
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 0, y: 600}
+        m_OutputEdgeGUID: 
+        EnterType: 2
+    - rid: 5380832480034553927
+      type: {class: JumpToTimeNode, ns: UnityTimeline, asm: Assembly-CSharp}
+      data:
+        m_GUID: b7b630d7-46b7-4dfc-9d25-06fa19bce604
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 276, y: 290}
+        m_InputEdgeGUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
+        m_TargetTime:
+          m_Name: m_TargetTime
+          m_Direction: 0
+          m_InputEdgeGUID: 
+          m_OutputEdgeGUIDs: []
+          m_Index: 0
+          m_Expanded: 0
+          m_Value: 3

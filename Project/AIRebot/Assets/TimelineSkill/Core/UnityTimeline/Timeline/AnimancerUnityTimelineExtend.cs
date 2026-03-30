@@ -14,8 +14,8 @@ public static class AnimancerUnityTimelineExtend
         for (int i = 0; i < graph.GetOutputCountByType<ScriptPlayableOutput>(); ++i) {
             var PlayableOutput = graph.GetOutputByType<ScriptPlayableOutput>(i);
             var refObj = PlayableOutput.GetReferenceObject();
-            if (refObj is UnityTimelineTreeTrackAsset) {
-                PlayableOutput.SetUserData(state);
+            if (refObj is UnityTimelinePlayableTrack) {
+              //  PlayableOutput.SetUserData(state);
             }
         }
     }

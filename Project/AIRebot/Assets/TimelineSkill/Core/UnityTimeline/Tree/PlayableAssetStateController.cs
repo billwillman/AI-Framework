@@ -88,5 +88,14 @@ namespace UnityTimeline
 
             return playable.GetInputWeight(trackIndex) > 0f;
         }
+
+        public void SetRootMotionEnabled(bool enable)
+        {
+            if (m_State == null || !m_State.IsValid)
+                return;
+            var animator = m_State.Layer.Graph.Component?.Animator;
+            if (animator != null)
+                animator.applyRootMotion = enable;
+        }
     }
 }

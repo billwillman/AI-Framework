@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Playables;
 
 namespace UnityTimeline
@@ -9,6 +10,16 @@ namespace UnityTimeline
     public class PlayableDirectorController : IDirectorController
     {
         private PlayableDirector m_Director;
+        private Animator m_Animator;
+        private Animator CachedAnimator
+        {
+            get
+            {
+                if (m_Animator == null)
+                    m_Animator = m_Director?.GetComponent<Animator>();
+                return m_Animator;
+            }
+        }
 
         public PlayableDirectorController(PlayableDirector director)
         {
@@ -88,6 +99,12 @@ namespace UnityTimeline
                 return false;
 
             return rootPlayable.GetInputWeight(trackIndex) > 0f;
+        }
+
+        public void SetRootMotionEnabled(bool enable)
+        {
+            if (CachedAnimator != null)
+                CachedAnimator.applyRootMotion = enable;
         }
     }
 }

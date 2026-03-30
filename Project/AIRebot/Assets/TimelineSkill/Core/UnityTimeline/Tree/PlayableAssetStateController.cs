@@ -93,7 +93,7 @@ namespace UnityTimeline
         {
             if (m_State == null || !m_State.IsValid)
                 return;
-            var animator = m_State.Layer.Graph.Component?.Animator;
+            var animator = m_State.Layer.Root?.Component?.Animator;
             if (animator != null)
                 animator.applyRootMotion = enable;
         }

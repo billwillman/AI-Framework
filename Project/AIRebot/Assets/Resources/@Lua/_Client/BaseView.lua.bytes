@@ -13,6 +13,7 @@ function BaseView:Ctor(gameObj, loader)
     self.RootGameObject = gameObj
     self.RootTransform = gameObj.transform
     self.Loader = loader
+    self.ChildViewMap = {}
     -- self.LoopScrollViews = {} -- 无限滚动列表
 end
 
@@ -207,6 +208,7 @@ function BaseView:Open(...)
 end
 
 function BaseView:Close()
+    self:_ClearAllChildViews(true) --- 清理所有子View
     xpcall(self.OnClose, _G.ErrorHandler, self)
 end
 
@@ -374,6 +376,61 @@ function BaseView:BindGSMsgNtf(msgId, selfCallBack)
     end
     _MOE.BindGSMsgNtf(msgId, self, selfCallBack) -- 注册网络消息
 end
+
+function BaseView:GetParentView()
+    return self.__parentView
+end
+
+function BaseView:GetParentWindowName()
+    if self.__parentView then
+        return self.__parentView.__wndName
+    end
+end
+
+------------------------------------------------- 增加子Child View -----------------------------------------------------
+function BaseView:AddView(widget, wndName, ...) --- 类似OnOpen的 ... 参数
+    if widget == nil or wndName == nil then
+        return
+    end
+    local instanceID = widget:GetInstanceID()
+    local hasMustUIBind = self.ChildViewMap and self.ChildViewMap[instanceID] == nil or nil
+    local childViewClass = _MOE.UIManager.GetViewClass(wndName)
+    if childViewClass == nil then
+        _MOE.Logger.LogErrorFormat("[BaseView] AddView Error,viewClass is nil, LuaView={0}", wndName)
+        return
+    end
+    local view = _MOE.UIManager.CreateAndInitViewBind(widget, childViewClass, self.Loader, hasMustUIBind)
+    if view then
+        view.__wndName = wndName -- 存放wndName
+        view.__parentView = self -- 父类 parentView
+    end
+    --- 缓存住
+    self.ChildViewMap = self.ChildViewMap or {}
+    self.ChildViewMap[instanceID] = view
+    ----------------
+    view:Init()
+    view:Open(...)
+    return view
+end
+
+function BaseView:_ClearAllChildViews(isClose)
+    if not self.ChildViewMap then
+        return
+    end
+    for _, childView in pairs(self.ChildViewMap) do
+        if childView then
+            childView:Close()
+            childView:Destroy()
+        end
+    end
+    if isClose then
+        self.ChildViewMap = nil
+    else
+        self.ChildViewMap = {}
+    end
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------- 虚方法
 function BaseView:OnDestroy()

@@ -24,7 +24,7 @@ function UIManager:_CreateLayers()
     self.RemoveLayerTransform = _MOE.GameStartTransform:Find("UI Root/RemoveLayer")
 end
 
-function UIManager:_GetWindowConfig(wndName)
+function UIManager._GetWindowConfig(wndName)
     if not wndName or not _MOE.WindowConfig then
         return
     end
@@ -36,7 +36,7 @@ function UIManager:_CreateUIPrefabAsync(wndName, viewClass, loaderType, fairyDep
     if not wndName or not viewClass then
         return false
     end
-    local cfg = self:_GetWindowConfig(wndName)
+    local cfg = UIManager._GetWindowConfig(wndName)
     if not cfg then
         return false
     end
@@ -85,7 +85,7 @@ function UIManager:_CreateUIPrefab(wndName, loaderType, fairyDepPackages)
     if not wndName then
         return
     end
-    local cfg = self:_GetWindowConfig(wndName)
+    local cfg = UIManager._GetWindowConfig(wndName)
     if not cfg then
         return
     end
@@ -146,7 +146,7 @@ function UIManager:_AppendLayerToLayer(wndName, layerId)
 end
 
 function UIManager:_AppendWndToLayerFromCfg(wndName)
-    local cfg = self:_GetWindowConfig(wndName)
+    local cfg = UIManager._GetWindowConfig(wndName)
     if not cfg then
         return
     end
@@ -206,23 +206,55 @@ function UIManager:_GetAndClearLoadingData(wndName)
     end
 end
 
+---
+function UIManager.CreateAndInitViewBind(gameObj, viewClass, loader, doUIBinder)
+    if not gameObj or not viewClass or not loader then
+        return
+    end
+    if doUIBinder == nil then
+        doUIBinder = true
+    end
+    local view = viewClass.New(gameObj, loader)
+    if view and doUIBinder then
+        local UIBinder = gameObj:GetComponent(UIBinderType)
+        if UIBinder then
+            UIBinder:InitRegisterControls(view)
+        end
+    end
+    return view
+end
+
 function UIManager:_CreateView(wndName, viewClass, loader, gameObj)
     if not wndName or not gameObj or not viewClass then
         self.loadingWnds[wndName] = nil
         return
     end
-    local view = viewClass.New(gameObj, loader)
+    local view = UIManager.CreateAndInitViewBind(gameObj, viewClass, loader)
     if view then
-        local UIBinder = gameObj:GetComponent(UIBinderType)
-        if UIBinder then
-            UIBinder:InitRegisterControls(view)
-        end
         self.Wnds[wndName] = view
         view.__wndName = wndName
         self:_AppendWndToLayerFromCfg(wndName)
         view:Init()
         view:Open(self:_GetAndClearLoadingData(wndName))
     end
+end
+
+function UIManager.GetViewClass(wndName)
+    if wndName == nil then
+        return
+    end
+    local config = UIManager._GetWindowConfig(wndName)
+    if not config then
+        return
+    end
+    local viewClass
+    if not config.class or string.len(config.class) <= 0  then
+        viewClass = _MOE.BaseViewClass
+    else
+        local path = string.format("_Client.Views.%s", config.class)
+        viewClass = require(path)
+    end
+    return viewClass
 end
 
 function UIManager:_CreateUIWindow(wndName, isAsync, ...)
@@ -233,16 +265,10 @@ function UIManager:_CreateUIWindow(wndName, isAsync, ...)
         self.loadingWnds[wndName] = {...}
         return
     end
-    local config = self:_GetWindowConfig(wndName)
+    local viewClass = UIManager.GetViewClass(wndName)
+    local config = UIManager._GetWindowConfig(wndName)
     if not config then
         return
-    end
-    local viewClass
-    if not config.class or string.len(config.class) <= 0  then
-        viewClass = _MOE.BaseViewClass
-    else
-        local path = string.format("_Client.Views.%s", config.class)
-        viewClass = require(path)
     end
     if not viewClass then
         self.loadingWnds[wndName] = nil -- 清理掉加载信息
@@ -307,7 +333,7 @@ function UIManager:BringToFront(wndName)
     if not wndName then
         return false
     end
-    local config = self:_GetWindowConfig(wndName)
+    local config = UIManager._GetWindowConfig(wndName)
     if not config then
         return false
     end

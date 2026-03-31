@@ -24,6 +24,13 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
+    public void ApplyLocalRuntimeTreeController(Animancer.PlayableAssetState state) {
+        if (state == null || Controller != null)
+            return;
+        Controller = new UnityTimeline.PlayableAssetStateController(state);
+        ApplyLocalRuntimeTreeController();
+    }
+
     public void ApplyLocalRuntimeTreeController() {
         if (RuntimeTree != null && RuntimeTree.DirectorController == null && Controller != null) {
             RuntimeTree.SetDirectorController(Controller);

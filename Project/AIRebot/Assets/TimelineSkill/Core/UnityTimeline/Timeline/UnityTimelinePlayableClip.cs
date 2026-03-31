@@ -23,10 +23,16 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
         clone.DestroyRuntimeTree();
         if (timelineTree != null) {
             clone.ApplyLocalRuntimeTreeController(owner);
-            
            // clone.RuntimeTree = timelineTree;
           //  clone.IsRunTreeAsset = true;
             clone.SpawnRuntimeTree(timelineTree);
+
+            // ×¢²á½øÈ¥
+            UnityTimelineTreeTempPlayableBehaviour tempBehaviour = UnityTimelineTreeTempPlayableBehaviourMgr.GetInstance().GetTempPlayableBehaviour(owner);
+            if (tempBehaviour != null) {
+                tempBehaviour.RegisterBehaviour(clone);
+            }
+            //-----------------------------------------
         } else
             clone.RuntimeTree = null;
         return playable;

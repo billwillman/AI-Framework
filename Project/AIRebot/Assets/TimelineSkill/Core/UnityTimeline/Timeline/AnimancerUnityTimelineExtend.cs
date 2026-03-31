@@ -8,18 +8,32 @@ using UnityEngine.Timeline;
 public static class AnimancerUnityTimelineExtend
 {
     private static void ApplyPlayableAssetState(PlayableAssetState state) {
-        if (state == null)
+        if (state == null || state.Root == null || state.Root.Component == null)
             return;
+        /*
         var graph = state.Root.Graph;
         for (int i = 0; i < graph.GetOutputCountByType<ScriptPlayableOutput>(); ++i) {
             var PlayableOutput = graph.GetOutputByType<ScriptPlayableOutput>(i);
             var refObj = PlayableOutput.GetReferenceObject();
             if (refObj is UnityTimelinePlayableTrack) {
-              //  PlayableOutput.SetUserData(state);
+                //PlayableOutput.SetUserData(state);
+                var sourcePlayable = PlayableOutput.GetSourcePlayable();
             }
         }
+        */
+        var gameObj = state.Root.Component.gameObject;
+        if (gameObj == null)
+            return;
+        var tempPlayableBehaviour = UnityTimelineTreeTempPlayableBehaviourMgr.GetInstance().GetTempPlayableBehaviour(gameObj);
+        for (int index = 0; index < tempPlayableBehaviour.PlayableBehaviourCount; ++index) {
+            var behaviour = tempPlayableBehaviour.GetBehaviour(index);
+            if (behaviour != null) {
+                behaviour.ApplyLocalRuntimeTreeController(state);
+            }
+        }
+        tempPlayableBehaviour.Clear();
     }
-    
+
     public static AnimancerState PlayTimeline(this AnimancerComponent component, PlayableAssetTransitionAsset asset, float fadeDuration, FadeMode mode = default) {
         if (asset = null)
             return null;

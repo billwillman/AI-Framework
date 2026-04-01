@@ -13,32 +13,34 @@ MonoBehaviour:
   m_Name: New UnityTimelineTree
   m_EditorClassIdentifier: 
   m_Nodes:
-  - rid: 5380832480034553923
-  - rid: 5380832480034553924
-  - rid: 5380832480034553925
-  - rid: 5380832480034553926
-  - rid: 5380832480034553927
+  - rid: 5521188878937227344
+  - rid: 5521188878937227345
+  - rid: 5521188878937227346
+  - rid: 5521188878937227347
+  - rid: 5521188878937227348
+  - rid: 5521188878937227349
   m_Edges:
-  - m_GUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
-    m_StartNodeGUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
-    m_EndNodeGUID: b7b630d7-46b7-4dfc-9d25-06fa19bce604
+  - m_GUID: 33db581e-0856-4e2e-8d38-0082d4089af9
+    m_StartNodeGUID: b414552e-5442-409c-976c-50ceac0776f7
+    m_EndNodeGUID: 35d3e161-47ff-4362-8365-7274fba6aaec
     m_StartPortName: Output
     m_EndPortName: Input
   m_PropertyEdges: []
   m_ExposedProperties: []
   m_NodeGroups: []
   m_StackNodes: []
-  m_RootGUID: 9557d372-a751-446f-b276-daed98cd2d22
-  m_OnEnableGUID: 02e7c374-fbdb-4042-87e0-1015ed358312
-  m_OnDisableGUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
-  m_OnDestroyGUID: 79c2b7ac-0688-4ec4-915e-b47a3e8cbcec
+  m_RootGUID: 53954e60-002d-4adb-85c9-c5ee35830001
+  m_OnEnableGUID: fc5618fd-778f-441f-8a60-1fd90a6cbfe6
+  m_OnDisableGUID: b414552e-5442-409c-976c-50ceac0776f7
+  m_OnDestroyGUID: e2c3974d-cc95-44d6-be23-a8b231db18c3
+  m_OnInterruptGUID: 1e841754-b22e-4313-804e-6f68d4322388
   references:
     version: 2
     RefIds:
-    - rid: 5380832480034553923
+    - rid: 5521188878937227344
       type: {class: RootNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
       data:
-        m_GUID: 9557d372-a751-446f-b276-daed98cd2d22
+        m_GUID: 53954e60-002d-4adb-85c9-c5ee35830001
         m_Expanded: 1
         m_ShowPanel: 0
         m_Position: {x: 0, y: 0}
@@ -52,41 +54,50 @@ MonoBehaviour:
           m_Value: 0
         m_OutputEdgeGUID: 
         DeltaTime: 0
-    - rid: 5380832480034553924
+    - rid: 5521188878937227345
       type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
       data:
-        m_GUID: 02e7c374-fbdb-4042-87e0-1015ed358312
+        m_GUID: fc5618fd-778f-441f-8a60-1fd90a6cbfe6
         m_Expanded: 1
         m_ShowPanel: 0
         m_Position: {x: 0, y: 200}
         m_OutputEdgeGUID: 
         EnterType: 0
-    - rid: 5380832480034553925
+    - rid: 5521188878937227346
       type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
       data:
-        m_GUID: 80e96ccc-04f0-42dc-a2a6-98db844547b2
+        m_GUID: b414552e-5442-409c-976c-50ceac0776f7
         m_Expanded: 1
         m_ShowPanel: 0
         m_Position: {x: 0, y: 400}
-        m_OutputEdgeGUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
+        m_OutputEdgeGUID: 33db581e-0856-4e2e-8d38-0082d4089af9
         EnterType: 1
-    - rid: 5380832480034553926
+    - rid: 5521188878937227347
       type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
       data:
-        m_GUID: 79c2b7ac-0688-4ec4-915e-b47a3e8cbcec
+        m_GUID: e2c3974d-cc95-44d6-be23-a8b231db18c3
         m_Expanded: 1
         m_ShowPanel: 0
         m_Position: {x: 0, y: 600}
         m_OutputEdgeGUID: 
         EnterType: 2
-    - rid: 5380832480034553927
-      type: {class: JumpToTimeNode, ns: UnityTimeline, asm: Assembly-CSharp}
+    - rid: 5521188878937227348
+      type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
       data:
-        m_GUID: b7b630d7-46b7-4dfc-9d25-06fa19bce604
+        m_GUID: 1e841754-b22e-4313-804e-6f68d4322388
         m_Expanded: 1
         m_ShowPanel: 0
-        m_Position: {x: 276, y: 290}
-        m_InputEdgeGUID: 0e03f326-04d0-4627-83d4-726f6a4bba24
+        m_Position: {x: -10, y: 307}
+        m_OutputEdgeGUID: 
+        EnterType: 3
+    - rid: 5521188878937227349
+      type: {class: JumpToTimeNode, ns: UnityTimeline, asm: Assembly-CSharp}
+      data:
+        m_GUID: 35d3e161-47ff-4362-8365-7274fba6aaec
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 471, y: 159}
+        m_InputEdgeGUID: 33db581e-0856-4e2e-8d38-0082d4089af9
         m_TargetTime:
           m_Name: m_TargetTime
           m_Direction: 0

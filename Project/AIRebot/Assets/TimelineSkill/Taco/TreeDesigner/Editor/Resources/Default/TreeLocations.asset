@@ -148,6 +148,11 @@ MonoBehaviour:
     name: Ability_Idle
     type: BaseTree
     locked: 0
+  - guid: 119c655b30098c6419919b69032e2dde
+    path: Assets/Test/New UnityTimelineTree.asset
+    name: New UnityTimelineTree
+    type: BaseTree
+    locked: 0
   FolderInfos:
   - path: Assets
     expanded: 1
@@ -162,6 +167,8 @@ MonoBehaviour:
   - path: Assets/Resources/character/F-Toraji
     expanded: 0
   - path: Assets/Resources/character/F-Toraji/@Skills
+    expanded: 0
+  - path: Assets/Test
     expanded: 0
   ShowInfos:
   - type: BaseTree

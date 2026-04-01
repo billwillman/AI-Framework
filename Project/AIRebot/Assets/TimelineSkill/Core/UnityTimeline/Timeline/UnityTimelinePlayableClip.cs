@@ -10,6 +10,7 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
 
     // public ExposedReference<UnityTimeline.UnityTimelineTree> timelineTree;
     public UnityTimeline.UnityTimelineTree timelineTree;
+    public string PrivateName = ""; // Ë½ÓÐÃû×Ö
 
     public ClipCaps clipCaps
     {

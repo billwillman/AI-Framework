@@ -35,7 +35,23 @@ namespace UnityTimeline
         }
 #if UNITY_EDITOR
 
-        [UnityEditor.MenuItem("Assets/Create/Taco/Tree/UnityTimelineTree")]
+        [UnityEditor.MenuItem("Assets/Create/AnimancerSkillSystem/Unity Timeline")]
+        public static void CreateUnityTimeline()
+        {
+            string path = UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.Selection.activeObject);
+            if (string.IsNullOrEmpty(path))
+                path = "Assets";
+
+            // 创建 TimelineAsset
+            var timeline = UnityEngine.ScriptableObject.CreateInstance<UnityEngine.Timeline.TimelineAsset>();
+            string assetPathAndName = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(path + "/New Unity Timeline.playable");
+            UnityEditor.AssetDatabase.CreateAsset(timeline, assetPathAndName);
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.AssetDatabase.Refresh();
+            UnityEditor.Selection.activeObject = timeline;
+        }
+
+        [UnityEditor.MenuItem("Assets/Create/AnimancerSkillSystem/UnityTimelineTree")]
         public static void CreateUnityTimelineTree()
         {
             UnityTimelineTree tree = CreateInstance<UnityTimelineTree>();

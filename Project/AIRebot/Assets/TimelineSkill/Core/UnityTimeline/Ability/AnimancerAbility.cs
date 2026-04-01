@@ -150,7 +150,7 @@ public partial class AnimancerAbility
         return dirty;
     }
 
-    [MenuItem("Assets/Create/Taco/AnimancerAbility/AnimancerAbility")]
+    [MenuItem("Assets/Create/AnimancerSkillSystem/AnimancerAbility")]
     public static void CreateAnimancerAbility()
     {
         AnimancerAbility tree = CreateInstance<AnimancerAbility>();

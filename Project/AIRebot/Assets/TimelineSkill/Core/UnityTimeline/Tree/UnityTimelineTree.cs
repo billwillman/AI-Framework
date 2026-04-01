@@ -56,6 +56,11 @@ namespace UnityTimeline
             OnDestroy.Position = new Vector2(0, 600);
             tree.OnDestroyGUID = OnDestroy.GUID;
 
+            var OnInterrupt = tree.CreateNode(typeof(TimelineEnterNode)) as TimelineEnterNode;
+            OnInterrupt.EnterType = TimelineEnterNode.NodeEnterType.OnInterrupt;
+            OnInterrupt.Position = new Vector2(0, 800);
+            tree.OnInterruptGUID = OnInterrupt.GUID;
+
             string path = UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.Selection.activeObject);
             string assetPathAndName = UnityEditor.AssetDatabase.GenerateUniqueAssetPath(path + "/New UnityTimelineTree.asset");
             UnityEditor.AssetDatabase.CreateAsset(tree, assetPathAndName);

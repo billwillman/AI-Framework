@@ -78,6 +78,7 @@ namespace Taco.Timeline
             OnEnable,
             OnDisable,
             OnDestroy,
+            OnInterrupt,
         }
 
         public NodeEnterType EnterType;

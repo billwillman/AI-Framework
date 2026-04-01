@@ -19,12 +19,18 @@ namespace Taco.Timeline
         protected string m_OnDestroyGUID;
         public string OnDestroyGUID { get => m_OnDestroyGUID; set => m_OnDestroyGUID = value; }
 
+        [SerializeField]
+        protected string m_OnInterruptGUID;
+        public string OnInterruptGUID { get => m_OnInterruptGUID; set => m_OnInterruptGUID = value; }
+
         [NonSerialized]
         protected TimelineEnterNode m_OnEnable;
         [NonSerialized]
         protected TimelineEnterNode m_OnDisable;
         [NonSerialized]
         protected TimelineEnterNode m_OnDestroy;
+        [NonSerialized]
+        protected TimelineEnterNode m_OnInterrupt;
 
         public TreeClip Clip { get; private set; }
         public Timeline Timeline => Clip.Timeline;
@@ -42,6 +48,8 @@ namespace Taco.Timeline
                 m_OnDisable = m_GUIDNodeMap[m_OnDisableGUID] as TimelineEnterNode;
             if (!string.IsNullOrEmpty(m_OnDestroyGUID))
                 m_OnDestroy = m_GUIDNodeMap[m_OnDestroyGUID] as TimelineEnterNode;
+            if (!string.IsNullOrEmpty(m_OnInterruptGUID))
+                m_OnInterrupt = m_GUIDNodeMap[m_OnInterruptGUID] as TimelineEnterNode;
         }
         public override void DisposeTree()
         {
@@ -49,6 +57,7 @@ namespace Taco.Timeline
             m_OnEnable = null;
             m_OnDisable = null;
             m_OnDestroy = null;
+            m_OnInterrupt = null;
             Clip = null;
         }
         public override void OnReset()
@@ -57,6 +66,7 @@ namespace Taco.Timeline
             m_OnEnable.ResetNode();
             m_OnDisable.ResetNode();
             m_OnDestroy.ResetNode();
+            m_OnInterrupt.ResetNode();
         }
         public override State OnUpdate()
         {
@@ -77,6 +87,10 @@ namespace Taco.Timeline
         {
             m_OnDestroy?.UpdateNode();
         }
+        public void OnTreeInterrupt()
+        {
+            m_OnInterrupt?.UpdateNode();
+        }
 
 #if UNITY_EDITOR
 
@@ -89,6 +103,8 @@ namespace Taco.Timeline
                 m_OnDisable = m_GUIDNodeMap[m_OnDisableGUID] as TimelineEnterNode;
             if (!string.IsNullOrEmpty(m_OnDestroyGUID))
                 m_OnDestroy = m_GUIDNodeMap[m_OnDestroyGUID] as TimelineEnterNode;
+            if (!string.IsNullOrEmpty(m_OnInterruptGUID))
+                m_OnInterrupt = m_GUIDNodeMap[m_OnInterruptGUID] as TimelineEnterNode;
             return dirty;
         }
 

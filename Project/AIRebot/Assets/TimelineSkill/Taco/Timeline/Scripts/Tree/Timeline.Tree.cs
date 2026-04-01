@@ -89,6 +89,10 @@ namespace Taco.Timeline
         {
             TreeInstance?.OnTreeDisable();
         }
+        public virtual void OnInterrupt()
+        {
+            TreeInstance?.OnTreeInterrupt();
+        }
 
 
         void Instantiate()

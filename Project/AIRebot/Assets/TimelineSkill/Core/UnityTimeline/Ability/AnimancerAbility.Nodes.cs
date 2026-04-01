@@ -233,7 +233,7 @@ public class PlayAnimancerClipNode : AnimancerAbilityActionNode
     public RunnableNode Child => m_Child;
 
     [SerializeField, ShowInPanel]
-    protected AnimationClip m_Clip;
+    protected AnimancerTransitionAssetBase m_TransitionAsset;
 
     [SerializeField, PropertyPort(PortDirection.Input, "FadeDuration")]
     protected FloatPropertyPort m_FadeDuration = new FloatPropertyPort() { Value = 0.25f };
@@ -277,9 +277,9 @@ public class PlayAnimancerClipNode : AnimancerAbilityActionNode
 
     protected override void DoAction()
     {
-        if (Animancer != null && m_Clip != null)
+        if (Animancer != null && m_TransitionAsset != null)
         {
-            AnimancerState state = Animancer.Play(m_Clip, m_FadeDuration.Value);
+            AnimancerState state = Animancer.Play(m_TransitionAsset, m_FadeDuration.Value);
             state.Speed = m_Speed.Value;
             m_AnimancerState.Value = state;
 

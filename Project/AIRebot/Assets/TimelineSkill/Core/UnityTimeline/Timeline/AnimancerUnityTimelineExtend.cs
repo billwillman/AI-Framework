@@ -25,13 +25,18 @@ public static class AnimancerUnityTimelineExtend
         if (gameObj == null)
             return;
         var tempPlayableBehaviour = UnityTimelineTreeTempPlayableBehaviourMgr.GetInstance().GetTempPlayableBehaviour(gameObj);
-        for (int index = 0; index < tempPlayableBehaviour.PlayableBehaviourCount; ++index) {
-            var behaviour = tempPlayableBehaviour.GetBehaviour(index);
-            if (behaviour != null) {
-                behaviour.ApplyLocalRuntimeTreeController(state);
+        if (tempPlayableBehaviour != null)
+        {
+            for (int index = 0; index < tempPlayableBehaviour.PlayableBehaviourCount; ++index)
+            {
+                var behaviour = tempPlayableBehaviour.GetBehaviour(index);
+                if (behaviour != null)
+                {
+                    behaviour.ApplyLocalRuntimeTreeController(state);
+                }
             }
+            tempPlayableBehaviour.Clear();
         }
-        tempPlayableBehaviour.Clear();
     }
 
     public static AnimancerState PlayTimeline(this AnimancerComponent component, PlayableAssetTransitionAsset asset, float fadeDuration, FadeMode mode = default) {

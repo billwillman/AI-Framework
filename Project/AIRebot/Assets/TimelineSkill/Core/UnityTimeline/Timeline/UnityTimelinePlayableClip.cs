@@ -29,6 +29,8 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
 
             // ×¢²á½øÈ¥
             UnityTimelineTreeTempPlayableBehaviour tempBehaviour = UnityTimelineTreeTempPlayableBehaviourMgr.GetInstance().GetTempPlayableBehaviour(owner);
+            if (tempBehaviour == null)
+                tempBehaviour = owner.AddComponent<UnityTimelineTreeTempPlayableBehaviour>();
             if (tempBehaviour != null) {
                 tempBehaviour.RegisterBehaviour(clone);
             }

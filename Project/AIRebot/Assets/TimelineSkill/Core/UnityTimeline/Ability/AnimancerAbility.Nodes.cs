@@ -220,9 +220,9 @@ public class PlayAnimancerTimelineNode : AnimancerAbilityActionNode
 /// <summary>
 /// 通过 Animancer 播放 AnimationClip
 /// </summary>
-[NodeName("PlayAnimancerClip")]
-[NodePath("AnimancerAbility/Action/PlayAnimancerClip")]
-public class PlayAnimancerClipNode : AnimancerAbilityActionNode
+[NodeName("PlayAnimancerTranslate")]
+[NodePath("AnimancerAbility/Action/PlayAnimancerTranslate")]
+public class PlayAnimancerTranslateNode : AnimancerAbilityActionNode
 {
     [SerializeField]
     protected string m_OutputEdgeGUID;

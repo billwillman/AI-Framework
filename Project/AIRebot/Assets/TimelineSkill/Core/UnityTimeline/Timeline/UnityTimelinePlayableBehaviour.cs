@@ -131,7 +131,7 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
-    // ´ò¶Ï
+    // æ‰“æ–­
     void CallTreeInterrpt() {
         if (RuntimeTree != null) {
             ApplyLocalRuntimeTreeController();
@@ -162,7 +162,11 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
 
     public override void OnBehaviourPause(Playable playable, FrameData info) {
         if (RuntimeTree.Running) {
-            CallTreeDisable();
+            bool isInterrupted = info.effectiveWeight > 0f;
+            if (isInterrupted)
+                CallTreeInterrpt();
+            else
+                CallTreeDisable();
 
             ResetTree();
         }

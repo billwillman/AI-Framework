@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Animancer;
+using TreeDesigner;
 
 /// <summary>
 /// AnimancerAbility 的 MonoBehaviour 桥接组件，挂载到角色上
@@ -32,12 +33,13 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
         AnimancerAbilityAgent.OnAbilityStart += HandleAbilityStart;
         AnimancerAbilityAgent.OnAbilityStop += HandleAbilityStop;
 
-        foreach (var ability in m_Abilities)
+        for (int i = 0; i < m_Abilities.Count; i++)
         {
-            if (ability != null)
+            if (m_Abilities[i] != null)
             {
-                ability.AnimancerComponent = AnimancerComponent;
-                AnimancerAbilityAgent.AddAbility(ability);
+                m_Abilities[i] = m_Abilities[i].Clone();
+                m_Abilities[i].AnimancerComponent = AnimancerComponent;
+                AnimancerAbilityAgent.AddAbility(m_Abilities[i]);
             }
         }
     }
@@ -91,6 +93,7 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
     {
         if (ability != null && AnimancerAbilityAgent != null)
         {
+            ability = TreeUtility.Clone(ability);
             ability.AnimancerComponent = AnimancerComponent;
             AnimancerAbilityAgent.AddAbility(ability);
             if (!m_Abilities.Contains(ability))

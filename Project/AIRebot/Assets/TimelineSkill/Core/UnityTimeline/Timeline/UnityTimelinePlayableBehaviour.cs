@@ -131,6 +131,17 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         }
     }
 
+    // ´ò¶Ï
+    void CallTreeInterrpt() {
+        if (RuntimeTree != null) {
+            ApplyLocalRuntimeTreeController();
+            if (RuntimeTree.DirectorController != null) {
+                Debug.LogWarning("OnInterrpt");
+                RuntimeTree.OnTreeInterrupt();
+            }
+        }
+    }
+
     void CallTreeDisable() {
         if (RuntimeTree != null) {
             ApplyLocalRuntimeTreeController();

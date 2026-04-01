@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class UnityTimelineTreeTempPlayableBehaviourMgr : SingetonMono<UnityTimelineTreeTempPlayableBehaviourMgr>
 {
-    protected override void Awake() {
-        base.Awake();
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     private Dictionary<int, UnityTimelineTreeTempPlayableBehaviour> TempMap = new Dictionary<int, UnityTimelineTreeTempPlayableBehaviour>();
 
     public void Register(UnityTimelineTreeTempPlayableBehaviour tempBehaviour) {

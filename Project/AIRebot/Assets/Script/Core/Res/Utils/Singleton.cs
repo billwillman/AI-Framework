@@ -45,6 +45,7 @@ public class SingetonMono<T> : CachedMonoBehaviour where T : CachedMonoBehaviour
 
 	protected virtual void Awake()
 	{
+        DontDestroyOnLoad(this.gameObject);
 		m_Instance = this as T;
 	}
 
@@ -57,8 +58,11 @@ public class SingetonMono<T> : CachedMonoBehaviour where T : CachedMonoBehaviour
 
             if (m_Instance == null)
             {
-                GameObject gameObj = new GameObject();
-                m_Instance = gameObj.AddComponent<T>();
+                m_Instance = GameObject.FindFirstObjectByType<T>(); // 这个要注意在场景切换的时候如果调用会有概率Crash，m_IsDestroy判断了OnDestroy，不要处理
+                if (m_Instance == null) {
+                    GameObject gameObj = new GameObject();
+                    m_Instance = gameObj.AddComponent<T>();
+                }
             }
 
             return m_Instance;

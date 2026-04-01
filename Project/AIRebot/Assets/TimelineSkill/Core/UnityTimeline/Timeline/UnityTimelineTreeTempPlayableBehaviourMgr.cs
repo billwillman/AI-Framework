@@ -17,7 +17,8 @@ public class UnityTimelineTreeTempPlayableBehaviourMgr : SingetonMono<UnityTimel
         if (tempBehaviour == null)
             return;
         int gameObjectInstanceID = tempBehaviour.CachedGameObject.GetInstanceID();
-        if (TempMap.ContainsKey(gameObjectInstanceID))
+        UnityTimelineTreeTempPlayableBehaviour r;
+        if (TempMap.TryGetValue(gameObjectInstanceID, out r) && r == tempBehaviour)
             TempMap.Remove(gameObjectInstanceID);
     }
 
@@ -28,6 +29,10 @@ public class UnityTimelineTreeTempPlayableBehaviourMgr : SingetonMono<UnityTimel
         UnityTimelineTreeTempPlayableBehaviour ret;
         if (TempMap.TryGetValue(gameObjectInstanceID, out ret))
             return ret;
+        ret = gameObject.GetComponent<UnityTimelineTreeTempPlayableBehaviour>();
+        if (ret != null) {
+            TempMap[gameObjectInstanceID] = ret;
+        }
         return null;
     }
 }

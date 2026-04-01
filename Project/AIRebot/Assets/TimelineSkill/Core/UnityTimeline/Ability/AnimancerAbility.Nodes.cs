@@ -7,12 +7,42 @@ using Animancer;
 using UnityEditor;
 #endif
 
-public partial class AnimancerAbility
+/// <summary>
+/// AnimancerAbility 的 Action 节点基类，提供 AnimancerComponent 访问
+/// </summary>
+public abstract class AnimancerAbilityActionNode : ActionNode
 {
-    [NonSerialized]
-    public AnimancerAbilityCanStartNode AnimancerAbilityCanStart;
-    [NonSerialized]
-    public OnAnimancerAbilityCancelNode OnAnimancerAbilityCancel;
+    public AnimancerAbility AnimancerAbility => Owner as AnimancerAbility;
+    public AnimancerComponent Animancer => (Owner as AnimancerAbility)?.AnimancerComponent;
+
+    protected override void OnStart()
+    {
+        if (!AnimancerAbility)
+        {
+            return;
+        }
+        else
+        {
+            base.OnStart();
+        }
+    }
+}
+
+/// <summary>
+/// AnimancerAbility 的 Value 节点基类，提供 AnimancerComponent 访问 + DoOuput 模式
+/// </summary>
+public abstract class AnimancerAbilityValueNode : ValueNode
+{
+    public AnimancerAbility AnimancerAbility => Owner as AnimancerAbility;
+    public AnimancerComponent Animancer => (Owner as AnimancerAbility)?.AnimancerComponent;
+
+    protected sealed override void OutputValue()
+    {
+        base.OutputValue();
+        if (AnimancerAbility)
+            DoOuput();
+    }
+    public abstract void DoOuput();
 }
 
 /// <summary>
@@ -92,7 +122,7 @@ public class AnimancerAbilityPropertyPort : PropertyPort<AnimancerAbility>
 /// </summary>
 [NodeName("PlayAnimancerTimeline")]
 [NodePath("AnimancerAbility/Action/PlayAnimancerTimeline")]
-public class PlayAnimancerTimelineNode : CharacterActionNode
+public class PlayAnimancerTimelineNode : AnimancerAbilityActionNode
 {
     [SerializeField]
     protected string m_OutputEdgeGUID;
@@ -144,11 +174,9 @@ public class PlayAnimancerTimelineNode : CharacterActionNode
 
     protected override void DoAction()
     {
-        if (Owner is AnimancerAbility animancerAbility && animancerAbility.AnimancerComponent != null)
+        if (Animancer != null)
         {
-            AnimancerComponent animancer = animancerAbility.AnimancerComponent;
-            
-            AnimancerState state = animancer.PlayTimeline(m_TimelineAsset, m_FadeDuration.Value);
+            AnimancerState state = Animancer.PlayTimeline(m_TimelineAsset, m_FadeDuration.Value);
             m_AnimancerState.Value = state;
 
             if (state != null && m_Child != null)
@@ -158,7 +186,7 @@ public class PlayAnimancerTimelineNode : CharacterActionNode
             }
             else if (m_Child != null)
             {
-                m_Child?.UpdateNode();
+                m_Child.UpdateNode();
             }
         }
     }
@@ -194,7 +222,7 @@ public class PlayAnimancerTimelineNode : CharacterActionNode
 /// </summary>
 [NodeName("PlayAnimancerClip")]
 [NodePath("AnimancerAbility/Action/PlayAnimancerClip")]
-public class PlayAnimancerClipNode : CharacterActionNode
+public class PlayAnimancerClipNode : AnimancerAbilityActionNode
 {
     [SerializeField]
     protected string m_OutputEdgeGUID;
@@ -249,10 +277,9 @@ public class PlayAnimancerClipNode : CharacterActionNode
 
     protected override void DoAction()
     {
-        if (Owner is AnimancerAbility animancerAbility && animancerAbility.AnimancerComponent != null && m_Clip != null)
+        if (Animancer != null && m_Clip != null)
         {
-            AnimancerComponent animancer = animancerAbility.AnimancerComponent;
-            AnimancerState state = animancer.Play(m_Clip, m_FadeDuration.Value);
+            AnimancerState state = Animancer.Play(m_Clip, m_FadeDuration.Value);
             state.Speed = m_Speed.Value;
             m_AnimancerState.Value = state;
 
@@ -268,7 +295,7 @@ public class PlayAnimancerClipNode : CharacterActionNode
         }
         else if (m_Child != null)
         {
-            m_Child?.UpdateNode();
+            m_Child.UpdateNode();
         }
     }
 
@@ -303,7 +330,7 @@ public class PlayAnimancerClipNode : CharacterActionNode
 /// </summary>
 [NodeName("StopAnimancer")]
 [NodePath("AnimancerAbility/Action/StopAnimancer")]
-public class StopAnimancerNode : CharacterActionNode
+public class StopAnimancerNode : AnimancerAbilityActionNode
 {
     protected override State OnUpdate()
     {
@@ -312,9 +339,9 @@ public class StopAnimancerNode : CharacterActionNode
 
     protected override void DoAction()
     {
-        if (Owner is AnimancerAbility animancerAbility && animancerAbility.AnimancerComponent != null)
+        if (Animancer != null)
         {
-            animancerAbility.AnimancerComponent.Stop();
+            Animancer.Stop();
         }
     }
 }
@@ -324,7 +351,7 @@ public class StopAnimancerNode : CharacterActionNode
 /// </summary>
 [NodeName("GetAnimancerState")]
 [NodePath("AnimancerAbility/Value/GetAnimancerState")]
-public class GetAnimancerStateNode : CharacterValueNode
+public class GetAnimancerStateNode : AnimancerAbilityValueNode
 {
     [SerializeField, PropertyPort(PortDirection.Input, "Key")]
     protected StringPropertyPort m_Key = new StringPropertyPort();
@@ -339,10 +366,9 @@ public class GetAnimancerStateNode : CharacterValueNode
 
     public override void DoOuput()
     {
-        if (Owner is AnimancerAbility animancerAbility && animancerAbility.AnimancerComponent != null)
+        if (Animancer != null)
         {
-            AnimancerComponent animancer = animancerAbility.AnimancerComponent;
-            if (animancer.States.TryGet(m_Key.Value, out AnimancerState state))
+            if (Animancer.States.TryGet(m_Key.Value, out AnimancerState state))
             {
                 m_AnimancerState.Value = state;
             }
@@ -361,5 +387,3 @@ public class GetAnimancerStateNode : CharacterValueNode
 public class AnimancerStatePropertyPort : PropertyPort<AnimancerState>
 {
 }
-
-

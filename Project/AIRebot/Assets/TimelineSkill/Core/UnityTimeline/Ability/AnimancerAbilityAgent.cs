@@ -10,7 +10,6 @@ public class AnimancerAbilityAgent
 {
     public HashSet<AnimancerAbility> Abilities = new HashSet<AnimancerAbility>();
     public Dictionary<string, AnimancerAbility> AbilityMap = new Dictionary<string, AnimancerAbility>();
-    public PlatformCharacter Owner;
 
     public event Action<AnimancerAbility> OnAbilityStart;
     public event Action<AnimancerAbility> OnAbilityStop;
@@ -49,11 +48,10 @@ public class AnimancerAbilityAgent
 
     public AnimancerAbilityAgent() { }
 
-    public virtual void Init(PlatformCharacter owner)
+    public virtual void Init()
     {
         Abilities.Clear();
         AbilityMap.Clear();
-        Owner = owner;
     }
 
     public virtual void Dispose()
@@ -65,7 +63,6 @@ public class AnimancerAbilityAgent
         }
         Abilities.Clear();
         AbilityMap.Clear();
-        Owner = null;
     }
 
     public virtual void AddAbility(AnimancerAbility ability)

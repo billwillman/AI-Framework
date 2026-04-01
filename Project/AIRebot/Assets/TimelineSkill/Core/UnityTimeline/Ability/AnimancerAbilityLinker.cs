@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Taco.Gameplay;
 using Animancer;
 
 /// <summary>
@@ -29,20 +28,16 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
 
     private void Start()
     {
-        PlatformCharacter character = GetComponent<PlatformCharacter>();
-        if (character != null)
-        {
-            AnimancerAbilityAgent.Init(character);
-            AnimancerAbilityAgent.OnAbilityStart += HandleAbilityStart;
-            AnimancerAbilityAgent.OnAbilityStop += HandleAbilityStop;
+        AnimancerAbilityAgent.Init();
+        AnimancerAbilityAgent.OnAbilityStart += HandleAbilityStart;
+        AnimancerAbilityAgent.OnAbilityStop += HandleAbilityStop;
 
-            foreach (var ability in m_Abilities)
+        foreach (var ability in m_Abilities)
+        {
+            if (ability != null)
             {
-                if (ability != null)
-                {
-                    ability.AnimancerComponent = AnimancerComponent;
-                    AnimancerAbilityAgent.AddAbility(ability);
-                }
+                ability.AnimancerComponent = AnimancerComponent;
+                AnimancerAbilityAgent.AddAbility(ability);
             }
         }
     }

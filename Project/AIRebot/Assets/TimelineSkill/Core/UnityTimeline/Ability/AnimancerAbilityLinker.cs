@@ -21,6 +21,8 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
     public event Action<AnimancerAbility> OnAbilityStart;
     public event Action<AnimancerAbility> OnAbilityStop;
 
+    public event Action OnAbilityReady; // 都准备好了
+
     private void Awake()
     {
         AnimancerComponent = GetComponent<AnimancerComponent>();
@@ -42,6 +44,9 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
                 AnimancerAbilityAgent.AddAbility(m_Abilities[i]);
             }
         }
+        // Ability都准备好了
+        if (OnAbilityReady != null)
+            OnAbilityReady();
     }
 
     private void Update()

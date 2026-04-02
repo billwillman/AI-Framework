@@ -22,7 +22,8 @@ MonoBehaviour:
     Guid: 6bf55a5e-74c7-4233-a132-154ab32667aa
     Expanded: 1
     Multi: 0
-    Reference: []
+    Reference:
+    - GlobalObjectId_V1-3-e60e87ed92f642243a3e0172335dff4c-11400000-0/Ability Tags
   - Name: Mugen.Stand
     Guid: bb8fdc9c-56f8-4580-981f-16a75fc1be90
     Expanded: 1

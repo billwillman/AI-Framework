@@ -153,6 +153,16 @@ MonoBehaviour:
     name: New UnityTimelineTree
     type: BaseTree
     locked: 0
+  - guid: e60e87ed92f642243a3e0172335dff4c
+    path: Assets/Test/Skills/New AnimancerAbility.asset
+    name: New AnimancerAbility
+    type: BaseTree
+    locked: 0
+  - guid: c60da547901f8bf41adac56b8c7b80f6
+    path: Assets/Test/TestAbility.asset
+    name: TestAbility
+    type: BaseTree
+    locked: 0
   FolderInfos:
   - path: Assets
     expanded: 1
@@ -169,6 +179,8 @@ MonoBehaviour:
   - path: Assets/Resources/character/F-Toraji/@Skills
     expanded: 0
   - path: Assets/Test
+    expanded: 0
+  - path: Assets/Test/Skills
     expanded: 0
   ShowInfos:
   - type: BaseTree

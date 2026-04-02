@@ -23,6 +23,10 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
 
     public event Action OnAbilityReady; // 都准备好了
 
+    private bool m_IsReady = false;
+
+    public bool IsReady => m_IsReady; // 是否准备好
+
     private void Awake()
     {
         AnimancerComponent = GetComponent<AnimancerComponent>();
@@ -45,6 +49,7 @@ public class AnimancerAbilityLinker : MonoBehaviour, IAnimancerAbilityAgentOwner
             }
         }
         // Ability都准备好了
+        m_IsReady = true;
         if (OnAbilityReady != null)
             OnAbilityReady();
     }

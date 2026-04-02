@@ -160,7 +160,12 @@ MonoBehaviour:
     locked: 0
   - guid: c60da547901f8bf41adac56b8c7b80f6
     path: Assets/Test/TestAbility.asset
-    name: TestAbility
+    name: New AnimancerAbility
+    type: BaseTree
+    locked: 0
+  - guid: b1c7021328d04cc41895d39059ebbf0f
+    path: Assets/Test/TestAbility1.asset
+    name: TestAbility1
     type: BaseTree
     locked: 0
   FolderInfos:

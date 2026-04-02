@@ -23,6 +23,11 @@ public class TestAbilityPlay : MonoBehaviour
             if (linker != null) {
                 linker.TryStartAbility("TestAbility");
             }
+        } else if (Input.GetKeyDown(KeyCode.S)) {
+            var linker = this.Linker;
+            if (linker != null) {
+                linker.TryStartAbility("TestAbility1");
+            }
         }
     }
 }

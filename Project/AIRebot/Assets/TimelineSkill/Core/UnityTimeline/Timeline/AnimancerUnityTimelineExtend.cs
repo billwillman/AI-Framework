@@ -40,7 +40,7 @@ public static class AnimancerUnityTimelineExtend
     }
 
     public static AnimancerState PlayTimeline(this AnimancerComponent component, PlayableAssetTransitionAsset asset, float fadeDuration, FadeMode mode = default) {
-        if (asset = null)
+        if (asset == null)
             return null;
         AnimancerState temp;
         if (component.States.TryGet(asset, out temp)) {

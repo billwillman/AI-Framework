@@ -67,7 +67,7 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         if (IsRunTreeAsset) {
             DestroyRuntimeTree(ref temp);
         }
-        IsRunTreeAsset = false;
+        IsRunTreeAsset = true;
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {

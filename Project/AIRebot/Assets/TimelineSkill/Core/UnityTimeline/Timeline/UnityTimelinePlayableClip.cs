@@ -10,7 +10,7 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
 
     // public ExposedReference<UnityTimeline.UnityTimelineTree> timelineTree;
     public UnityTimeline.UnityTimelineTree timelineTree;
-    public string PrivateName = ""; // 私有名字
+    public string PrivateName = ""; // 绉佹湁鍚嶅瓧
 
     public ClipCaps clipCaps
     {
@@ -27,9 +27,9 @@ public class UnityTimelinePlayableClip : PlayableAsset, ITimelineClipAsset
             clone.ApplyLocalRuntimeTreeController(owner);
            // clone.RuntimeTree = timelineTree;
           //  clone.IsRunTreeAsset = true;
-            clone.SpawnRuntimeTree(timelineTree);
+            clone.SpawnRuntimeTree(timelineTree, owner);
 
-            // 注册进去
+            // 娉ㄥ唽杩涘幓
             UnityTimelineTreeTempPlayableBehaviour tempBehaviour = UnityTimelineTreeTempPlayableBehaviourMgr.GetInstance().GetTempPlayableBehaviour(owner);
             if (tempBehaviour == null)
                 tempBehaviour = owner.AddComponent<UnityTimelineTreeTempPlayableBehaviour>();

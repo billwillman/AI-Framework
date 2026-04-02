@@ -20,6 +20,19 @@ namespace UnityTimeline
         /// </summary>
         public IDirectorController DirectorController => m_DirectorController;
 
+        [NonSerialized]
+        private AnimancerAbilityLinker m_AbilityLinker;
+
+        /// <summary>
+        /// 获取或设置 AnimancerAbilityLinker 引用。
+        /// 由 UnityTimelinePlayableBehaviour 在 SpawnRuntimeTree 时注入。
+        /// </summary>
+        public AnimancerAbilityLinker AbilityLinker
+        {
+            get => m_AbilityLinker;
+            set => m_AbilityLinker = value;
+        }
+
         /// <summary>
         /// 设置 PlayableDirector 控制接口。
         /// </summary>
@@ -32,6 +45,7 @@ namespace UnityTimeline
         {
             base.DisposeTree();
             m_DirectorController = null;
+            m_AbilityLinker = null;
         }
 #if UNITY_EDITOR
 

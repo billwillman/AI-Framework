@@ -13,5 +13,10 @@ namespace UnityTimeline
         /// 获取 PlayableDirector 的控制接口，通过 UnityTimelineTree 提供。
         /// </summary>
         protected IDirectorController Controller => (TimelineRunningTree as UnityTimelineTree)?.DirectorController;
+
+        /// <summary>
+        /// 获取 AnimancerAbilityLinker 引用，通过 UnityTimelineTree 提供。
+        /// </summary>
+        protected AnimancerAbilityLinker AbilityLinker => (TimelineRunningTree as UnityTimelineTree)?.AbilityLinker;
     }
 }

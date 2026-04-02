@@ -12,7 +12,6 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
     public bool IsRunTreeAsset = false;
     [System.NonSerialized]
     public UnityTimeline.IDirectorController Controller = null;
-
     public void ApplyLocalRuntimeTreeController(GameObject owner) {
         if (owner != null) {
             if (Controller == null) {
@@ -55,12 +54,15 @@ public class UnityTimelinePlayableBehaviour : PlayableBehaviour
         Debug.LogWarning("OnGraphStop");
     }
 
-    public void SpawnRuntimeTree(UnityTimeline.UnityTimelineTree timelineTree) {
+    public void SpawnRuntimeTree(UnityTimeline.UnityTimelineTree timelineTree, GameObject owner) {
         var temp = this.RuntimeTree;
         
         this.RuntimeTree = GameObject.Instantiate(timelineTree);
         this.RuntimeTree.OnSpawn();
         this.RuntimeTree.InitTree(this);
+
+        if (owner != null)
+            this.RuntimeTree.AbilityLinker = owner.GetComponentInChildren<AnimancerAbilityLinker>();
 
         if (IsRunTreeAsset) {
             DestroyRuntimeTree(ref temp);

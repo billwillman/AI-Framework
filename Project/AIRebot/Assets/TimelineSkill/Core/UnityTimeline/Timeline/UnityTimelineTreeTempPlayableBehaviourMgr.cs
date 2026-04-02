@@ -33,6 +33,6 @@ public class UnityTimelineTreeTempPlayableBehaviourMgr : SingetonMono<UnityTimel
         if (ret != null) {
             TempMap[gameObjectInstanceID] = ret;
         }
-        return null;
+        return ret;
     }
 }

@@ -29,6 +29,12 @@ public class UnityTimelineTreeTempPlayableBehaviour : Utils.CachedMonoBehaviour
             ClonePlayableBehaviour.Clear();
     }
 
+    public void UnregisterBehaviour(UnityTimelinePlayableBehaviour behaviour) {
+        if (behaviour == null || ClonePlayableBehaviour == null)
+            return;
+        ClonePlayableBehaviour.Remove(behaviour);
+    }
+
     public int PlayableBehaviourCount {
         get {
             if (ClonePlayableBehaviour != null)

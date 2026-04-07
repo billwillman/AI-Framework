@@ -19,14 +19,63 @@ MonoBehaviour:
   - rid: 5521188878937227347
   - rid: 5521188878937227348
   - rid: 5521188878937227349
+  - rid: 5521189017328549956
+  - rid: 5521189017328549957
+  - rid: 5521189017328549960
+  - rid: 5521189017328549964
+  - rid: 5521189017328549967
+  - rid: 5521189017328549968
+  - rid: 5521189017328549971
   m_Edges:
-  - m_GUID: 33db581e-0856-4e2e-8d38-0082d4089af9
+  - m_GUID: f1ef7480-c9fe-4a77-a0f0-d1c49e930cc3
     m_StartNodeGUID: b414552e-5442-409c-976c-50ceac0776f7
+    m_EndNodeGUID: bf90c815-cda6-4413-847a-e2bf9262db57
+    m_StartPortName: Output
+    m_EndPortName: Input
+  - m_GUID: e2e630f4-8800-470f-a0d2-4fc0c1f2e364
+    m_StartNodeGUID: bf90c815-cda6-4413-847a-e2bf9262db57
+    m_EndNodeGUID: 65a9d705-f396-4c0a-80c2-3c134c3360b9
+    m_StartPortName: Output
+    m_EndPortName: Input
+  - m_GUID: e808e3ad-e8f2-4a56-80c7-3bd6c048ca9f
+    m_StartNodeGUID: bf90c815-cda6-4413-847a-e2bf9262db57
+    m_EndNodeGUID: 139ad200-58a1-4598-b884-8199f59b7268
+    m_StartPortName: Output
+    m_EndPortName: Input
+  - m_GUID: 852ef522-c5fa-4f1a-8154-9e3eea674570
+    m_StartNodeGUID: bf90c815-cda6-4413-847a-e2bf9262db57
     m_EndNodeGUID: 35d3e161-47ff-4362-8365-7274fba6aaec
     m_StartPortName: Output
     m_EndPortName: Input
-  m_PropertyEdges: []
-  m_ExposedProperties: []
+  - m_GUID: 7d964285-bb7d-4196-b5cf-ed213998e28f
+    m_StartNodeGUID: fc5618fd-778f-441f-8a60-1fd90a6cbfe6
+    m_EndNodeGUID: e7e6ca39-54c7-4f16-a40c-793e58d0e1f2
+    m_StartPortName: Output
+    m_EndPortName: Input
+  m_PropertyEdges:
+  - m_GUID: 15e478b7-f48a-4ebb-ab60-f9c2f10b8006
+    m_StartNodeGUID: e143910b-d5c4-4993-b159-4b7b311f239d
+    m_EndNodeGUID: 65a9d705-f396-4c0a-80c2-3c134c3360b9
+    m_StartPortName: m_WorldPosition
+    m_EndPortName: m_Value
+  - m_GUID: fe21c6aa-4842-46a1-8d07-8ff97ba3b115
+    m_StartNodeGUID: e143910b-d5c4-4993-b159-4b7b311f239d
+    m_EndNodeGUID: 139ad200-58a1-4598-b884-8199f59b7268
+    m_StartPortName: m_WorldRotation
+    m_EndPortName: m_Value
+  - m_GUID: 8bdd506d-973f-4977-adfd-fe427a2d9821
+    m_StartNodeGUID: d36dff6a-8d37-457d-a8be-ca1ecd7606d1
+    m_EndNodeGUID: e7e6ca39-54c7-4f16-a40c-793e58d0e1f2
+    m_StartPortName: m_Value
+    m_EndPortName: m_WorldPosition
+  - m_GUID: 2b58388e-9a73-4df6-9af4-4865d6ec4873
+    m_StartNodeGUID: 36c86948-f054-48d7-994e-7b8af8ea935c
+    m_EndNodeGUID: e7e6ca39-54c7-4f16-a40c-793e58d0e1f2
+    m_StartPortName: m_Value
+    m_EndPortName: m_WorldRotation
+  m_ExposedProperties:
+  - rid: 5521189017328549958
+  - rid: 5521189017328549963
   m_NodeGroups: []
   m_StackNodes: []
   m_RootGUID: 53954e60-002d-4adb-85c9-c5ee35830001
@@ -60,8 +109,8 @@ MonoBehaviour:
         m_GUID: fc5618fd-778f-441f-8a60-1fd90a6cbfe6
         m_Expanded: 1
         m_ShowPanel: 0
-        m_Position: {x: 0, y: 200}
-        m_OutputEdgeGUID: 
+        m_Position: {x: -10, y: 148}
+        m_OutputEdgeGUID: 7d964285-bb7d-4196-b5cf-ed213998e28f
         EnterType: 0
     - rid: 5521188878937227346
       type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
@@ -70,7 +119,7 @@ MonoBehaviour:
         m_Expanded: 1
         m_ShowPanel: 0
         m_Position: {x: 0, y: 400}
-        m_OutputEdgeGUID: 33db581e-0856-4e2e-8d38-0082d4089af9
+        m_OutputEdgeGUID: f1ef7480-c9fe-4a77-a0f0-d1c49e930cc3
         EnterType: 1
     - rid: 5521188878937227347
       type: {class: TimelineEnterNode, ns: Taco.Timeline, asm: Taco.Timeline.Tree}
@@ -96,8 +145,8 @@ MonoBehaviour:
         m_GUID: 35d3e161-47ff-4362-8365-7274fba6aaec
         m_Expanded: 1
         m_ShowPanel: 0
-        m_Position: {x: 471, y: 159}
-        m_InputEdgeGUID: 33db581e-0856-4e2e-8d38-0082d4089af9
+        m_Position: {x: 589, y: 600}
+        m_InputEdgeGUID: 852ef522-c5fa-4f1a-8154-9e3eea674570
         m_TargetTime:
           m_Name: m_TargetTime
           m_Direction: 0
@@ -105,4 +154,177 @@ MonoBehaviour:
           m_OutputEdgeGUIDs: []
           m_Index: 0
           m_Expanded: 0
-          m_Value: 3
+          m_Value: 0
+    - rid: 5521189017328549956
+      type: {class: GetWorldTransformNode, ns: UnityTimeline, asm: Assembly-CSharp}
+      data:
+        m_GUID: e143910b-d5c4-4993-b159-4b7b311f239d
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 510, y: 416}
+        m_WorldPosition:
+          m_Name: m_WorldPosition
+          m_Direction: 1
+          m_InputEdgeGUID: 
+          m_OutputEdgeGUIDs:
+          - 15e478b7-f48a-4ebb-ab60-f9c2f10b8006
+          m_Index: 0
+          m_Expanded: 0
+          m_Value: {x: 0, y: 0, z: 0}
+        m_WorldRotation:
+          m_Name: m_WorldRotation
+          m_Direction: 1
+          m_InputEdgeGUID: 
+          m_OutputEdgeGUIDs:
+          - fe21c6aa-4842-46a1-8d07-8ff97ba3b115
+          m_Index: 1
+          m_Expanded: 0
+          m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549957
+      type: {class: SequenceNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: bf90c815-cda6-4413-847a-e2bf9262db57
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 232, y: 307}
+        m_InputEdgeGUID: f1ef7480-c9fe-4a77-a0f0-d1c49e930cc3
+        m_OutputEdgeGUIDs:
+        - e2e630f4-8800-470f-a0d2-4fc0c1f2e364
+        - e808e3ad-e8f2-4a56-80c7-3bd6c048ca9f
+        - 852ef522-c5fa-4f1a-8154-9e3eea674570
+    - rid: 5521189017328549958
+      type: {class: Vector3ExposedProperty, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 6e6ddaf6-0af6-45d6-9775-922ae518abaf
+        m_Name: GlobalOffsetPos
+        m_Index: 0
+        m_Expanded: 1
+        m_Internal: 0
+        m_ShowOutside: 0
+        m_CanEdit: 1
+        m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549960
+      type: {class: ExposedPropertyNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 65a9d705-f396-4c0a-80c2-3c134c3360b9
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 826, y: 193}
+        m_NodeType: 1
+        m_Value:
+          rid: 5521189017328549962
+        m_InputEdgeGUID: e2e630f4-8800-470f-a0d2-4fc0c1f2e364
+        m_ExposedPropertyGUID: 6e6ddaf6-0af6-45d6-9775-922ae518abaf
+    - rid: 5521189017328549962
+      type: {class: Vector3PropertyPort, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_Name: m_Value
+        m_Direction: 0
+        m_InputEdgeGUID: 15e478b7-f48a-4ebb-ab60-f9c2f10b8006
+        m_OutputEdgeGUIDs: []
+        m_Index: -1
+        m_Expanded: 0
+        m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549963
+      type: {class: Vector3ExposedProperty, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: e61ece93-b922-4c6a-933f-b53ee7af476b
+        m_Name: GlobalOffsetRot
+        m_Index: 1
+        m_Expanded: 1
+        m_Internal: 0
+        m_ShowOutside: 0
+        m_CanEdit: 1
+        m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549964
+      type: {class: ExposedPropertyNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 139ad200-58a1-4598-b884-8199f59b7268
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 812, y: 327}
+        m_NodeType: 1
+        m_Value:
+          rid: 5521189017328549966
+        m_InputEdgeGUID: e808e3ad-e8f2-4a56-80c7-3bd6c048ca9f
+        m_ExposedPropertyGUID: e61ece93-b922-4c6a-933f-b53ee7af476b
+    - rid: 5521189017328549966
+      type: {class: Vector3PropertyPort, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_Name: m_Value
+        m_Direction: 0
+        m_InputEdgeGUID: fe21c6aa-4842-46a1-8d07-8ff97ba3b115
+        m_OutputEdgeGUIDs: []
+        m_Index: -1
+        m_Expanded: 0
+        m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549967
+      type: {class: SetWorldTransformNode, ns: UnityTimeline, asm: Assembly-CSharp}
+      data:
+        m_GUID: e7e6ca39-54c7-4f16-a40c-793e58d0e1f2
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 534, y: 15}
+        m_InputEdgeGUID: 7d964285-bb7d-4196-b5cf-ed213998e28f
+        m_WorldPosition:
+          m_Name: m_WorldPosition
+          m_Direction: 0
+          m_InputEdgeGUID: 8bdd506d-973f-4977-adfd-fe427a2d9821
+          m_OutputEdgeGUIDs: []
+          m_Index: 0
+          m_Expanded: 0
+          m_Value: {x: 0, y: 0, z: 0}
+        m_WorldRotation:
+          m_Name: m_WorldRotation
+          m_Direction: 0
+          m_InputEdgeGUID: 2b58388e-9a73-4df6-9af4-4865d6ec4873
+          m_OutputEdgeGUIDs: []
+          m_Index: 1
+          m_Expanded: 0
+          m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549968
+      type: {class: ExposedPropertyNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: d36dff6a-8d37-457d-a8be-ca1ecd7606d1
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 176, y: 49}
+        m_NodeType: 0
+        m_Value:
+          rid: 5521189017328549970
+        m_InputEdgeGUID: 
+        m_ExposedPropertyGUID: 6e6ddaf6-0af6-45d6-9775-922ae518abaf
+    - rid: 5521189017328549970
+      type: {class: Vector3PropertyPort, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_Name: m_Value
+        m_Direction: 1
+        m_InputEdgeGUID: 
+        m_OutputEdgeGUIDs:
+        - 8bdd506d-973f-4977-adfd-fe427a2d9821
+        m_Index: -1
+        m_Expanded: 0
+        m_Value: {x: 0, y: 0, z: 0}
+    - rid: 5521189017328549971
+      type: {class: ExposedPropertyNode, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_GUID: 36c86948-f054-48d7-994e-7b8af8ea935c
+        m_Expanded: 1
+        m_ShowPanel: 0
+        m_Position: {x: 233, y: 171}
+        m_NodeType: 0
+        m_Value:
+          rid: 5521189017328549973
+        m_InputEdgeGUID: 
+        m_ExposedPropertyGUID: e61ece93-b922-4c6a-933f-b53ee7af476b
+    - rid: 5521189017328549973
+      type: {class: Vector3PropertyPort, ns: TreeDesigner, asm: Taco.TreeDesigner}
+      data:
+        m_Name: m_Value
+        m_Direction: 1
+        m_InputEdgeGUID: 
+        m_OutputEdgeGUIDs:
+        - 2b58388e-9a73-4df6-9af4-4865d6ec4873
+        m_Index: -1
+        m_Expanded: 0
+        m_Value: {x: 0, y: 0, z: 0}

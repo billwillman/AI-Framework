@@ -20,5 +20,7 @@ namespace UnityTimeline
         void SetRootMotionEnabled(bool enable);
         Vector3 GetRootMotionDeltaPosition();
         Vector3 GetRootMotionDeltaRotation();
+        Vector3 GetWorldPosition();
+        Vector3 GetWorldRotation();
     }
 }

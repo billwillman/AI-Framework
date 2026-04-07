@@ -120,5 +120,19 @@ namespace UnityTimeline
                 return CachedAnimator.deltaRotation.eulerAngles;
             return Vector3.zero;
         }
+
+        public Vector3 GetWorldPosition()
+        {
+            if (m_Director != null)
+                return m_Director.transform.position;
+            return Vector3.zero;
+        }
+
+        public Vector3 GetWorldRotation()
+        {
+            if (m_Director != null)
+                return m_Director.transform.rotation.eulerAngles;
+            return Vector3.zero;
+        }
     }
 }

@@ -106,5 +106,19 @@ namespace UnityTimeline
             if (CachedAnimator != null)
                 CachedAnimator.applyRootMotion = enable;
         }
+
+        public Vector3 GetRootMotionDeltaPosition()
+        {
+            if (CachedAnimator != null)
+                return CachedAnimator.deltaPosition;
+            return Vector3.zero;
+        }
+
+        public Vector3 GetRootMotionDeltaRotation()
+        {
+            if (CachedAnimator != null)
+                return CachedAnimator.deltaRotation.eulerAngles;
+            return Vector3.zero;
+        }
     }
 }

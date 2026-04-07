@@ -325,6 +325,7 @@ public partial class AnimancerAbility : OneRootTree
 - 被其他技能的 `CancelAbilitiesWithTag` 匹配，判断是否应该被取消
 - 被其他技能的 `BlockAbilitiesWithTag` 匹配，判断是否被阻止激活
 - 被 Agent 全局的 `BlockAbilitiesWithTag` 匹配，判断是否被全局阻止
+- 被 Agent 的 `CanBufferAbilitiesTag` 匹配，判断被阻止时是否允许进入缓冲队列
 
 **匹配逻辑**（支持层级匹配）：
 ```
@@ -338,7 +339,12 @@ public partial class AnimancerAbility : OneRootTree
 
 **作用**：当本技能成功激活时，会取消所有 `AbilityTags` 匹配这些标签的正在运行的技能。
 
-**执行时机**：`TryStartAbility` 中，在通过所有检查、即将调用 `StartAbility()` 之前执行。
+**匹配方向**：使用 `PartChildOf` —— 已激活技能的 `AbilityTags` 中至少有一个标签**等于或是** `CancelAbilitiesWithTag` 中某标签的**子标签**，则该技能会被取消。
+- 本技能 CancelAbilitiesWithTag = `[Mugen.Stand]`
+- 已激活技能 A 的 AbilityTags = `[Mugen.Stand.Idle]` → ✅ 会被取消（子标签匹配）
+- 已激活技能 B 的 AbilityTags = `[Mugen.Jump]` → ❌ 不会被取消
+
+**执行时机**：`TryStartAbility` 中，在通过所有检查、即将调用 `StartAbility()` 之前执行。注意只会取消匹配到的**第一个**技能（有 `break`）。
 
 **代码逻辑**：
 ```csharp
@@ -362,9 +368,18 @@ foreach (var ability in Abilities)
 
 #### BlockAbilitiesWithTag — 阻止其他技能激活
 
-**作用**：当本技能正在运行时，阻止所有 `AbilityTags` 匹配这些标签的技能激活。被阻止的技能会尝试进入缓冲队列。
+**作用**：当本技能正在运行时，阻止 `AbilityTags` 匹配这些标签的新技能激活。被阻止的技能会尝试进入缓冲队列。
 
-**执行时机**：`TryStartAbility` 中，在检查新技能能否激活时遍历所有已激活技能。
+**匹配方向**：使用 `PartChildOf` —— 新技能的 `AbilityTags` 中至少有一个标签**等于或是**本技能 `BlockAbilitiesWithTag` 中某标签的**子标签**，则新技能被阻止。
+- 本技能 BlockAbilitiesWithTag = `[Mugen.Stand]`
+- 新技能 AbilityTags = `[Mugen.Stand.Walk]` → ❌ 被阻止（子标签匹配）
+- 新技能 AbilityTags = `[Mugen.Jump]` → ✅ 不被阻止
+
+**两阶段检查**：`TryStartAbility` 中有两处 Block 检查：
+1. **Agent 全局阻止**（步骤 2）：使用 `IsChildOf` 检查新技能的 AbilityTags 是否被 `Agent.BlockAbilitiesWithTag` 列表阻止
+2. **技能级别阻止**（步骤 3）：使用 `PartChildOf` 遍历所有已激活技能的 `BlockAbilitiesWithTag` 字段
+
+**执行时机**：`TryStartAbility` 中，RequiredTags 检查之后。
 
 **代码逻辑**：
 ```csharp
@@ -411,7 +426,12 @@ protected virtual void OnStopAbility()
 
 #### RequiredTags — 激活所需标签
 
-**作用**：技能激活前检查 Agent 的全局 `ActiveTags` 中是否包含所有这些标签。**任何一个不满足则拒绝激活**，技能会被加入缓冲队列等待条件满足。
+**作用**：技能激活前检查 Agent 的全局 `ActiveTags` 是否满足所有这些前置标签。**任何一个不满足则拒绝激活**，技能会被加入缓冲队列等待条件满足。
+
+**匹配方向**：对于每个 RequiredTag，检查 ActiveTags 中是否存在**等于该 RequiredTag 或是其子标签**的标签。
+- RequiredTags 配 `Mugen.Stand` → ActiveTags 中有 `Mugen.Stand` ✅ 满足
+- RequiredTags 配 `Mugen.Stand` → ActiveTags 中有 `Mugen.Stand.Idle` ✅ 满足（子标签也算）
+- RequiredTags 配 `Mugen.Stand.Idle` → ActiveTags 中只有 `Mugen.Stand` ❌ 不满足（父标签不够具体）
 
 **执行时机**：`TryStartAbility` 中，是第一个检查项。
 
@@ -423,7 +443,8 @@ foreach (var requiredTag in abilityToStart.RequiredTags.Tags)
     bool isChild = false;
     foreach (var activeTag in ActiveTags)
     {
-        if (activeTag.StartTagIs(requiredTag))  // 层级匹配
+        // activeTag 是 requiredTag 的子标签或相等，则满足条件
+        if (activeTag.StartTagIs(requiredTag))
         {
             isChild = true;
             break;
@@ -438,7 +459,7 @@ foreach (var requiredTag in abilityToStart.RequiredTags.Tags)
 ```
 
 **典型场景**：
-- 行走技能设置 `RequiredTags = [Mugen.Stand]` → 必须在站立状态下才能行走
+- 行走技能设置 `RequiredTags = [Mugen.Stand]` → ActiveTags 中有 `Mugen.Stand` 或 `Mugen.Stand.Idle` 都能激活
 
 ### 8.3 Agent 全局 Tag 列表
 
@@ -463,25 +484,35 @@ public class AnimancerAbilityAgent
 TryStartAbility(abilityToStart)
 │
 ├─ 1. RequiredTags 检查
-│     遍历 abilityToStart.RequiredTags，检查 Agent.ActiveTags 中是否都满足
+│     遍历 abilityToStart.RequiredTags 的每个 tag
+│     检查 Agent.ActiveTags 中是否存在该 tag 的子标签或相等标签
+│     匹配: activeTag.StartTagIs(requiredTag)
 │     → 不满足：加入缓冲，返回 false
 │
 ├─ 2. Agent 全局 BlockAbilitiesWithTag 检查
-│     检查 abilityToStart.AbilityTags 是否被 Agent.BlockAbilitiesWithTag 阻止
+│     遍历 Agent.BlockAbilitiesWithTag 的每个 blockTag
+│     检查 abilityToStart.AbilityTags 中是否有 blockTag 的子标签或相等标签
+│     匹配: abilityToStart.AbilityTags.IsChildOf(blockTag)
 │     → 被阻止：加入缓冲，返回 false
 │
 ├─ 3. 其他已激活技能的 BlockAbilitiesWithTag 检查
-│     遍历所有 Active 技能，检查它们的 BlockAbilitiesWithTag 是否阻止 abilityToStart
+│     遍历所有 Active 技能
+│     检查 abilityToStart.AbilityTags 中是否有标签是该技能 BlockAbilitiesWithTag 的子标签
+│     匹配: abilityToStart.AbilityTags.PartChildOf(ability.BlockAbilitiesWithTag)
 │     → 被阻止：加入缓冲，返回 false
 │
 ├─ 4. CanStart() 自定义检查
-│     调用技能行为树中的 AbilityCanStartNode 自定义条件
+│     调用技能行为树中的 AnimancerAbilityCanStartNode 自定义条件
 │     → 不通过：加入缓冲，返回 false
 │
 ├─ 5. CancelAbilitiesWithTag 执行
-│     遍历所有 Active 技能，取消 AbilityTags 匹配 abilityToStart.CancelAbilitiesWithTag 的技能
+│     遍历所有 Active 技能
+│     检查该技能的 AbilityTags 中是否有标签是 abilityToStart.CancelAbilitiesWithTag 的子标签
+│     匹配: ability.AbilityTags.PartChildOf(abilityToStart.CancelAbilitiesWithTag)
+│     → 匹配则取消该技能（仅取消第一个匹配的）
 │
 └─ 6. 启动技能
+      清空缓冲队列
       调用 StartAbility()，将 ActiveTags 添加到 Agent.ActiveTags
 ```
 

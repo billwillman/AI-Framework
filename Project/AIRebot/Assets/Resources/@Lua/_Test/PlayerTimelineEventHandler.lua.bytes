@@ -1,0 +1,11 @@
+local PlayerTimelineEventHandler = _MOE.class("PlayerTimelineEventHandler")
+
+function PlayerTimelineEventHandler:Ctor()
+    _MOE.Logger.Log("PlayerTimelineEventHandler Ctor")
+end
+
+function PlayerTimelineEventHandler:OnTestTimelineEvent()
+  _MOE.Logger.Log("PlayerTimelineEventHandler OnTestTimelineEvent")
+end
+
+return PlayerTimelineEventHandler

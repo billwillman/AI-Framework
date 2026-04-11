@@ -84,6 +84,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6426206844270440974}
+    - targetCorrespondingSourceObject: {fileID: 100006, guid: c9f3e1113795a054c939de9883b31fed,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1173626025191983313}
+    - targetCorrespondingSourceObject: {fileID: 100006, guid: c9f3e1113795a054c939de9883b31fed,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6981828972029615994}
   m_SourcePrefab: {fileID: 100100000, guid: c9f3e1113795a054c939de9883b31fed, type: 3}
 --- !u!95 &7612763748886457669 stripped
 Animator:
@@ -153,6 +161,42 @@ MonoBehaviour:
   _Target: {fileID: 7612763748894229155}
   m_CompensationPosition: {x: 0, y: 0, z: 0}
   m_CompensationRotationEuler: {x: 0, y: 0, z: 0}
+--- !u!114 &1173626025191983313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612763748893744771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ec6d520191e1f4c90638dfcea48ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LuaPath: _Test.PlayerTimelineEventHandler
+  SelfTarget: {fileID: 6981828972029615994}
+  CustomLuaFunctionName: []
+  bInitCustomLuaFunctionInStart: 0
+--- !u!114 &6981828972029615994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612763748893744771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1ca4c0ef214e64792b81a5eeb57cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals: []
+    m_Events: []
+  m_LuaEvents:
+    m_Signals:
+    - {fileID: 11400000, guid: 9e2d0460f89034e4f951611a7cbd3c13, type: 2}
+    m_LuaEventNames:
+    - OnTestTimelineEvent
 --- !u!4 &7612763748894229155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: c9f3e1113795a054c939de9883b31fed,

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TreeDesigner;
 using Animancer;
+using EasyCharacterMovement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,6 +15,11 @@ public abstract class AnimancerAbilityActionNode : ActionNode
 {
     public AnimancerAbility AnimancerAbility => Owner as AnimancerAbility;
     public AnimancerComponent Animancer => (Owner as AnimancerAbility)?.AnimancerComponent;
+
+    /// <summary>
+    /// 返回 AnimancerAbility 上缓存的 ECM2 Character 组件
+    /// </summary>
+    protected Character GetCharacter() => (Owner as AnimancerAbility)?.Character;
 
     protected override void OnStart()
     {
